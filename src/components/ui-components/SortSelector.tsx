@@ -1,0 +1,16 @@
+import React, {FC} from "react";
+
+interface SortSelectorProps {
+    
+}
+
+export const SortSelector:FC<SortSelectorProps> = (props) => (
+    <div className={"selector"}>
+        <label htmlFor="sortSelector">Sort by:</label>
+        <select name="sortSelector" id="">
+            <option value="price">Price</option>
+            <option value="name">Name</option>
+            <option value="popularity">Popularity</option>
+        </select>
+    </div>
+);

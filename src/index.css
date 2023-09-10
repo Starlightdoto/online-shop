@@ -1,13 +1,78 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
+    
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.mainNavbar {
+    background-color: rgb(203, 226, 49);
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+    padding-top:15px;
+    justify-content: space-between;   
+    display: flex;
+    vertical-align: center;
 }
+
+.leftBox {
+    
+    margin: 2px;
+}
+
+.mainName {
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    padding-bottom: 10px;;
+}
+
+.midBox input {
+    width: 800px;
+    height: 20px;
+    border-radius: 8px;
+    border-color: rgb(249, 249, 249);
+}
+
+.rightBox button {
+    margin: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 255, 0);
+    margin-right: 15px;
+}
+
+.default-button {
+    margin: 10px;
+    width: 80px;
+    height: 40px;
+    border-radius: 7px;
+    background-color: rgb(63, 27, 244);
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.default-button:hover {
+    background-color: rgb(86, 86, 243);
+}
+
+.sideBar {
+    width: 300px;
+    height: 100vh;
+    background-color: rgb(194, 199, 171);
+    padding: 10px;;
+}
+
+.selector {
+    margin: 10px;
+    margin-bottom: 30px;
+    margin-top: 100px;
+}
+
