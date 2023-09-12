@@ -4,7 +4,8 @@ interface SelectorProps {
 
 }
 
-export const Selector:FC<SelectorProps> = (props) => (
+export const Selector:FC<SelectorProps> = (props) => {
+    return (
     <div className={"selector"}>
         <label htmlFor="catSelector">Categories:</label>
         <select name="catSelector" id="">
@@ -14,4 +15,5 @@ export const Selector:FC<SelectorProps> = (props) => (
             <option value="computers">Computers</option>
         </select>
     </div>
-);
+    )
+};

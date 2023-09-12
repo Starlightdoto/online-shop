@@ -4,7 +4,8 @@ interface SortSelectorProps {
     
 }
 
-export const SortSelector:FC<SortSelectorProps> = (props) => (
+export const SortSelector:FC<SortSelectorProps> = (props) => {
+    return (
     <div className={"selector"}>
         <label htmlFor="sortSelector">Sort by:</label>
         <select name="sortSelector" id="">
@@ -13,4 +14,5 @@ export const SortSelector:FC<SortSelectorProps> = (props) => (
             <option value="popularity">Popularity</option>
         </select>
     </div>
-);
+    )
+};
