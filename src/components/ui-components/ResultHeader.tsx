@@ -2,12 +2,12 @@ import React, {FC, useState} from "react";
 
 
 interface ResultHeaderProps {
-
+    headerText: string,
 }
 
-export const ResultHeader:FC<ResultHeaderProps> = (props) => {
+export const ResultHeader:FC<ResultHeaderProps> = ({headerText}) => {
 
-    const [headerState, setHeaderState] = useState('null');
+    const [headerState, setHeaderState] = useState(headerText || 'null');
 
     return (
         <div className={"header"}>
