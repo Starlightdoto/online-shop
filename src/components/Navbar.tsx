@@ -6,12 +6,9 @@ import searchInput from "./ui-components/SearchInput";
 
 
 interface NavbarProps {
-    //@ts-ignore
-    changeHeaderText,
 }
 
-export const Navbar:FC<NavbarProps> = ({changeHeaderText}) => {
-    const [searchValue, setSearchValue] = useState('');
+export const Navbar:FC<NavbarProps> = (props) => {
 
     return (
     <div>
@@ -24,8 +21,8 @@ export const Navbar:FC<NavbarProps> = ({changeHeaderText}) => {
             </div>
 
             <div className={"midBox"}>
-                <SearchInput searchText={searchValue} setSearchText={setSearchValue} />
-                <Button onClick={changeHeaderText(searchValue)} className={"default"} buttonText={"Search"}/>
+                <SearchInput  />
+                <Button   className={"default"} buttonText={"Search"}/>
             </div>
 
             <div className={"rightBox"}>
