@@ -1,13 +1,18 @@
 import React, {FC, useState} from "react";
 import { Button } from "./ui-components/Button";
+import SearchInput from "./ui-components/SearchInput";
+import searchInput from "./ui-components/SearchInput";
 // import myImage from "../assets/shop-logo.jpg";
 
 
 interface NavbarProps {
-    
+    //@ts-ignore
+    changeHeaderText,
 }
 
-export const Navbar:FC<NavbarProps> = (props) => {
+export const Navbar:FC<NavbarProps> = ({changeHeaderText}) => {
+    const [searchValue, setSearchValue] = useState('');
+
     return (
     <div>
         <nav className={"mainNavbar"}>
@@ -17,10 +22,12 @@ export const Navbar:FC<NavbarProps> = (props) => {
                     alt="" className={"logo"}/>
                 <span className={"mainName"}>QuickShop</span>
             </div>
+
             <div className={"midBox"}>
-                <input type="text" placeholder="Search..."/>
-                <Button className={"default"} buttonText={"Search"}/>
+                <SearchInput searchText={searchValue} setSearchText={setSearchValue} />
+                <Button onClick={changeHeaderText(searchValue)} className={"default"} buttonText={"Search"}/>
             </div>
+
             <div className={"rightBox"}>
                 <Button className={"default"} buttonText={"Cart"}/>
                 <Button className={"default"} buttonText={"My Profile"}/>
