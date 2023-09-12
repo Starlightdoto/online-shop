@@ -5,8 +5,10 @@ interface ButtonProps {
     buttonText: string,
 }
 
-export const Button:FC<ButtonProps> = ({className, buttonText}) => (
+export const Button:FC<ButtonProps> = ({className, buttonText}) => {
+    return (
     <button className={`${className}-button`}>
         {buttonText}
     </button>
-);
+    )
+};

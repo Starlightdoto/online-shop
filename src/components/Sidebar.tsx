@@ -7,10 +7,12 @@ interface SidebarProps {
 
 }
 
-export const Sidebar:FC<SidebarProps> = (props) => (
+export const Sidebar:FC<SidebarProps> = (props) => {
+    return (
     <div className={"sideBar"}>
-        <Selector />
-        <SortSelector />
-        <Button className={"default"}  buttonText = "Filter"/>
+        <Selector/>
+        <SortSelector/>
+        <Button className={"default"} buttonText="Filter"/>
     </div>
-);
+    )
+};

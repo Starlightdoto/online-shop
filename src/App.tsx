@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
+import { ResultHeader } from './components/ui-components/ResultHeader';
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Sidebar />
-      <h1>Header</h1>
+      <ResultHeader />
     </div>
   );
 }
