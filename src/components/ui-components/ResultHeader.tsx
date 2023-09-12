@@ -2,16 +2,17 @@ import React, {FC, useState} from "react";
 
 
 interface ResultHeaderProps {
-    headerText: string,
+    searchResultsCount: string,
 }
 
-export const ResultHeader:FC<ResultHeaderProps> = ({headerText}) => {
+export const ResultHeader:FC<ResultHeaderProps> = ({searchResultsCount}) => {
 
-    const [headerState, setHeaderState] = useState(headerText || 'null');
+    const [headerState, setHeaderState] = useState('Search results');
 
     return (
         <div className={"header"}>
             <h1>{headerState}</h1>
+            <h2 style={{marginTop: 20}}>{searchResultsCount}</h2>
         </div>
     );
 };

@@ -1,15 +1,15 @@
 import React, {FC, useState} from 'react';
 
 interface SearchInputProps {
-    searchText: string,
-    //@ts-ignore
-    setSearchText,
+
 }
 
-const SearchInput:FC<SearchInputProps> = ({searchText, setSearchText}) => {
+const SearchInput:FC<SearchInputProps> = (props) => {
+
+    const [searchValue, setSearchValue] = useState<string>('');
 
     return (
-        <input onChange={(e) => setSearchText(e.target.value) } type="text" placeholder="Search..." value={searchText}/>
+        <input onChange={(e) => setSearchValue(e.target.value) } type="text" placeholder="Search..." value={searchValue}/>
     );
 };
 

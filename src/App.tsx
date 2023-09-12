@@ -2,20 +2,22 @@ import React, {useState} from 'react';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
 import { ResultHeader } from './components/ui-components/ResultHeader';
+import Footer from "./components/Footer";
+import ProductList from "./components/ProductList";
 
 
 function App() {
-    const [header, setHeader] = useState('');
+    const [results, setResults] = useState<string>('0')
 
-    const changeHeaderText = (newText:string) => {
-        setHeader(newText);
-    }
+
 
     return (
       <div className="App">
-          <Navbar changeHeaderText={changeHeaderText} />
+          <Navbar />
           <Sidebar />
-          <ResultHeader headerText={header} />
+          <ResultHeader searchResultsCount={results}  />
+          <ProductList />
+          <Footer />
        </div>
     );
 }

@@ -4,18 +4,20 @@
 }
 
 .App{
-    display: flexbox;
+    display: -ms-flexbox;
+    width: 100vh;
 }
 
 .mainNavbar {
     background-color: rgb(203, 226, 49);
     height: 60px;
-    width: 100%;
+    width: 230%;
     padding: 5px;
     padding-top:15px;
     justify-content: space-between;   
     display: flex;
     vertical-align: center;
+    box-shadow: 2px 2px 2px darkslategrey ;
 }
 
 .leftBox {
@@ -24,11 +26,13 @@
 }
 
 .mainName {
+    position: relative;
     height: 50px;
     font-size: 30px;
     font-weight: bold;
     font-style: italic;
-    padding-bottom: 10px;;
+    padding-bottom: 10px;
+    vertical-align: 18px;
 }
 
 .midBox input {
@@ -69,9 +73,13 @@
 .sideBar {
     position: absolute;
     width: 300px;
-    height: 100vh;
+    height: 500px;
     background-color: rgb(194, 199, 171);
-    padding: 10px;;
+    padding: 10px;
+    margin-top: 80px;
+    margin-left: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
     
 }
 
@@ -84,6 +92,32 @@
 .header {
     position: relative;
     top: 70px;
-    left: 400px;
+    left: 600px;
+}
+
+.footer{
+    background: darkslategrey;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.footer h3 {
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+}
+
+.productList {
+    width: 1600px;
+    height: 1200px;
+    position: relative;
+    background: #c4bfbf;
+    left: 50%;
+    top: 200px;
 }
 
