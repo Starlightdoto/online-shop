@@ -8,7 +8,7 @@
 }
 
 .mainNavbar {
-    background-color: rgb(203, 226, 49);
+    background-color: rgb(107, 142, 35);
     height: 60px;
     width: 100%;
     padding: 5px;
@@ -24,11 +24,13 @@
 }
 
 .mainName {
+    position: relative;
     height: 50px;
     font-size: 30px;
     font-weight: bold;
     font-style: italic;
     padding-bottom: 10px;;
+    vertical-align: 18px;
 }
 
 .midBox input {
@@ -86,4 +88,5 @@
     top: 70px;
     left: 400px;
 }
+
 
