@@ -9,7 +9,7 @@
 }
 
 .mainNavbar {
-    background-color: rgb(203, 226, 49);
+    background-color: rgb(142, 187, 53);
     height: 60px;
     width: 230%;
     padding: 5px;
@@ -120,4 +120,5 @@
     left: 50%;
     top: 200px;
 }
+
 
