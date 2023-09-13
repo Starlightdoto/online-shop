@@ -9,10 +9,10 @@ export const Selector:FC<SelectorProps> = (props) => {
     <div className={"selector"}>
         <label htmlFor="catSelector">Categories:</label>
         <select name="catSelector" id="">
-            <option value="books">Books</option>
-            <option value="tools">Tools</option>
-            <option value="smartphones">Smartphones</option>
-            <option value="computers">Computers</option>
+            <option value="men-clothing">Men's Clothing</option>
+            <option value="women-clothing">Women's Clothing</option>
+            <option value="electronics">Electronics</option>
+
         </select>
     </div>
     )

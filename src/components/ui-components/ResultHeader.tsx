@@ -2,7 +2,7 @@ import React, {FC, useState} from "react";
 
 
 interface ResultHeaderProps {
-    searchResultsCount: string,
+    searchResultsCount: number,
 }
 
 export const ResultHeader:FC<ResultHeaderProps> = ({searchResultsCount}) => {
