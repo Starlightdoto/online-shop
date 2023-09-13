@@ -7,10 +7,12 @@ interface ButtonProps {
     onClick?,
 }
 
-export const Button:FC<ButtonProps> = ({className, buttonText, onClick}) => {
+export const Button = (props:any) => {
+    const {className, buttonText, onClick} = props;
     return (
     <button onClick={onClick} className={`${className}-button`}>
         {buttonText}
+        {props.children}
     </button>
     )
 };
