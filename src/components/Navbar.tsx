@@ -8,9 +8,11 @@ import ProfileIcon from '@mui/icons-material/PersonOutline';
 
 
 interface NavbarProps {
+    //@ts-ignore
+    onClick?,
 }
 
-export const Navbar:FC<NavbarProps> = (props) => {
+export const Navbar:FC<NavbarProps> = ({onClick}) => {
 
     return (
     <div>
@@ -24,7 +26,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
 
             <div className={"midBox"}>
                 <SearchInput  />
-                <Button className={"default"}>Search</Button>
+                <Button onClick={onClick} className={"default"}>Search</Button>
             </div>
 
             <div className={"rightBox"}>
