@@ -5,14 +5,16 @@ import searchInput from "./ui-components/SearchInput";
 // import myImage from "../assets/shop-logo.jpg";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileIcon from '@mui/icons-material/PersonOutline';
+import {NavLink} from "react-router-dom";
 
 
 interface NavbarProps {
     //@ts-ignore
     onClick?,
+    isOnMainPage: boolean,
 }
 
-export const Navbar:FC<NavbarProps> = ({onClick}) => {
+export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage}) => {
 
     return (
     <div>
@@ -21,17 +23,22 @@ export const Navbar:FC<NavbarProps> = ({onClick}) => {
                 <img
                     src="https://img.freepik.com/premium-vector/online-shop-logo-design-template-perfect-ecommerce-sale-store-shop-discount-web_695238-64.jpg"
                     alt="" className={"logo"}/>
-                <span className={"mainName"}>QuickShop</span>
+                <NavLink style={{textDecoration:"none", color:"black"}} to={"/"}><span className={"mainName"}>QuickShop</span></NavLink>
             </div>
 
-            <div className={"midBox"}>
-                <SearchInput  />
-                <Button onClick={onClick} className={"default"}>Search</Button>
-            </div>
+            {isOnMainPage
+                ?
+                <div className={"midBox"}>
+                    <SearchInput  />
+                    <Button onClick={onClick} className={"default"}>Search</Button>
+                </div>
+                : null
+            }
+
 
             <div className={"rightBox"}>
-                <Button className={"default"}><ShoppingCartIcon /></Button>
-                <Button className={"default"}><ProfileIcon /></Button>
+                <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon /> </Button> </NavLink>
+                <NavLink to={"/my-profile"}> <Button className={"default"}> <ProfileIcon /> </Button> </NavLink>
             </div>
         </nav>
     </div>
