@@ -3,6 +3,8 @@ import { Button } from "./ui-components/Button";
 import SearchInput from "./ui-components/SearchInput";
 import searchInput from "./ui-components/SearchInput";
 // import myImage from "../assets/shop-logo.jpg";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ProfileIcon from '@mui/icons-material/PersonOutline';
 
 
 interface NavbarProps {
@@ -22,12 +24,12 @@ export const Navbar:FC<NavbarProps> = (props) => {
 
             <div className={"midBox"}>
                 <SearchInput  />
-                <Button   className={"default"} buttonText={"Search"}/>
+                <Button className={"default"}>Search</Button>
             </div>
 
             <div className={"rightBox"}>
-                <Button className={"default"} buttonText={"Cart"}/>
-                <Button className={"default"} buttonText={"My Profile"}/>
+                <Button className={"default"}><ShoppingCartIcon /></Button>
+                <Button className={"default"}><ProfileIcon /></Button>
             </div>
         </nav>
     </div>
