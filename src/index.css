@@ -1,163 +1,164 @@
-* {
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    background: #FFFADD;
-}
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
-.App{
-    display: -ms-flexbox;
-    width: 100vh;
-}
+    body {
+        background: #FFFADD;
+    }
 
-.mainNavbar {
-    background-color: #FFCC70;
-    height: 60px;
-    width: 230%;
-    padding: 5px;
-    padding-top:15px;
-    justify-content: space-between;   
-    display: flex;
-    vertical-align: center;
-    box-shadow: 2px 2px 2px darkslategrey ;
-}
+    .App {
+        display: -ms-flexbox;
+        width: 100vh;
+    }
 
-.leftBox {
-    
-    margin: 2px;
-}
+    .mainNavbar {
+        background-color: #FFCC70;
+        height: 60px;
+        width: 189%;
+        padding: 5px;
+        padding-top: 15px;
+        justify-content: space-between;
+        display: flex;
+        vertical-align: center;
+        box-shadow: 2px 2px 2px darkslategrey;
+    }
 
-.mainName {
-    position: relative;
-    height: 50px;
-    font-size: 30px;
-    font-weight: bold;
-    font-style: oblique;
-    padding-bottom: 10px;
-    vertical-align: 18px;
-}
+    .leftBox {
 
-.midBox input {
-    width: 800px;
-    height: 20px;
-    border-radius: 8px;
-    border-color: rgb(249, 249, 249);
-}
+        margin: 2px;
+    }
 
-.rightBox button {
-    margin: 10px;
-    width: 80px;
-    height: 40px;
-}
+    .mainName {
+        position: relative;
+        height: 50px;
+        font-size: 30px;
+        font-weight: bold;
+        font-style: oblique;
+        padding-bottom: 10px;
+        vertical-align: 18px;
+    }
 
-.logo {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 255, 0);
-    margin-right: 15px;
-}
+    .midBox input {
+        width: 800px;
+        height: 20px;
+        border-radius: 8px;
+        border-color: rgb(249, 249, 249);
+    }
 
-.default-button {
-    margin: 10px;
-    width: 80px;
-    height: 40px;
-    border-radius: 7px;
-    background-color: rgb(63, 27, 244);
-    color:white;
-    font-weight: bold;
-    cursor: pointer;
-}
+    .rightBox button {
+        margin: 10px;
+        width: 80px;
+        height: 40px;
+    }
 
-.default-button:hover {
-    background-color: rgb(86, 86, 243);
-}
+    .logo {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 0, 255, 0);
+        margin-right: 15px;
+    }
 
-.sideBar {
-    position: absolute;
-    width: 300px;
-    height: 500px;
-    background-color: #8ECDDD;
-    padding: 10px;
-    margin-top: 80px;
-    margin-left: 20px;
-    border-radius: 10px;
-    border: 1px solid black;
-    
-}
+    .default-button {
+        margin: 10px;
+        width: 80px;
+        height: 40px;
+        border-radius: 7px;
+        background-color: rgb(63, 27, 244);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-.selector {
-    margin: 10px;
-    margin-bottom: 30px;
-    margin-top: 100px;
-}
+    .default-button:hover {
+        background-color: rgb(86, 86, 243);
+    }
 
-.header {
-    position: relative;
-    top: 70px;
-    left: 600px;
-}
+    .sideBar {
+        position: absolute;
+        width: 300px;
+        height: 500px;
+        background-color: #8ECDDD;
+        padding: 10px;
+        margin-top: 80px;
+        margin-left: 20px;
+        border-radius: 10px;
+        border: 1px solid black;
 
-.footer{
-    background: #64CCC5;
-    height: 70px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    margin: 0;
-    text-align: center;
-}
+    }
 
-.footer h3 {
-    color: white;
-    position: fixed;
-    bottom: 40px;
-    left: 50.5%;
-}
+    .selector {
+        margin: 10px;
+        margin-bottom: 30px;
+        margin-top: 100px;
+    }
 
-.footer p {
-    color: white;
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-}
+    .header {
+        position: relative;
+        top: 70px;
+        left: 600px;
+    }
+
+    .footer {
+        background: #64CCC5;
+        height: 70px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .footer h3 {
+        color: white;
+        position: fixed;
+        bottom: 40px;
+        left: 50.5%;
+    }
+
+    .footer p {
+        color: white;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+    }
 
 
-.productList {
-    width: 1100px;
-    height: 100%;
-    position: relative;
-    background: #f5f3f3;
-    left: 50%;
-    top: 200px;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 350px;
-}
+    .productList {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: #f5f3f3;
+        left: 50%;
+        top: 200px;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 350px;
+    }
 
-.productItem {
-    display: block;
-    width: 1000px;
-    height: 300px;
-    background: #22668D;
-    margin: 30px;
-    font-size: 20px;
-    color: #ffffff;
-    border-radius: 15px;
-    overflow-y: scroll;
-}
+    .productItem {
+        display: block;
+        width: 1000px;
+        height: 300px;
+        background: #22668D;
+        margin: 30px;
+        font-size: 20px;
+        color: #ffffff;
+        border-radius: 15px;
+        overflow-y: scroll;
+    }
 
-.productItem * {
-    position: relative;
-    top: 100px;
-    left: 30px;
+    .productItem * {
+        position: relative;
+        top: 100px;
+        left: 30px;
 
-}
+    }
 
-.mui-button-icon {
-    border-radius: 7px;
-    color:white;
-    font-weight: bold;
-    cursor: pointer;
-}
+    .mui-button-icon {
+        border-radius: 7px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }

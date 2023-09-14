@@ -10,7 +10,7 @@ interface SidebarProps {
 export const Sidebar:FC<SidebarProps> = (props) => {
     return (
     <div className={"sideBar"}>
-        <Selector/>
+        <Selector />
         <SortSelector/>
         <Button className={"default"} buttonText="Filter"/>
     </div>
