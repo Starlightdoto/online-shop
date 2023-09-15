@@ -6,6 +6,8 @@ import {ResultHeader} from "../components/ui-components/ResultHeader";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 
+
+
 const MainPage = () => {
     const [results, setResults] = useState<number>(0)
     const [products, setProducts] = useState<any[]>([]);
