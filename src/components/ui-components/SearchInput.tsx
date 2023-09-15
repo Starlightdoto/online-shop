@@ -9,7 +9,7 @@ const SearchInput:FC<SearchInputProps> = (props) => {
     const [searchValue, setSearchValue] = useState<string>('');
 
     return (
-        <input onChange={(e) => setSearchValue(e.target.value) } type="text" placeholder="Search..." value={searchValue}/>
+        <input onChange={(e) => setSearchValue(e.target.value) } className={"searchInput"} type="text" placeholder="Search..." value={searchValue}/>
     );
 };
 

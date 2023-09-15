@@ -5,17 +5,18 @@
 
 body {
     background: #FFFADD;
+    font-family: Arial, sans-serif;
 }
 
 .App{
     display: -ms-flexbox;
-    width: 100vh;
+    /*max-width: 100%;*/
 }
 
 .mainNavbar {
     background-color: #FFCC70;
     height: 60px;
-    width: 230%;
+    width: 100%;
     padding: 5px;
     padding-top:15px;
     justify-content: space-between;   
@@ -39,8 +40,9 @@ body {
     vertical-align: 18px;
 }
 
-.midBox input {
-    width: 800px;
+.searchInput {
+    min-width: 700px;
+    width: 30%;
     height: 20px;
     border-radius: 8px;
     border-color: rgb(249, 249, 249);
@@ -94,46 +96,51 @@ body {
 }
 
 .header {
-    position: relative;
-    top: 70px;
-    left: 600px;
+    position: absolute;
+    top: 200px;
+    left: 30%;
 }
 
 .footer{
     background: #64CCC5;
-    height: 70px;
+    min-height: 70px;
     width: 100%;
     position: fixed;
     bottom: 0;
     margin: 0;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .footer h3 {
     color: white;
-    position: fixed;
+    position: absolute;
     bottom: 40px;
-    left: 50.5%;
+    left: 48%;
+    transform: translateX(-50%);
 }
 
 .footer p {
     color: white;
-    position: fixed;
+    position: absolute;
     bottom: 10px;
-    left: 50%;
+    left: 48%;
+    transform: translateX(-50%);
+
 }
 
 
 .productList {
-    width: 1100px;
-    height: 100%;
-    position: relative;
+    width: 50%;
+    min-width: 800px;
+    height: auto;
+    position: absolute;
     background: #f5f3f3;
-    left: 50%;
-    top: 200px;
+    top: 400px;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 350px;
+    left: 30%;
 }
 
 .productItem {
@@ -160,4 +167,57 @@ body {
     color:white;
     font-weight: bold;
     cursor: pointer;
+}
+
+.profileCard {
+    width: 30%;
+    height: 50vh;
+    background: #8ECDDD;
+    position: absolute;
+    left: 30%;
+    padding: 10px;
+    margin-top: 80px;
+    margin-left: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+}
+
+.profileCardEdit {
+    width: 30%;
+    height: 50vh;
+    background: #8ECDDD;
+    position: absolute;
+    left: 30%;
+    padding: 10px;
+    margin-top: 80px;
+    margin-left: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.detailsInput {
+    min-width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    width: 30%;
+    height: 20px;
+    border-radius: 8px;
+    border-color: rgb(249, 249, 249);
+}
+
+.detailsInputLabel {
+    margin-left: 10px;
+    margin-right: 40px;
+    display: block;
+}
+
+.styledText {
+    font-size: 25px;
+    color:white;
+    margin-bottom: 10px;
+    margin-top: 25px;
 }
