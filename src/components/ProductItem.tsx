@@ -16,7 +16,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
     return (
         <div className={"productItem"}>
             <img className={"productImage-1"} src={MyImage} alt=""/>
-            <NavLink style={{textDecoration:"none", color:"white"}} to={"/"}><h3 className={"productName-grid"}>{name}</h3></NavLink>
+            <NavLink style={{textDecoration:"none", color:"white"}} to={"/product/id"}><h3 className={"productName-grid"}>{name}</h3></NavLink>
             <h4>Quantity: {quantity}</h4>
             <h4>Price: ${price}</h4>
             <h4>Category: {category}</h4>
