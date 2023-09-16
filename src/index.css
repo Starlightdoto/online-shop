@@ -79,6 +79,22 @@ body {
     cursor: pointer;
 }
 
+.remove-button {
+    margin: 10px;
+    width: 80px;
+    height: 40px;
+    border-radius: 7px;
+    background-color: #000000;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: red;
+    color: #ffffff;
+}
+
 .default-button:hover {
     background-color: #EEEEEE;
     color: #000000;
@@ -161,7 +177,27 @@ body {
     overflow-y: auto;
 }
 
+.cartList {
+    width: 30%;
+    min-width: 900px;
+    height: auto
+}
+
 .productItem-grid {
+    display: block;
+    width: 95%;
+    min-height: 300px;
+    height: auto;
+    background: #22668D;
+    margin: 30px;
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 5px;
+    overflow-y: scroll;
+    padding: 15px;
+}
+
+.productItem-cart {
     display: block;
     width: 95%;
     min-height: 300px;
@@ -177,7 +213,7 @@ body {
 
 .productItem-single {
     display: block;
-    width: 40%;
+    width: 60%;
     min-height: 300px;
     height: auto;
     background: #22668D;
