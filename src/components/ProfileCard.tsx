@@ -18,7 +18,6 @@ interface ProfileCardProps {
 const ProfileCard:FC<ProfileCardProps> = (props) => {
     const {data, changeData} = props;
     const [file, setFile] = useState();
-
     const [isEditClicked, setIsEditClicked] = useState<boolean>(false);
 
     const uploadAvatar = (event:any) => {

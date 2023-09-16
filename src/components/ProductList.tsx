@@ -10,7 +10,10 @@ const ProductList:FC<ProductListProps> = ({products}) => {
     return (
         <div className={"productList"}>
             {products.map((product) => {
-                return <ProductItem name={product.title}
+                return <ProductItem id={product.id}
+                                    imgSrc={product.image}
+                                    className={"grid"}
+                                    name={product.title}
                                     category={product.category}
                                     description={product.description}
                                     price={product.price}
