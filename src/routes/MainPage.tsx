@@ -36,7 +36,7 @@ export const MainPage = () => {
             <Navbar isOnMainPage={true} onClick={getAllProducts} />
             <Sidebar performAction={getOneCategory} />
             <ResultHeader searchResultsCount={results}  />
-            <ProductList products={products}/>
+            <ProductList className={"product"} products={products}/>
             <Footer />
         </div>
     );
