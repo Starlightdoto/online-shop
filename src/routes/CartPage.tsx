@@ -4,9 +4,10 @@ import {FC} from 'react';
 import Footer from "../components/Footer";
 import ProductList from "../components/ProductList";
 import fetchAllProducts from "../api/fetchProducts";
+import BillingDetails from "../components/BillingDetails";
 
 interface CartPageProps {
-    cartItems: {}[],
+    cartItems: any[],
     //@ts-ignore
     setCartItems,
 }
@@ -24,14 +25,14 @@ const CartPage:FC<CartPageProps> = ({cartItems, setCartItems}) => {
     }
 
     useEffect(() => {
-        getAllProducts();
-
-    }, []);
+        // getAllProducts();
+    });
 
     return (
         <div>
             <Navbar isOnMainPage={false} />
             <ProductList removeItem={removeItem} className={"cart"} products={cartItems} />
+            <BillingDetails />
             <Footer />
         </div>
     );

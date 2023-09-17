@@ -81,7 +81,7 @@ body {
 
 .remove-button {
     margin: 10px;
-    width: 80px;
+    width: 60px;
     height: 40px;
     border-radius: 7px;
     background-color: #000000;
@@ -180,7 +180,8 @@ body {
 .cartList {
     width: 30%;
     min-width: 900px;
-    height: auto
+    height: auto;
+    display:inline-block;
 }
 
 .productItem-grid {
@@ -200,7 +201,7 @@ body {
 .productItem-cart {
     display: block;
     width: 95%;
-    min-height: 300px;
+    min-height: 350px;
     height: auto;
     background: #22668D;
     margin: 30px;
@@ -262,6 +263,7 @@ body {
     border: 1px solid black;
     display: inline-block;
     text-align: center;
+    box-shadow: 1px 1px 1px black;
 }
 
 .profileCardEdit {
@@ -278,6 +280,7 @@ body {
     display: inline-block;
     margin-bottom: 60px;
     overflow-y: auto;
+    box-shadow: 1px 1px 1px black;
 
 }
 
@@ -350,5 +353,19 @@ body {
     position: absolute;
     left: 100px;
     top: 70px;
+}
+
+.billingDetailsCard {
+    width: 20%;
+    min-width: 300px;
+    background: #8ECDDD;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 30px;
+    border-radius: 5px;
+    position: absolute;
+    margin-right: 20px;
+    top:14%;
+    right: 10%;
 }
 
