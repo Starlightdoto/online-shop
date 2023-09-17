@@ -13,7 +13,6 @@ export const MainPage = () => {
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
 
-
     const getAllProducts = async () => {
         const data = await fetchAllProducts();
         setProducts(data);
@@ -24,6 +23,7 @@ export const MainPage = () => {
         setProducts(data);
 
     }
+
 
     useEffect(() => {
         // getAllProducts();

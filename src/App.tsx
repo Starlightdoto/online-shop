@@ -8,13 +8,14 @@ import SingleProductPage from "./routes/SingleProductPage";
 function App() {
     const [cartItems, setCartItems] = useState<{}[]>([]);
 
+
     return (
       <div className="App">
           <Routes>
               <Route path={"/"} element={<MainPage />}/>
               <Route path={"/cart"} element={<CartPage setCartItems={setCartItems} cartItems={cartItems} />}/>
               <Route path={"/my-profile"} element={<ProfilePage />} />
-              <Route path={"/product/:id"} element={<SingleProductPage />} />
+              <Route path={"/product/:id"} element={<SingleProductPage cartItems={cartItems} setCartItems={setCartItems} />} />
           </Routes>
        </div>
     );

@@ -11,7 +11,7 @@ interface SidebarProps {
 export const Sidebar:FC<SidebarProps> = ({performAction}) => {
     const [chosenCategory, setChosenCategory] = useState<string>("men's clothing");
 
-    console.log(chosenCategory);
+
 
     return (
     <div className={"sideBar"}>
