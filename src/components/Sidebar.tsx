@@ -1,18 +1,23 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import { Button } from "./ui-components/Button";
 import { Selector } from "./ui-components/Selector";
 import {SortSelector} from './ui-components/SortSelector';
 
 interface SidebarProps {
-
+    //@ts-ignore
+    performAction?
 }
 
-export const Sidebar:FC<SidebarProps> = (props) => {
+export const Sidebar:FC<SidebarProps> = ({performAction}) => {
+    const [chosenCategory, setChosenCategory] = useState<string>("men's clothing");
+
+
+
     return (
     <div className={"sideBar"}>
-        <Selector />
+        <Selector setChosenCategory={setChosenCategory} chosenCategory={chosenCategory}/>
         <SortSelector/>
-        <Button className={"default"} buttonText="Filter"/>
+        <Button onClick={() => performAction(chosenCategory)} className={"default"} buttonText="Filter"/>
     </div>
     )
 };
