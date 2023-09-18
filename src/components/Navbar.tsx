@@ -12,10 +12,10 @@ interface NavbarProps {
     //@ts-ignore
     onClick?,
     isOnMainPage: boolean,
-    rightBoxPage?: boolean,
+    isOnLogin?: boolean,
 }
 
-export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,rightBoxPage}) => {
+export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
 
     return (
     <div>
@@ -36,7 +36,7 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,rightBoxPage}) => 
                 : null
             }
 
-            {rightBoxPage
+            {!isOnLogin
                 ?
                 <div className={"rightBox"}>
                     <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon/> </Button> </NavLink>
