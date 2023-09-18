@@ -6,10 +6,19 @@ import {ResultHeader} from "../components/ui-components/ResultHeader";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
+import LoginPage from "./LoginPage";
+
+interface MainPageProps {
+    isLoggedIn: boolean,
+    //@ts-ignore
+    setIsLoggedIn,
+}
 
 
 
-export const MainPage = (props:any) => {
+export const MainPage:FC<MainPageProps> = (props) => {
+    const {isLoggedIn, setIsLoggedIn} = props;
+
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
@@ -34,11 +43,16 @@ export const MainPage = (props:any) => {
 
     return (
         <div>
-            <Navbar isOnMainPage={true} onClick={() => console.log('Search is clicked')} />
-            <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
-            <ResultHeader searchResultsCount={results}  />
-            <ProductList className={"product"} products={products}/>
-            <Footer />
+            {isLoggedIn
+                ?  <div>
+                    <Navbar  isOnMainPage={true} onClick={() => console.log('Search is clicked')} />
+                    <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
+                    <ResultHeader searchResultsCount={results}  />
+                    <ProductList className={"product"} products={products}/>
+                    <Footer />
+                </div>
+                : <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            }
         </div>
     );
 };
