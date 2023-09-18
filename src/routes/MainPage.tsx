@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import fetchAllProducts from "../api/fetchProducts";
 import {Navbar} from "../components/Navbar";
 import {Sidebar} from "../components/Sidebar";
@@ -8,33 +8,34 @@ import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 
 
-export const MainPage = () => {
+
+export const MainPage = (props:any) => {
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
 
-    const getAllProducts = async () => {
-        const data = await fetchAllProducts();
+    const getAllProducts = async (limit?:string) => {
+        const data = await fetchAllProducts(limit);
         setProducts(data);
+        setResults(data.length);
     }
 
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
         setProducts(data);
-
+        setResults(data.length);
     }
 
 
     useEffect(() => {
-        // getAllProducts();
-        setResults(products.length);
-    }, [products]);
+        getAllProducts();
+    }, []);
 
 
     return (
         <div>
-            <Navbar isOnMainPage={true} onClick={getAllProducts} />
-            <Sidebar performAction={getOneCategory} />
+            <Navbar isOnMainPage={true} onClick={() => console.log('Search is clicked')} />
+            <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
             <ResultHeader searchResultsCount={results}  />
             <ProductList className={"product"} products={products}/>
             <Footer />

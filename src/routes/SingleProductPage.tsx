@@ -6,13 +6,12 @@ import {Button} from "../components/ui-components/Button";
 import {fetchOneProduct} from "../api/fetchProducts";
 
 interface SingleProductPageProps {
-    cartItems: {}[],
     //@ts-ignore
     setCartItems?,
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
-    const {cartItems, setCartItems} = props;
+    const { setCartItems} = props;
     const [actualProduct, setActualProduct] = useState(
         {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null'}
     );
@@ -50,8 +49,6 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                 <ProductItem id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
-
-
             <Button onClick={addToCart}  className={"default"} buttonText={"Add to cart"}/>
             <Footer />
         </div>
