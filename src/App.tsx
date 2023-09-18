@@ -18,6 +18,8 @@ function App() {
               <Route path={"/my-profile"} element={<ProfilePage />} />
               <Route path={"/product/:id"} element={<SingleProductPage  setCartItems={setCartItems} />} />
               <Route path={"/login"} element={<Login /> } />
+
+
           </Routes>
        </div>
     );
