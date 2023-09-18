@@ -17,7 +17,6 @@ export const Selector:FC<SelectorProps> = (props) => {
             <option  value="jewelery">Jewelery</option>
             <option  value="women's clothing">Women's Clothing</option>
             <option  value="electronics">Electronics</option>
-
         </select>
     </div>
     )
