@@ -4,8 +4,8 @@
 }
 
 body {
-    background: #ffffff;
-    font-family: Arial, sans-serif;
+    background: #E3E6E6;
+    font-family: Times New Roman, serif;
     min-height: 400px;
     margin-bottom: 100px;
     clear:both;
@@ -18,7 +18,7 @@ body {
 }
 
 .mainNavbar {
-    background-color: #4E4FEB;
+    background-color: #0F1111;
     height: 60px;
     width: 100%;
     padding: 5px;
@@ -38,12 +38,11 @@ body {
 .mainName {
     position: relative;
     height: 50px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
-    font-style: oblique;
     padding-bottom: 10px;
     vertical-align: 18px;
-    color: #F8DE22;
+    color: #FFD700;
 }
 
 .searchInput {
@@ -73,8 +72,8 @@ body {
     width: 80px;
     height: 40px;
     border-radius: 7px;
-    background-color: #000000;
-    color:white;
+    background-color: #E3E6E6;
+    color:#000000;
     font-weight: bold;
     cursor: pointer;
 }
@@ -96,8 +95,8 @@ body {
 }
 
 .default-button:hover {
-    background-color: #EEEEEE;
-    color: #000000;
+    background-color: #FFAF38;
+    color: #ffffff;
 }
 
 .sideBar {
@@ -105,7 +104,7 @@ body {
     min-width: 300px;
     width: 20vh;
     height: 500px;
-    background-color: #4E4FEB;
+    background-color: #232f3e;
     padding: 10px;
     /*margin-top: 80px;*/
     /*margin-left: 20px;*/
@@ -135,7 +134,7 @@ body {
 }
 
 .footer{
-    background: #068FFF;
+    background: #232f3e;
     min-height: 60px;
     height: 8vh;
     width: 100%;
@@ -189,7 +188,7 @@ body {
     width: 95%;
     min-height: 300px;
     height: auto;
-    background: #22668D;
+    background: #022C43;
     margin: 30px;
     font-size: 20px;
     color: #ffffff;
@@ -203,7 +202,7 @@ body {
     width: 95%;
     min-height: 350px;
     height: auto;
-    background: #22668D;
+    background: #022C43;
     margin: 30px;
     font-size: 20px;
     color: #ffffff;
@@ -217,7 +216,7 @@ body {
     width: 60%;
     min-height: 300px;
     height: auto;
-    background: #22668D;
+    background: #022C43;
     margin: 10px;
     font-size: 20px;
     color: #ffffff;
@@ -253,7 +252,7 @@ body {
 .profileCard {
     width: 30%;
     height: 50vh;
-    background: #8ECDDD;
+    background: #232f3e;
     position: absolute;
     left: 30%;
     padding: 10px;
@@ -269,7 +268,7 @@ body {
 .profileCardEdit {
     width: 30%;
     height: auto;
-    background: #8ECDDD;
+    background: lightgrey;
     position: relative;
     left: 30%;
     padding: 20px;
@@ -367,5 +366,13 @@ body {
     margin-right: 20px;
     top:14%;
     right: 10%;
+}
+
+.sortSelectorLabel {
+    color: #ffffff;
+}
+
+.catSelectorLabel {
+    color: #ffffff;
 }
 

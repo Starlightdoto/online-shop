@@ -12,7 +12,7 @@ function App() {
     return (
       <div className="App">
           <Routes>
-              <Route path={"/"} element={<MainPage />}/>
+              <Route path={"/"} element={<MainPage  />}/>
               <Route path={"/cart"} element={<CartPage setCartItems={setCartItems} cartItems={cartItems} />}/>
               <Route path={"/my-profile"} element={<ProfilePage />} />
               <Route path={"/product/:id"} element={<SingleProductPage cartItems={cartItems} setCartItems={setCartItems} />} />

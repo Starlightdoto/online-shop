@@ -40,6 +40,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>Price: ${price}</h4>
                     <h4>Category: {category}</h4>
                     <h4 className={`productItemDescription-${className}`}>Description: {description}</h4>
+                    {/*<Button className={"default"} buttonText={"Add to cart"} />*/}
                 </div>
             }
         </div>
