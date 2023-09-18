@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Navbar} from "../components/Navbar";
 import Footer from "../components/Footer";
 import LoginCard from "../components/LoginCard";
 
+interface LoginPageProps {
+    isLoggedIn: boolean,
+    //@ts-ignore
+    setIsLoggedIn,
+}
 
 
-const LoginPage = (props:any) => {
+
+const LoginPage:FC<LoginPageProps> = (props) => {
+    const {isLoggedIn, setIsLoggedIn} = props;
     return (
         <div>
-            <Navbar isOnMainPage={false} rightBoxPage={false} />
-            <LoginCard />
+            <Navbar isOnMainPage={false} isOnLogin={isLoggedIn} />
+            <LoginCard isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Footer />
         </div>
     );
