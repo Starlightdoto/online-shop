@@ -1,7 +1,8 @@
 import React, {FC} from "react";
 
 interface SortSelectorProps {
-    
+
+
 }
 
 export const SortSelector:FC<SortSelectorProps> = (props) => {
