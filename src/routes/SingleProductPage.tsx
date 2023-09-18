@@ -6,13 +6,12 @@ import {Button} from "../components/ui-components/Button";
 import {fetchOneProduct} from "../api/fetchProducts";
 
 interface SingleProductPageProps {
-    cartItems: {}[],
     //@ts-ignore
     setCartItems?,
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
-    const {cartItems, setCartItems} = props;
+    const { setCartItems} = props;
     const [actualProduct, setActualProduct] = useState(
         {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null'}
     );
