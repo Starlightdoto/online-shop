@@ -1,18 +1,25 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import { Button } from "./ui-components/Button";
-import { Selector } from "./ui-components/Selector";
+import { CategorySelector } from "./ui-components/CategorySelector";
 import {SortSelector} from './ui-components/SortSelector';
+import {LimitSelector} from './ui-components/LimitSelector';
 
 interface SidebarProps {
-
+    //@ts-ignore
+    performAction?,
+    //@ts-ignore
+    getAll?,
 }
 
 export const Sidebar:FC<SidebarProps> = (props) => {
+    const {performAction, getAll} = props;
+    const [chosenCategory, setChosenCategory] = useState<string>("");
+
     return (
     <div className={"sideBar"}>
-        <Selector />
+        <CategorySelector getAll={getAll} performAction={performAction} setChosenCategory={setChosenCategory} chosenCategory={chosenCategory}/>
         <SortSelector/>
-        <Button className={"default"} buttonText="Filter"/>
+        <LimitSelector performAction={getAll} />
     </div>
     )
 };

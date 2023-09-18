@@ -12,9 +12,10 @@ interface NavbarProps {
     //@ts-ignore
     onClick?,
     isOnMainPage: boolean,
+    rightBoxPage?: boolean,
 }
 
-export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage}) => {
+export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,rightBoxPage}) => {
 
     return (
     <div>
@@ -35,11 +36,14 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage}) => {
                 : null
             }
 
-
-            <div className={"rightBox"}>
-                <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon /> </Button> </NavLink>
-                <NavLink to={"/my-profile"}> <Button className={"default"}> <ProfileIcon /> </Button> </NavLink>
-            </div>
+            {rightBoxPage
+                ?
+                <div className={"rightBox"}>
+                    <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon/> </Button> </NavLink>
+                    <NavLink to={"/my-profile"}> <Button className={"default"}> <ProfileIcon/> </Button> </NavLink>
+                </div>
+                : null
+            }
         </nav>
     </div>
     )

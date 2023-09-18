@@ -3,7 +3,7 @@ import ProductItem from "./ProductItem";
 import {Button} from "./ui-components/Button";
 //@ts-ignore
 import MyImage from '../assets/shop-logo.jpg';
-
+//test
 
 interface ProductListProps {
     products: any[],
