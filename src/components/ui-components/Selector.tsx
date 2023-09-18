@@ -11,8 +11,8 @@ export const Selector:FC<SelectorProps> = (props) => {
 
     return (
     <div className={"selector"}>
-        <label htmlFor="catSelector">Categories </label>
-        <select id={"catSelector"}  name="catSelector" value={chosenCategory} onChange={(event) => setChosenCategory(event.target.value)} >
+        <label className={"catSelectorLabel"} htmlFor="catSelector">Categories </label>
+        <select  id={"catSelector"}  name="catSelector" value={chosenCategory} onChange={(event) => setChosenCategory(event.target.value)} >
             <option  value="men's clothing">Men's Clothing</option>
             <option  value="jewelery">Jewelery</option>
             <option  value="women's clothing">Women's Clothing</option>

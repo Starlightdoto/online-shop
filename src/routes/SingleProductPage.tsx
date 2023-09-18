@@ -50,8 +50,6 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                 <ProductItem id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
-
-
             <Button onClick={addToCart}  className={"default"} buttonText={"Add to cart"}/>
             <Footer />
         </div>
