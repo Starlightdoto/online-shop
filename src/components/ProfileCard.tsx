@@ -39,10 +39,10 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
                 ? <form action={"/my-profile"}  className={"profileCardEdit"}>
                     <input className={"avatarLoader"} type="file" onChange={uploadAvatar}/>
                     <AvatarImage image={file} />
-                    <DetailsInput type={"fName"} labelName={"First Name"} />
-                    <DetailsInput type={"lName"} labelName={"Last Name"} />
-                    <DetailsInput type={"email"} labelName={"Email"} />
-                    <DetailsInput type={"address"} labelName={"Address 1"} />
+                    <DetailsInput type={"fName"} labelName={"First Name"} placeholder={"John"} />
+                    <DetailsInput type={"lName"} labelName={"Last Name"} placeholder={"Doe"} />
+                    <DetailsInput type={"email"} labelName={"Email"} placeholder={"example@email.com"} />
+                    <DetailsInput type={"address"} labelName={"Address 1"} placeholder={"Ada-Lovelace, 21"} />
                     <DetailsInput type={"address2"} labelName={"Address 2 (optional)"} />
                     <Button type={"submit"} onClick={changeEditState} className={"default"} buttonText={"Save"}/>
                 </form>
