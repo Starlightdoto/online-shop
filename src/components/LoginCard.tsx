@@ -12,7 +12,7 @@ const LoginCard:FC<LoginCardProps> = (props) => {
     const {isLoggedIn, setIsLoggedIn} = props;
     return (
         <div className={"profileCardEdit"}>
-            <DetailsInput labelName={"Email"} type={"email"} />
+            <DetailsInput placeholder={"example@email.com"} labelName={"Email"} type={"email"} />
             <DetailsInput labelName={"Password"} type={"password"} />
             <Button onClick={ ()=> setIsLoggedIn(!isLoggedIn) } className={"default"} buttonText={"Login"} />
         </div>

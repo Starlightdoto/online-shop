@@ -16,6 +16,7 @@ interface NavbarProps {
 }
 
 export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
+    const [searchValue, setSearchValue] = useState<string>('');
 
     return (
     <div>
@@ -30,8 +31,8 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
             {isOnMainPage
                 ?
                 <div className={"midBox"}>
-                    <SearchInput  />
-                    <Button onClick={onClick} className={"default"}>Search</Button>
+                    <SearchInput searchValue={searchValue} setSearchValue={setSearchValue}  />
+                    <Button onClick={() => onClick(searchValue)} className={"default"}>Search</Button>
                 </div>
                 : null
             }

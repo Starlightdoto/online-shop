@@ -26,26 +26,39 @@ export const MainPage:FC<MainPageProps> = (props) => {
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
         setProducts(data);
-        setResults(data.length);
     }
 
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
         setProducts(data);
-        setResults(data.length);
     }
 
+
+
+    const searchProduct = async (input:string) => {
+        await getAllProducts();
+        setProducts(prevState => {
+            return prevState.filter(product => {
+                const searchedItem = input.toLowerCase();
+                return product.title.toLowerCase().includes(searchedItem);
+            })
+        });
+    }
 
     useEffect(() => {
         getAllProducts();
     }, []);
+
+    useEffect(() => {
+        setResults(products.length);
+    }, [products]);
 
 
     return (
         <div>
             {isLoggedIn
                 ?  <div>
-                    <Navbar  isOnMainPage={true} onClick={() => console.log('Search is clicked')} />
+                    <Navbar isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
                     <ProductList className={"product"} products={products}/>
