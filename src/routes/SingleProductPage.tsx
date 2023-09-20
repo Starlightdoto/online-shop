@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ProductItem from "../components/ProductItem";
 import {Button} from "../components/ui-components/Button";
 import {fetchOneProduct} from "../api/fetchProducts";
+import {useTranslation} from 'react-i18next';
 
 interface SingleProductPageProps {
     //@ts-ignore
@@ -11,6 +12,7 @@ interface SingleProductPageProps {
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
+    const {t, i18n} = useTranslation();
     const { setCartItems} = props;
     const [actualProduct, setActualProduct] = useState(
         {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null'}
@@ -49,7 +51,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                 <ProductItem id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
-            <Button onClick={addToCart}  className={"default"} buttonText={"Add to cart"}/>
+            <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>
             <Footer />
         </div>
     );

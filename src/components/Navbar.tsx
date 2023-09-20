@@ -1,11 +1,11 @@
 import React, {FC, useState} from "react";
 import { Button } from "./ui-components/Button";
 import SearchInput from "./ui-components/SearchInput";
-import searchInput from "./ui-components/SearchInput";
-// import myImage from "../assets/shop-logo.jpg";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileIcon from '@mui/icons-material/PersonOutline';
 import {NavLink} from "react-router-dom";
+import {useTranslation} from 'react-i18next';
+import LocaleSwitcher from "./ui-components/LocaleSwitcher";
 
 
 interface NavbarProps {
@@ -17,6 +17,8 @@ interface NavbarProps {
 
 export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
     const [searchValue, setSearchValue] = useState<string>('');
+    const {t, i18n} = useTranslation();
+
 
     return (
     <div>
@@ -28,22 +30,21 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
                 <NavLink style={{textDecoration:"none", color:"black"}} to={"/"}><span className={"mainName"}>QuickShop</span></NavLink>
             </div>
 
-            {isOnMainPage
-                ?
+            {isOnMainPage ? (
                 <div className={"midBox"}>
                     <SearchInput searchValue={searchValue} setSearchValue={setSearchValue}  />
-                    <Button onClick={() => onClick(searchValue)} className={"default"}>Search</Button>
+                    <Button onClick={() => onClick(searchValue)} className={"default"}>{t('Search')}</Button>
                 </div>
-                : null
+                ) : null
             }
 
-            {!isOnLogin
-                ?
+            {!isOnLogin ? (
                 <div className={"rightBox"}>
+                    <LocaleSwitcher />
                     <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon/> </Button> </NavLink>
                     <NavLink to={"/my-profile"}> <Button className={"default"}> <ProfileIcon/> </Button> </NavLink>
                 </div>
-                : null
+            ) : null
             }
         </nav>
     </div>

@@ -3,6 +3,7 @@ import DetailsInput from "./ui-components/DetailsInput";
 import {Button} from "./ui-components/Button";
 import StyledText from "./ui-components/StyledText";
 import AvatarImage from "./ui-components/AvatarImage";
+import {useTranslation} from 'react-i18next';
 
 interface ProfileCardProps {
     data: {
@@ -12,11 +13,12 @@ interface ProfileCardProps {
         address: string,
     },
     //@ts-ignore
-    changeData,
+    changeProfileData,
 }
 
 const ProfileCard:FC<ProfileCardProps> = (props) => {
-    const {data, changeData} = props;
+    const {t, i18n} = useTranslation();
+    const {data, changeProfileData} = props;
     const [file, setFile] = useState();
     const [isEditClicked, setIsEditClicked] = useState<boolean>(false);
 
@@ -29,7 +31,7 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
     const changeEditState = () => {
         setIsEditClicked(!isEditClicked);
         if(!isEditClicked) {
-            changeData({newFirstName:"test", newLastName:"test", newEmail:"test", newAddress:"test"});
+            changeProfileData({newFirstName:"test", newLastName:"test", newEmail:"test", newAddress:"test"});
         }
     }
 
@@ -39,12 +41,12 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
                 ? <form action={"/my-profile"}  className={"profileCardEdit"}>
                     <input className={"avatarLoader"} type="file" onChange={uploadAvatar}/>
                     <AvatarImage image={file} />
-                    <DetailsInput type={"fName"} labelName={"First Name"} placeholder={"John"} />
-                    <DetailsInput type={"lName"} labelName={"Last Name"} placeholder={"Doe"} />
-                    <DetailsInput type={"email"} labelName={"Email"} placeholder={"example@email.com"} />
-                    <DetailsInput type={"address"} labelName={"Address 1"} placeholder={"Ada-Lovelace, 21"} />
-                    <DetailsInput type={"address2"} labelName={"Address 2 (optional)"} />
-                    <Button type={"submit"} onClick={changeEditState} className={"default"} buttonText={"Save"}/>
+                    <DetailsInput type={"fName"} labelName={t("First Name")} placeholder={"John"} />
+                    <DetailsInput type={"lName"} labelName={t("Last Name")} placeholder={"Doe"} />
+                    <DetailsInput type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
+                    <DetailsInput type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
+                    <DetailsInput type={"address2"} labelName={t("Address 2 (optional)")}/>
+                    <Button type={"submit"} onClick={changeEditState} className={"default"} buttonText={t("Save")}/>
                 </form>
                 : <div className={"profileCard"}>
                     <AvatarImage image={file} />
@@ -52,10 +54,9 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
                     <StyledText>{data.lastName}</StyledText>
                     <StyledText>{data.email}</StyledText>
                     <StyledText>{data.address}</StyledText>
-                    <Button onClick={changeEditState} className={"default"} buttonText={"Edit"}/>
+                    <Button onClick={changeEditState} className={"default"} buttonText={t("Edit")}/>
                 </div>
             }
-
         </div>
     );
 };

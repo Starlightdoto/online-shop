@@ -10,8 +10,7 @@ import LoginPage from "./LoginPage";
 
 interface MainPageProps {
     isLoggedIn: boolean,
-    //@ts-ignore
-    setIsLoggedIn,
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
@@ -32,8 +31,6 @@ export const MainPage:FC<MainPageProps> = (props) => {
         const data = await fetchOneCategory(category);
         setProducts(data);
     }
-
-
 
     const searchProduct = async (input:string) => {
         await getAllProducts();
@@ -56,15 +53,14 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     return (
         <div>
-            {isLoggedIn
-                ?  <div>
+            {isLoggedIn ?  (<>
                     <Navbar isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
                     <ProductList className={"product"} products={products}/>
                     <Footer />
-                </div>
-                : <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+                </>
+                ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
             }
         </div>
     );
