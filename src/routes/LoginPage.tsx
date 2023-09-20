@@ -5,8 +5,7 @@ import LoginCard from "../components/LoginCard";
 
 interface LoginPageProps {
     isLoggedIn: boolean,
-    //@ts-ignore
-    setIsLoggedIn,
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
