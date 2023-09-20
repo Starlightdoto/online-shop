@@ -13,10 +13,10 @@ const BillingDetails:FC<BillingDetailsProps> = (props) => {
         <form className={"billingDetailsCard"}>
             <DetailsInput type={"address"} labelName={t("Address 1")} />
             <DetailsInput type={"zip"} labelName={t("ZipCode")} />
-            <DetailsInput type={"card-number"} labelName={t("Card Number")} />
-            <DetailsInput type={"exp-date"} labelName={t("Expiry")} />
-            <DetailsInput type={"cvc"} labelName={t("CVC")} />
-            <Button className={"default"} buttonText={t("Order")} />
+            <DetailsInput type={"card-number"} placeholder={"4400 4302 4242 4242"} labelName={t("Card Number")} />
+            <DetailsInput type={"exp-date"} placeholder={"05/28"} labelName={t("Expiry")} />
+            <DetailsInput type={"cvc"} placeholder={"123"} labelName={t("CVC")} />
+            <Button className={"default"}  buttonText={t("Order")} />
         </form>
     );
 };

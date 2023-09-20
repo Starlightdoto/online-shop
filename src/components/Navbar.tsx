@@ -3,7 +3,6 @@ import { Button } from "./ui-components/Button";
 import SearchInput from "./ui-components/SearchInput";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileIcon from '@mui/icons-material/PersonOutline';
-import LanguageIcon from '@mui/icons-material/Language';
 import {NavLink} from "react-router-dom";
 import {useTranslation} from 'react-i18next';
 import LocaleSwitcher from "./ui-components/LocaleSwitcher";
@@ -34,7 +33,10 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
             {isOnMainPage ? (
                 <div className={"midBox"}>
                     <SearchInput searchValue={searchValue} setSearchValue={setSearchValue}  />
-                    <Button onClick={() => onClick(searchValue)} className={"default"}>{t('Search')}</Button>
+                    <Button onClick={() => {
+                        onClick(searchValue);
+                        setSearchValue('');
+                    }} className={"default"}>{t('Search')}</Button>
                 </div>
                 ) : null
             }
