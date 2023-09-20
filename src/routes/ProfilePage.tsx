@@ -29,7 +29,7 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
     return (
         <div>
             <Navbar isOnMainPage={false} />
-            <ProfileCard changeData={changeProfileData} data={profileData} />
+            <ProfileCard changeProfileData={changeProfileData} data={profileData} />
             <Footer />
         </div>
     );
