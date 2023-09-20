@@ -12,7 +12,7 @@ export const LimitSelector:FC<LimitSelectorProps> = ({performAction}) => {
     return (
         <div className={"selector"}>
             <label className={"limitSelectorLabel"} htmlFor="limitSelector">{t('Items on page')}  </label>
-            <select name="limitSelector" id="" value={chosenLimit}
+            <select className={"customSelect"} name="limitSelector" id="" value={chosenLimit}
                     onChange={(event) => {
                         setChosenLimit(event.target.value);
                         performAction(event.target.value);

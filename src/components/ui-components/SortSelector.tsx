@@ -11,7 +11,7 @@ export const SortSelector:FC<SortSelectorProps> = (props) => {
     return (
     <div className={"selector"}>
         <label className={"sortSelectorLabel"} htmlFor="sortSelector">{t('Sort by')}  </label>
-        <select name="sortSelector" id="">
+        <select className={"customSelect"} name="sortSelector" id="">
             <option value="price">{t('Price')}</option>
             <option value="name">{t('Name')}</option>
             <option value="popularity">{t('Rating')}</option>

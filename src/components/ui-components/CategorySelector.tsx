@@ -18,7 +18,7 @@ export const CategorySelector:FC<CategorySelectorProps> = (props) => {
     return (
     <div className={"selector"}>
         <label className={"catSelectorLabel"} htmlFor="catSelector">{t('Categories')} </label>
-        <select  id={"catSelector"}  name="catSelector" value={chosenCategory}
+        <select className={"customSelect"}  id={"catSelector"}  name="catSelector" value={chosenCategory}
                  onChange={(event) => {
                     setChosenCategory(event.target.value);
                     if(event.target.value === "all") {
