@@ -8,6 +8,7 @@ import LoginPage from "./routes/LoginPage";
 import {useTranslation} from 'react-i18next';
 import i18n from './config/i18n/i18n';
 import { I18nextProvider } from 'react-i18next';
+import SignUpPage from "./routes/SignUpPage";
 
 function App() {
     const [cartItems, setCartItems] = useState<{}[]>([]);
@@ -23,7 +24,7 @@ function App() {
                   <Route path={"/my-profile"} element={<ProfilePage />} />
                   <Route path={"/product/:id"} element={<SingleProductPage  setCartItems={setCartItems} />} />
                   <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> } />
-
+                  <Route path={"/sign-up"} element={<SignUpPage/>}/>
               </Routes>
           </div>
       </I18nextProvider>
