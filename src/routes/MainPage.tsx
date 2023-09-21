@@ -7,6 +7,7 @@ import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 import LoginPage from "./LoginPage";
+import {Link} from "react-router-dom";
 
 interface MainPageProps {
     isLoggedIn: boolean,
@@ -21,6 +22,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
+
 
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
@@ -50,7 +52,6 @@ export const MainPage:FC<MainPageProps> = (props) => {
         setResults(products.length);
     }, [products]);
 
-
     return (
         <div>
             {isLoggedIn ?  (<>
@@ -63,6 +64,8 @@ export const MainPage:FC<MainPageProps> = (props) => {
                 ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
             }
         </div>
+
+
     );
 };
 
