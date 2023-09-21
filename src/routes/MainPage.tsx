@@ -17,7 +17,7 @@ interface MainPageProps {
 
 
 export const MainPage:FC<MainPageProps> = (props) => {
-    const {isLoggedIn, setIsLoggedIn,} = props;
+    const {isLoggedIn, setIsLoggedIn} = props;
 
     const [results, setResults] = useState<number>(0)
     //@ts-ignore

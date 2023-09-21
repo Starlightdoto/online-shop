@@ -493,19 +493,3 @@ body {
     border: none;
     cursor: pointer;
 }
-.profileCardSignUp{
-    width: 30%;
-    height: auto;
-    background: lightgrey;
-    position: relative;
-    left: 30%;
-    padding: 20px;
-    margin-top: 80px;
-    margin-left: 20px;
-    border-radius: 10px;
-    border: 1px solid black;
-    display: inline-block;
-    margin-bottom: 60px;
-    overflow-y: auto;
-    box-shadow: 1px 1px 1px black;
-}
