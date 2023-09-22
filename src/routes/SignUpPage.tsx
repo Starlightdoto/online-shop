@@ -3,14 +3,16 @@ import {Navbar} from "../components/Navbar";
 import Footer from "../components/Footer";
 import SignUpCard from "../components/SignUpCard";
 
+interface SignUpPageProps {
+
+}
 
 
-
-const SignUpPage = () => {
+const SignUpPage:FC<SignUpPageProps> = (props) => {
     return (
         <div>
             <Navbar isOnMainPage={false} isOnLogin={true}/>
-            <SignUpCard/>
+            <SignUpCard />
             <Footer/>
         </div>
     );

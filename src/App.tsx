@@ -13,13 +13,13 @@ import SignUpPage from "./routes/SignUpPage";
 function App() {
     const [cartItems, setCartItems] = useState<{}[]>([]);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+    const [isSignedUp, setIsSignedUp] = useState<boolean>(true);
 
     return (
       <I18nextProvider i18n={i18n}>
           <div className="App">
               <Routes>
-                  <Route path={"/"} element={<MainPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
+                  <Route path={"/"} element={<MainPage isSignedUp={isSignedUp} setIsSignedUp={setIsSignedUp} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
                   <Route path={"/cart"} element={<CartPage setCartItems={setCartItems} cartItems={cartItems} />}/>
                   <Route path={"/my-profile"} element={<ProfilePage />} />
                   <Route path={"/product/:id"} element={<SingleProductPage  setCartItems={setCartItems} />} />
