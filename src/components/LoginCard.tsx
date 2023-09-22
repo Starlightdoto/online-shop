@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
-import DetailsInput from "./ui-components/DetailsInput";
 import {Button} from "./ui-components/Button";
 import {useTranslation} from 'react-i18next';
-
+import GenericDetailsInput from "./ui-components/GenericDetailsInput";
 
 interface LoginCardProps {
     isLoggedIn: boolean,
@@ -14,10 +13,10 @@ const LoginCard:FC<LoginCardProps> = (props) => {
     const {isLoggedIn, setIsLoggedIn} = props;
     return (
         <div className={"profileCardEdit"}>
-            <DetailsInput placeholder={"example@email.com"} labelName={t("Email")} type={"email"} />
-            <DetailsInput labelName={t("Password")} type={"password"} />
+            <GenericDetailsInput placeholder={"example@email.com"} labelName={t("Email")} type={"email"} />
+            <GenericDetailsInput labelName={t("Password")} type={"password"} />
             <Button onClick={ ()=> setIsLoggedIn(!isLoggedIn) } className={"default"} buttonText={t('Login')} />
-            <Button onClick={()=>"/"} className={"default"} buttonText={'Sign Up'}/>
+            <Button className={"default"} buttonText={t('Sign Up')}/>
         </div>
     );
 };

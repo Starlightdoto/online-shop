@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import DetailsInput from "./ui-components/DetailsInput";
+import ProfileDetailsInput from "./ui-components/ProfileDetailsInput";
 import {Button} from "./ui-components/Button";
 import StyledText from "./ui-components/StyledText";
 import AvatarImage from "./ui-components/AvatarImage";
@@ -13,12 +13,12 @@ interface ProfileCardProps {
         address: string,
     },
     //@ts-ignore
-    setProfileData,
+    changeProfileData,
 }
 
 const ProfileCard:FC<ProfileCardProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {data, setProfileData} = props;
+    const {data, changeProfileData} = props;
     const [file, setFile] = useState();
     const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -38,10 +38,10 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
             {editMode ? ( <form action={"/my-profile"}  className={"profileCardEdit"}>
                     <input className={"avatarLoader"} type="file" onChange={uploadAvatar}/>
                     <AvatarImage image={file} />
-                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"firstName"} labelName={t("First Name")} placeholder={"John"} />
-                    <DetailsInput profileData={data} setProfileData={setProfileData}  type={"lastName"} labelName={t("Last Name")} placeholder={"Doe"} />
-                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
-                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
+                    <ProfileDetailsInput changeProfileData={changeProfileData} type={"firstName"} labelName={t("First Name")} placeholder={"John"} />
+                    <ProfileDetailsInput changeProfileData={changeProfileData} type={"lastName"} labelName={t("Last Name")} placeholder={"Doe"} />
+                    <ProfileDetailsInput changeProfileData={changeProfileData} type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
+                    <ProfileDetailsInput changeProfileData={changeProfileData} type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
                     <Button  onClick={toggleEditMode} className={"default"} buttonText={t("Save")}/>
                 </form>
             ) : ( <div className={"profileCard"}>

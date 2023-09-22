@@ -18,11 +18,26 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
         address: "Abq,Street 228",
     });
 
+    const changeProfileData = (field: string, value: string) => {
+        setProfileData((prevState:any) => {
+            switch(field) {
+                case "firstName":
+                    return {...prevState, "firstName" : value};
+                case "lastName":
+                    return {...prevState, "lastName" : value};
+                case "email":
+                    return {...prevState, "email" : value};
+                case "address":
+                    return {...prevState, "address" : value};
+            }
+        });
+    }
+
 
     return (
         <div>
             <Navbar isOnMainPage={false} />
-            <ProfileCard setProfileData={setProfileData} data={profileData} />
+            <ProfileCard changeProfileData={changeProfileData} data={profileData} />
             <Footer />
         </div>
     );
