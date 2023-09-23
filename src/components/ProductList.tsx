@@ -10,10 +10,14 @@ interface ProductListProps {
     className: string,
     //@ts-ignore
     removeItem?,
+    cartItems?: any[],
+    //@ts-ignore
+    setCartItems?,
 }
 
 const ProductList:FC<ProductListProps> = (props) => {
-    const {products, className, removeItem} = props;
+    const {products, className, removeItem, cartItems, setCartItems} = props;
+
     return (
         <div>
             {className === 'product' ?
@@ -27,7 +31,10 @@ const ProductList:FC<ProductListProps> = (props) => {
                                             category={product.category}
                                             description={product.description}
                                             price={product.price}
-                                            quantity={product.id} />
+                                            quantity={product.id}
+                                            cartItems={cartItems}
+                                            setCartItems={setCartItems}
+                        />
                     })}
                 </div>
                 : <div className={`${className}List`}>
@@ -44,7 +51,8 @@ const ProductList:FC<ProductListProps> = (props) => {
                                              description={product.description}
                                              price={product.price}
                                              removeItem={removeItem}
-                                             quantity={product.id} />
+                                             quantity={product.id}
+                        />
 
                     })}
                     </div>
