@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 //@ts-ignore
-import MyImage from '../assets/shop-logo.jpg';
 import {Button} from "./ui-components/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useTranslation} from 'react-i18next';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 interface ProductItemProps {
     id:number,
@@ -18,11 +18,41 @@ interface ProductItemProps {
     classNameAdditional?: string,
     //@ts-ignore
     removeItem?,
+    cartItems?: any[],
+    //@ts-ignore
+    setCartItems?,
 }
 
 const ProductItem:FC<ProductItemProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {name, className, removeItem, classNameAdditional, imgSrc, quantity = 0, price, description, category, id} = props;
+    const {cartItems,
+            setCartItems,
+            name,
+            className,
+            removeItem,
+            classNameAdditional,
+            imgSrc,
+            quantity = 0,
+            price,
+            description,
+            category, id} = props;
+
+    const addToCart = () => {
+        if(setCartItems) {
+            setCartItems((prevState:any) => {
+                return [...prevState, {
+                    id: id,
+                    price: price,
+                    description: description,
+                    name: name,
+                    category: category,
+                    imgSrc:imgSrc,
+                }]
+            });
+        }
+    }
+
+
     return (
         <div>
             {classNameAdditional === "cart" ?
@@ -42,7 +72,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>{t('Price')}: ${price}</h4>
                     <h4>{t('Category')}: {category}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
-                    {/*<Button className={"default"} buttonText={"Add to cart"} />*/}
+                    <Button onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button>
                 </div>
             }
         </div>

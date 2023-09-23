@@ -14,12 +14,15 @@ interface MainPageProps {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
     isSignedUp: boolean,
     setIsSignedUp: React.Dispatch<React.SetStateAction<boolean>>,
+    cartItems?: any[],
+    //@ts-ignore
+    setCartItems?,
 }
 
 
 
 export const MainPage:FC<MainPageProps> = (props) => {
-    const {isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
+    const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
 
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
@@ -60,7 +63,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <Navbar isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
-                    <ProductList className={"product"} products={products}/>
+                    <ProductList cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />
                 </>
                 ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
