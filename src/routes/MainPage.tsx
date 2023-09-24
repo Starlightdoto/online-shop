@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 import LoginPage from "./LoginPage";
 import {Link} from "react-router-dom";
+import {Button} from "../components/ui-components/Button";
+import SimpleSnackBar from "../components/ui-components/SimpleSnackbar";
 
 interface MainPageProps {
     isLoggedIn: boolean,
@@ -17,17 +19,23 @@ interface MainPageProps {
     cartItems?: any[],
     //@ts-ignore
     setCartItems?,
+    snackBarIsOpen: boolean,
+    setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 
 
 export const MainPage:FC<MainPageProps> = (props) => {
-    const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
+    const {snackBarIsOpen, setSnackBarIsOpen, cartItems, setCartItems, isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
 
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
 
+
+    const handleClick = () => {
+        setSnackBarIsOpen(true);
+    };
 
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
@@ -63,7 +71,8 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <Navbar isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
-                    <ProductList cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
+                    <ProductList showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
+                    {/*<SimpleSnackBar snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} />*/}
                     <Footer />
                 </>
                 ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
