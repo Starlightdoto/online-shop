@@ -4,6 +4,7 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert, { AlertProps } from '@mui/material/Alert';
+import {useTranslation} from 'react-i18next';
 
 interface SimpleSnackBarProps {
     snackBarIsOpen: boolean,
@@ -13,6 +14,7 @@ interface SimpleSnackBarProps {
 
 const SimpleSnackBar:FC<SimpleSnackBarProps> = (props) => {
     const {snackBarIsOpen, setSnackBarIsOpen, snackBarInfoType} = props;
+    const {t, i18n} = useTranslation();
     const enum snackBarMessages {
         "success" = "Item has been added to cart",
         "error" = "Something went wrong",
@@ -58,7 +60,7 @@ const SimpleSnackBar:FC<SimpleSnackBarProps> = (props) => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
                 {/* @ts-ignore */ }
-                <Alert severity={snackBarInfoType}> {snackBarMessages[snackBarInfoType]} </Alert>
+                <Alert severity={snackBarInfoType}> {t(snackBarMessages[snackBarInfoType])} </Alert>
             </Snackbar>
         </div>
     );

@@ -72,7 +72,6 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
                     <ProductList showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
-                    {/*<SimpleSnackBar snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} />*/}
                     <Footer />
                 </>
                 ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
