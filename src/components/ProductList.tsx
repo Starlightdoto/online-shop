@@ -13,10 +13,12 @@ interface ProductListProps {
     cartItems?: any[],
     //@ts-ignore
     setCartItems?,
+    //@ts-ignore
+    showSnackbar?,
 }
 
 const ProductList:FC<ProductListProps> = (props) => {
-    const {products, className, removeItem, cartItems, setCartItems} = props;
+    const {products, className, removeItem, cartItems, setCartItems, showSnackbar} = props;
 
     return (
         <div>
@@ -34,6 +36,7 @@ const ProductList:FC<ProductListProps> = (props) => {
                                             quantity={product.id}
                                             cartItems={cartItems}
                                             setCartItems={setCartItems}
+                                            showSnackbar={showSnackbar}
                         />
                     })}
                 </div>

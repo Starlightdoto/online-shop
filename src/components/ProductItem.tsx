@@ -21,11 +21,14 @@ interface ProductItemProps {
     cartItems?: any[],
     //@ts-ignore
     setCartItems?,
+    //@ts-ignore
+    showSnackbar?,
 }
 
 const ProductItem:FC<ProductItemProps> = (props) => {
     const {t, i18n} = useTranslation();
     const {cartItems,
+            showSnackbar,
             setCartItems,
             name,
             className,
@@ -50,6 +53,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                 }]
             });
         }
+        showSnackbar();
     }
 
 
