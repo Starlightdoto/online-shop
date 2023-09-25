@@ -39,6 +39,7 @@ i18n
                     'First Name' : 'First Name',
                     'Last Name' : 'Last Name',
                     'Unfortunately, no  products found' : 'Unfortunately, no  products found',
+                    'Logout' : 'Logout',
                 }
             },
             ru: {
@@ -75,6 +76,7 @@ i18n
                     'First Name' : 'Имя',
                     'Last Name' : 'Фамилия',
                     'Unfortunately, no  products found' : 'К сожалению, ничего не найдено',
+                    'Logout' : 'Выйти',
                 }
             }
         },

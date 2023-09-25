@@ -13,14 +13,15 @@ interface ProfileCardProps {
         address: string,
     },
     //@ts-ignore
-    changeProfileData,
+    setProfileData,
 }
 
 const ProfileCard:FC<ProfileCardProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {data, changeProfileData} = props;
+    const {data, setProfileData} = props;
     const [file, setFile] = useState();
-    const [isEditClicked, setIsEditClicked] = useState<boolean>(false);
+    const [editMode, setEditMode] = useState<boolean>(false);
+
 
     const uploadAvatar = (event:any) => {
         console.log(event.target.files);
@@ -28,34 +29,30 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
         setFile(URL.createObjectURL(event.target.files[0]));
     }
 
-    const changeEditState = () => {
-        setIsEditClicked(!isEditClicked);
-        if(!isEditClicked) {
-            changeProfileData({newFirstName:"test", newLastName:"test", newEmail:"test", newAddress:"test"});
-        }
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
     }
 
     return (
         <div>
-            {isEditClicked
-                ? <form action={"/my-profile"}  className={"profileCardEdit"}>
+            {editMode ? ( <form action={"/my-profile"}  className={"profileCardEdit"}>
                     <input className={"avatarLoader"} type="file" onChange={uploadAvatar}/>
                     <AvatarImage image={file} />
-                    <DetailsInput type={"fName"} labelName={t("First Name")} placeholder={"John"} />
-                    <DetailsInput type={"lName"} labelName={t("Last Name")} placeholder={"Doe"} />
-                    <DetailsInput type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
-                    <DetailsInput type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
-                    <DetailsInput type={"address2"} labelName={t("Address 2 (optional)")}/>
-                    <Button type={"submit"} onClick={changeEditState} className={"default"} buttonText={t("Save")}/>
+                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"firstName"} labelName={t("First Name")} placeholder={"John"} />
+                    <DetailsInput profileData={data} setProfileData={setProfileData}  type={"lastName"} labelName={t("Last Name")} placeholder={"Doe"} />
+                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
+                    <DetailsInput profileData={data} setProfileData={setProfileData} type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
+                    <Button  onClick={toggleEditMode} className={"default"} buttonText={t("Save")}/>
                 </form>
-                : <div className={"profileCard"}>
+            ) : ( <div className={"profileCard"}>
                     <AvatarImage image={file} />
                     <StyledText>{data.firstName}</StyledText>
                     <StyledText>{data.lastName}</StyledText>
                     <StyledText>{data.email}</StyledText>
                     <StyledText>{data.address}</StyledText>
-                    <Button onClick={changeEditState} className={"default"} buttonText={t("Edit")}/>
-                </div>
+                    <Button onClick={toggleEditMode} className={"default"} buttonText={t("Edit")}/>
+                    <Button className={"default"} buttonText={t("Logout")}/>
+                </div> )
             }
         </div>
     );
