@@ -1,16 +1,20 @@
 import React, {FC} from 'react';
-import DetailsInput from "./ui-components/DetailsInput";
 import {Button} from "./ui-components/Button";
+import GenericDetailsInput from "./ui-components/GenericDetailsInput";
+import {useTranslation} from 'react-i18next';
 
+interface SignUpCardProps {
 
+}
 
-const SignUpCard = () => {
+const SignUpCard:FC<SignUpCardProps> = (props) => {
+    const {t, i18n} = useTranslation();
 
     return (
         <div className={"profileCardEdit"}>
-            <DetailsInput placeholder={"example@email.com"} labelName={("Email")} type={"email"} />
-            <DetailsInput labelName={("Password")} type={"password"} />
-            <Button onClick={()=>"/"} className={"default"} buttonText={"Create"}/>
+            <GenericDetailsInput placeholder={"example@email.com"} labelName={("Email")} type={"email"} />
+            <GenericDetailsInput labelName={("Password")} type={"password"} />
+            <Button  className={"default"} buttonText={t("Sign Up")}/>
         </div>
     );
 };

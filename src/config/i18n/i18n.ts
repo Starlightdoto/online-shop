@@ -40,6 +40,9 @@ i18n
                     'Last Name' : 'Last Name',
                     'Unfortunately, no  products found' : 'Unfortunately, no  products found',
                     'Logout' : 'Logout',
+                    'Sign Up' : 'Sign Up',
+                    'Item has been added to cart' : 'Item has been added to cart',
+                    'Something went wrong' : 'Something went wrong',
                 }
             },
             ru: {
@@ -77,6 +80,9 @@ i18n
                     'Last Name' : 'Фамилия',
                     'Unfortunately, no  products found' : 'К сожалению, ничего не найдено',
                     'Logout' : 'Выйти',
+                    'Sign Up' : 'Регистрация',
+                    'Item has been added to cart' : 'Товар добавлен в корзину',
+                    'Something went wrong' : 'Возникла ошибка',
                 }
             }
         },
