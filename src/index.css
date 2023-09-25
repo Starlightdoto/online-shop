@@ -13,17 +13,14 @@ body {
 
 .App{
     display: -ms-flexbox;
-    /*height: 100%;*/
-    /*max-width: 100%;*/
 }
 
 .mainNavbar {
     background-color: #0F1111;
-    height: 60px;
+    height: 55px;
     width: 100%;
-    padding: 5px;
-    padding-top:15px;
-    justify-content: space-between;   
+    padding:5px;
+    justify-content: space-between;
     display: flex;
     vertical-align: center;
     box-shadow: 2px 2px 2px darkslategrey ;
@@ -31,7 +28,7 @@ body {
 }
 
 .leftBox {
-    
+
     margin: 2px;
 }
 
@@ -481,3 +478,9 @@ body {
     border: none;
     cursor: pointer;
 }
+
+
+
+
+
+

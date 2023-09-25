@@ -56,7 +56,6 @@ const ProductItem:FC<ProductItemProps> = (props) => {
         showSnackbar();
     }
 
-
     return (
         <div>
             {classNameAdditional === "cart" ?
