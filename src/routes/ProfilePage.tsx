@@ -3,13 +3,16 @@ import {Navbar} from "../components/Navbar";
 import {FC} from 'react';
 import Footer from "../components/Footer";
 import ProfileCard from "../components/ProfileCard";
+import LoginPage from '../routes/LoginPage';
 
 
 interface ProfilePageProps {
-
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+    isLoggedIn: boolean,
 }
 
 const ProfilePage:FC<ProfilePageProps> = (props) => {
+    const {setIsLoggedIn, isLoggedIn} = props;
 
     const [profileData, setProfileData] = useState({
         firstName: "John",
@@ -36,9 +39,14 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
 
     return (
         <div>
-            <Navbar isOnMainPage={false} />
-            <ProfileCard changeProfileData={changeProfileData} data={profileData} />
-            <Footer />
+            {isLoggedIn ? ( <>
+                <Navbar isOnMainPage={false} />
+                <ProfileCard setIsLoggedIn={setIsLoggedIn} changeProfileData={changeProfileData} data={profileData} />
+                <Footer />
+                </>)
+                : ( <LoginPage isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} /> )
+            }
+
         </div>
     );
 };

@@ -1,5 +1,4 @@
 import React, {FC, useState} from "react";
-import { Button } from "./ui-components/Button";
 import { CategorySelector } from "./ui-components/CategorySelector";
 import {SortSelector} from './ui-components/SortSelector';
 import {LimitSelector} from './ui-components/LimitSelector';

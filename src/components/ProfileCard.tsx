@@ -14,11 +14,12 @@ interface ProfileCardProps {
     },
     //@ts-ignore
     changeProfileData,
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const ProfileCard:FC<ProfileCardProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {data, changeProfileData} = props;
+    const {data, changeProfileData, setIsLoggedIn} = props;
     const [file, setFile] = useState();
     const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -51,7 +52,7 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
                     <StyledText>{data.email}</StyledText>
                     <StyledText>{data.address}</StyledText>
                     <Button onClick={toggleEditMode} className={"default"} buttonText={t("Edit")}/>
-                    <Button className={"default"} buttonText={t("Logout")}/>
+                    <Button onClick={()=> setIsLoggedIn(false)} className={"default"} buttonText={t("Logout")}/>
                 </div> )
             }
         </div>

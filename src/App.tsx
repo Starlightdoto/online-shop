@@ -21,9 +21,14 @@ function App() {
           <div className="App">
               <SimpleSnackBar snackBarInfoType={"success"} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} />
               <Routes>
-                  <Route path={"/"} element={<MainPage snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} cartItems={cartItems} setCartItems={setCartItems} isSignedUp={isSignedUp} setIsSignedUp={setIsSignedUp} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
-                  <Route path={"/cart"} element={<CartPage setCartItems={setCartItems} cartItems={cartItems} />}/>
-                  <Route path={"/my-profile"} element={<ProfilePage />} />
+                  <Route path={"/"} element={
+                      <MainPage snackBarIsOpen={snackBarIsOpen}
+                                setSnackBarIsOpen={setSnackBarIsOpen}
+                                cartItems={cartItems} setCartItems={setCartItems}
+                                isSignedUp={isSignedUp} setIsSignedUp={setIsSignedUp}
+                                setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
+                  <Route path={"/cart"} element={<CartPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setCartItems={setCartItems} cartItems={cartItems} />}/>
+                  <Route path={"/my-profile"} element={<ProfilePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                   <Route path={"/product/:id"} element={<SingleProductPage  setCartItems={setCartItems} />} />
                   <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> } />
                   <Route path={"/sign-up"} element={<SignUpPage/>}/>
