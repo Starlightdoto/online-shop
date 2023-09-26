@@ -7,9 +7,6 @@ import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 import LoginPage from "./LoginPage";
-import {Link} from "react-router-dom";
-import {Button} from "../components/ui-components/Button";
-import SimpleSnackBar from "../components/ui-components/SimpleSnackbar";
 
 interface MainPageProps {
     isLoggedIn: boolean,
