@@ -9,6 +9,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 interface ProductItemProps {
     id:number,
     imgSrc?: string,
+    rating:number,
     name: string,
     quantity?: number,
     price: number,
@@ -38,7 +39,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
             quantity = 0,
             price,
             description,
-            category, id} = props;
+            category, id, rating} = props;
 
     const addToCart = () => {
         if(setCartItems) {
@@ -50,6 +51,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     name: name,
                     category: category,
                     imgSrc:imgSrc,
+                    rating:rating,
                 }]
             });
         }
@@ -65,6 +67,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>{t('Quantity')}: {quantity}</h4>
                     <h4>{t('Price')}: ${price}</h4>
                     <h4>{t('Category')}: {category}</h4>
+                    <h4>{t('Rating')}: {rating}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
                     <Button onClick={() => removeItem(id)}  className={"remove"}><DeleteIcon /></Button>
                 </div>
@@ -74,6 +77,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>{t('Quantity')}: {quantity}</h4>
                     <h4>{t('Price')}: ${price}</h4>
                     <h4>{t('Category')}: {category}</h4>
+                    <h4>{t('Rating')}: {rating}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
                     <Button onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button>
                 </div>
