@@ -26,6 +26,7 @@ const ProductList:FC<ProductListProps> = (props) => {
                     {products.map((product) => {
                         return <ProductItem id={product.id}
                                             key={product.id}
+                                            rating={product.rating.rate}
                                             imgSrc={product.image}
                                             className={"grid"}
                                             name={product.title}
@@ -43,8 +44,10 @@ const ProductList:FC<ProductListProps> = (props) => {
                     {products.map((product) => {
                         if(product.name === undefined){
                             return <h1>Loading...</h1>
-                        } else return <ProductItem key={product.id}
+                        } else return <ProductItem
+                                             key={product.id}
                                              id={product.id}
+                                             rating={product.rating.rate}
                                              imgSrc={product.imgSrc ?? "no logo"}
                                              className={"grid"}
                                              classNameAdditional={"cart"}

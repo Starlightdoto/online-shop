@@ -15,7 +15,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const {t, i18n} = useTranslation();
     const { setCartItems} = props;
     const [actualProduct, setActualProduct] = useState(
-        {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null'}
+        {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null', rating:0}
     );
 
     const url = window.location.href;
@@ -30,6 +30,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                     name: product.title,
                     category: product.category,
                     imgSrc:product.image,
+                    rating:product.rating.rate,
             }
         });
     }
@@ -48,7 +49,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
         <div>
             <Navbar isOnMainPage={false}  />
             {actualProduct && actualProduct.id ?
-                <ProductItem id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
+                <ProductItem rating={actualProduct.rating} id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
             <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>
