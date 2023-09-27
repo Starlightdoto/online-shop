@@ -24,6 +24,7 @@ interface ProductItemProps {
     setCartItems?,
     //@ts-ignore
     showSnackbar?,
+    onSinglePage?:boolean,
 }
 
 const ProductItem:FC<ProductItemProps> = (props) => {
@@ -39,7 +40,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
             quantity = 0,
             price,
             description,
-            category, id, rating} = props;
+            category, id, rating, onSinglePage} = props;
 
     const addToCart = () => {
         if(setCartItems) {
@@ -79,7 +80,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>{t('Category')}: {category}</h4>
                     <h4>{t('Rating')}: {rating}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
-                    <Button onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button>
+                    {!onSinglePage ? <Button onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button> : null }
                 </div>
             }
         </div>

@@ -13,17 +13,20 @@ interface CartPageProps {
     setCartItems,
     isLoggedIn: boolean,
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarIsOpen: boolean,
+    setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const CartPage:FC<CartPageProps> = (props) => {
-    const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn} = props;
+    const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn, snackBarIsOpen, setSnackBarIsOpen} = props;
     const {t, i18n} = useTranslation();
     
     console.log(cartItems);
 
     const removeItem = (id:string) => {
         //@ts-ignore
-        setCartItems(cartItems.filter((item) => item.id !== id))
+        setCartItems(cartItems.filter((item) => item.id !== id));
+        setSnackBarIsOpen(true);
     }
 
     return (
