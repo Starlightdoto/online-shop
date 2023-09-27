@@ -9,11 +9,13 @@ import {useTranslation} from 'react-i18next';
 interface SingleProductPageProps {
     //@ts-ignore
     setCartItems?,
+    snackBarIsOpen: boolean,
+    setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const { setCartItems} = props;
+    const { setCartItems, snackBarIsOpen, setSnackBarIsOpen} = props;
     const [actualProduct, setActualProduct] = useState(
         {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null', rating:0}
     );
@@ -38,7 +40,8 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const addToCart = () => {
         setCartItems((prevState:any) => {
             return [...prevState, actualProduct]
-        })
+        });
+        setSnackBarIsOpen(true);
     }
 
     useEffect(() => {
@@ -49,7 +52,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
         <div>
             <Navbar isOnMainPage={false}  />
             {actualProduct && actualProduct.id ?
-                <ProductItem rating={actualProduct.rating} id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
+                <ProductItem onSinglePage={true} rating={actualProduct.rating} id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
             <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>
