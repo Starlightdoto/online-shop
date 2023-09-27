@@ -11,6 +11,9 @@ interface LoginPageProps {
 
 const LoginPage:FC<LoginPageProps> = (props) => {
     const {isLoggedIn, setIsLoggedIn} = props;
+
+
+
     return (
         <div>
             <Navbar isOnMainPage={false} isOnLogin={isLoggedIn} />
