@@ -47,7 +47,7 @@ const ProductList:FC<ProductListProps> = (props) => {
                         } else return <ProductItem
                                              key={product.id}
                                              id={product.id}
-                                             rating={product.rating.rate}
+                                             rating={product.rating}
                                              imgSrc={product.imgSrc ?? "no logo"}
                                              className={"grid"}
                                              classNameAdditional={"cart"}
