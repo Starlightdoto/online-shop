@@ -20,8 +20,6 @@ interface CartPageProps {
 const CartPage:FC<CartPageProps> = (props) => {
     const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn, snackBarIsOpen, setSnackBarIsOpen} = props;
     const {t, i18n} = useTranslation();
-    
-    console.log(cartItems);
 
     const removeItem = (id:string) => {
         //@ts-ignore

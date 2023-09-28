@@ -51,13 +51,15 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     description: description,
                     name: name,
                     category: category,
-                    imgSrc:imgSrc,
-                    rating:rating,
+                    imgSrc: imgSrc,
+                    rating: rating,
                 }]
             });
         }
         showSnackbar();
     }
+
+    console.log(rating);
 
     return (
         <div>
