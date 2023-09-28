@@ -94,7 +94,7 @@ body {
     width: 80px;
     height: 40px;
     margin-top: 10px;
-    margin-right: 4px;
+    margin-right: 10px;
 
 
 }
@@ -230,8 +230,8 @@ body {
 .productItem-grid {
     display: block;
     width: 95%;
-    min-height: 300px;
-    height: auto;
+    min-height: 320px;
+    height: 20vh;
     background: #2e2e2e;
     color: #ffffff;
     margin: 30px;
@@ -447,19 +447,19 @@ body {
 }
 
 .customSelect {
-    width: 200px; /* adjust width as needed */
+    width: 200px;
     height: 40px;
     padding: 5px 10px;
     font-size: 16px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    appearance: none; /* remove default styling */
+    appearance: none;
     background-color: #ffffff;
     outline: none;
     cursor: pointer;
     transition: border-color 0.3s;
 
-    /* Triangle for the dropdown */
+
     background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
     background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
     background-size: 5px 5px, 5px 5px;
@@ -471,11 +471,11 @@ body {
 }
 
 .custom-select:focus {
-    border-color: #3f51b5; /* highlight color */
-    box-shadow: 0 0 5px rgba(63, 81, 181, 0.2); /* subtle focus shadow */
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.2);
 }
 
-/* Styles for options */
+
 .custom-select option {
     padding: 5px 10px;
     background-color: #f8f8f8;

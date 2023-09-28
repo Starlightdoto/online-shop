@@ -13,7 +13,6 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
     return (
         <div>
             <Navbar isOnMainPage={false} isOnLogin={true}/>
-
             <SignUpCard />
             <Footer/>
         </div>

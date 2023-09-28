@@ -27,6 +27,7 @@ const CartPage:FC<CartPageProps> = (props) => {
         setSnackBarIsOpen(true);
     }
 
+
     return (
         <div>
             {isLoggedIn ? (<>

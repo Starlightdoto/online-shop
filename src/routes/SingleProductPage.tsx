@@ -17,25 +17,40 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const {t, i18n} = useTranslation();
     const { setCartItems, snackBarIsOpen, setSnackBarIsOpen} = props;
     const [actualProduct, setActualProduct] = useState(
-        {id: null, price: 0, description: 'null', name:'null', category:'null', imgSrc:'null', rating:0}
+        {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}
     );
 
-    const url = window.location.href;
-    const productId = url.substring(url.length-1);
+    //getting ID of current product
+    const getCurrentId = () => {
+        const url = window.location.href;
+        let tempId = "" ;
+        let currentId = "";
+        for(let i = url.length-1; url[i] !== "/"; i--) {
+            tempId += url[i];
+        }
+        for(let j = tempId.length-1; j >= 0; j--) {
+            currentId += tempId[j];
+        }
+        return currentId;
+    }
 
     const fetchProduct = async () => {
-        const product = await fetchOneProduct(productId);
-        setActualProduct((prevState) => {
-            return {id: product.id,
+        const product = await fetchOneProduct(getCurrentId());
+        if(product) {
+            setActualProduct((prevState) => {
+                return {id: product.id,
+                    quantity: product.quantity,
                     price: product.price,
                     description: product.description,
                     name: product.title,
                     category: product.category,
                     imgSrc:product.image,
-                    rating:product.rating.rate,
-            }
-        });
+                    rating:product.rating,
+                }
+            });
+        }
     }
+
 
     const addToCart = () => {
         setCartItems((prevState:any) => {
@@ -56,6 +71,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                              rating={actualProduct.rating}
                              id={actualProduct.id }
                              imgSrc={actualProduct.imgSrc}
+                             quantity={actualProduct.quantity}
                              className={"single"}
                              price={actualProduct.price}
                              description={actualProduct.description}

@@ -39,7 +39,12 @@ function App() {
                   <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn}
                                                              setIsLoggedIn={setIsLoggedIn} /> } />
                   <Route path={"/sign-up"} element={<SignUpPage/>}/>
-                  <Route path={"/orders"} element={<OrdersPage snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setCartItems={setCartItems} cartItems={cartItems} />}/>
+                  <Route path={"/orders"} element={<OrdersPage snackBarIsOpen={snackBarIsOpen}
+                                                               setSnackBarIsOpen={setSnackBarIsOpen}
+                                                               setIsLoggedIn={setIsLoggedIn}
+                                                               isLoggedIn={isLoggedIn}
+                                                               setCartItems={setCartItems}
+                                                               cartItems={cartItems} />}/>
               </Routes>
           </div>
       </I18nextProvider>
