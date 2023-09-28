@@ -52,7 +52,15 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
         <div>
             <Navbar isOnMainPage={false}  />
             {actualProduct && actualProduct.id ?
-                <ProductItem onSinglePage={true} rating={actualProduct.rating} id={actualProduct.id } imgSrc={actualProduct.imgSrc} className={"single"} price={actualProduct.price} description={actualProduct.description} name={actualProduct.name} category={actualProduct.category} />
+                <ProductItem onSinglePage={true}
+                             rating={actualProduct.rating}
+                             id={actualProduct.id }
+                             imgSrc={actualProduct.imgSrc}
+                             className={"single"}
+                             price={actualProduct.price}
+                             description={actualProduct.description}
+                             name={actualProduct.name}
+                             category={actualProduct.category} />
                 : <h1>Loading...</h1>
             }
             <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>
