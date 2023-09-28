@@ -28,10 +28,16 @@ function App() {
                                 cartItems={cartItems} setCartItems={setCartItems}
                                 isSignedUp={isSignedUp} setIsSignedUp={setIsSignedUp}
                                 setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
-                  <Route path={"/cart"} element={<CartPage snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setCartItems={setCartItems} cartItems={cartItems} />}/>
+                  <Route path={"/cart"} element={<CartPage snackBarIsOpen={snackBarIsOpen}
+                                                           setSnackBarIsOpen={setSnackBarIsOpen}
+                                                           setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}
+                                                           setCartItems={setCartItems} cartItems={cartItems} />}/>
                   <Route path={"/my-profile"} element={<ProfilePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-                  <Route path={"/product/:id"} element={<SingleProductPage snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}  setCartItems={setCartItems} />} />
-                  <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> } />
+                  <Route path={"/product/:id"} element={<SingleProductPage snackBarIsOpen={snackBarIsOpen}
+                                                                           setSnackBarIsOpen={setSnackBarIsOpen}
+                                                                           setCartItems={setCartItems} />} />
+                  <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn}
+                                                             setIsLoggedIn={setIsLoggedIn} /> } />
                   <Route path={"/sign-up"} element={<SignUpPage/>}/>
                   <Route path={"/orders"} element={<OrdersPage snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setCartItems={setCartItems} cartItems={cartItems} />}/>
               </Routes>

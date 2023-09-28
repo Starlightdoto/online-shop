@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {db} from '../firebase';
+import { collection, getDocs, addDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 const fetchAllProducts = async(limit?:string) => {
     const data = await axios.get(`https://fakestoreapi.com/products?limit=${limit}`)
@@ -6,6 +8,11 @@ const fetchAllProducts = async(limit?:string) => {
             return response.data;
         });
     return data;
+
+    // const productsCollection = collection(db, 'products');
+    // const productSnapshot = await getDocs(productsCollection);
+    // const productList = productSnapshot.docs.map(doc => doc.data());
+    // return productList;
 }
 
 export const fetchOneProduct = async(id:string) => {
