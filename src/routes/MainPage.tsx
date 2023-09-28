@@ -64,7 +64,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     return (
         <div>
-            {isSignedUp && isLoggedIn ?  (<>
+            { isLoggedIn ?  (<>
                     <Navbar isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />

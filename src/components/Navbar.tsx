@@ -6,6 +6,8 @@ import ProfileIcon from '@mui/icons-material/PersonOutline';
 import {NavLink} from "react-router-dom";
 import {useTranslation} from 'react-i18next';
 import LocaleSwitcher from "./ui-components/LocaleSwitcher";
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import ProfileCard from "./ProfileCard";
 
 
 interface NavbarProps {
@@ -45,7 +47,9 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
                 <div className={"rightBox"}>
                     <LocaleSwitcher />
                     <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon/> </Button> </NavLink>
+                    <NavLink to={"/orders"}> <Button className={"default"}> <RequestQuoteIcon/> </Button> </NavLink>
                     <NavLink to={"/my-profile"}> <Button className={"default"}> <ProfileIcon/> </Button> </NavLink>
+
                 </div>
             ) : null
             }
