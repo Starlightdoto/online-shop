@@ -26,14 +26,14 @@ const ProductList:FC<ProductListProps> = (props) => {
                     {products.map((product) => {
                         return <ProductItem id={product.id}
                                             key={product.id}
-                                            rating={product.rating.rate}
+                                            rating={product.rating}
                                             imgSrc={product.image}
                                             className={"grid"}
                                             name={product.title}
                                             category={product.category}
                                             description={product.description}
                                             price={product.price}
-                                            quantity={product.id}
+                                            quantity={product.quantity}
                                             cartItems={cartItems}
                                             setCartItems={setCartItems}
                                             showSnackbar={showSnackbar}
@@ -56,7 +56,6 @@ const ProductList:FC<ProductListProps> = (props) => {
                                              description={product.description}
                                              price={product.price}
                                              removeItem={removeItem}
-                                             quantity={product.id}
                         />
 
                     })}

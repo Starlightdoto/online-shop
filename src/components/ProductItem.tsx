@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 interface ProductItemProps {
-    id:number,
+    id:string,
     imgSrc?: string,
     rating:number,
     name: string,
@@ -59,7 +59,6 @@ const ProductItem:FC<ProductItemProps> = (props) => {
         showSnackbar();
     }
 
-    console.log(rating);
 
     return (
         <div>
@@ -67,7 +66,6 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                 <div className={`productItem-${classNameAdditional}`}>
                     <img className={`productImage-${className}`} src={imgSrc} alt=""/>
                     <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
-                    <h4>{t('Quantity')}: {quantity}</h4>
                     <h4>{t('Price')}: ${price}</h4>
                     <h4>{t('Category')}: {category}</h4>
                     <h4>{t('Rating')}: {rating}</h4>
@@ -76,13 +74,14 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                 </div>
             : <div className={`productItem-${className}`}>
                     <img className={`productImage-${className}`} src={imgSrc} alt=""/>
+                    {!onSinglePage ? <Button  onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button> : null }
                     <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
                     <h4>{t('Quantity')}: {quantity}</h4>
                     <h4>{t('Price')}: ${price}</h4>
                     <h4>{t('Category')}: {category}</h4>
                     <h4>{t('Rating')}: {rating}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
-                    {!onSinglePage ? <Button onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button> : null }
+
                 </div>
             }
         </div>

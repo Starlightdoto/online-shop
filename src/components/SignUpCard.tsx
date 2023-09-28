@@ -11,11 +11,11 @@ const SignUpCard:FC<SignUpCardProps> = (props) => {
     const {t, i18n} = useTranslation();
 
     return (
-        <form action={"/"} className={"profileCardEdit"}>
+        <div className={"profileCardEdit"}>
             <GenericDetailsInput  placeholder={"example@email.com"} labelName={("Email")} type={"email"} />
             <GenericDetailsInput labelName={("Password")} type={"password"} />
             <Button type={"submit"}  className={"default"} buttonText={t("Sign Up")}/>
-        </form>
+        </div>
     );
 };
 
