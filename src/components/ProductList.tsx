@@ -57,7 +57,6 @@ const ProductList:FC<ProductListProps> = (props) => {
                                              price={product.price}
                                              removeItem={removeItem}
                         />
-
                     })}
                     </div>
             }

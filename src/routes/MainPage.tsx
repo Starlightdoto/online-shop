@@ -21,10 +21,8 @@ interface MainPageProps {
 }
 
 
-
 export const MainPage:FC<MainPageProps> = (props) => {
     const {snackBarIsOpen, setSnackBarIsOpen, cartItems, setCartItems, isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
-
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
@@ -36,12 +34,12 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
-        setProducts(data);
+        setProducts(data ?? []);
     }
 
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
-        setProducts(data);
+        setProducts(data?.filter(item => item.category === category) ?? []);
     }
 
     const searchProduct = async (input:string) => {
