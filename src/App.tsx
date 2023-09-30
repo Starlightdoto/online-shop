@@ -11,6 +11,7 @@ import SignUpPage from "./routes/SignUpPage";
 import SimpleSnackBar from "./components/ui-components/SimpleSnackbar";
 import OrdersPage from "./routes/OrdersPage";
 
+
 function App() {
     const [cartItems, setCartItems] = useState<{}[]>([]);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -38,7 +39,7 @@ function App() {
                                                                            setCartItems={setCartItems} />} />
                   <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn}
                                                              setIsLoggedIn={setIsLoggedIn} /> } />
-                  <Route path={"/sign-up"} element={<SignUpPage/>}/>
+                  <Route path={"/sign-up"} element={<SignUpPage setSnackBarIsOpen={setSnackBarIsOpen}/>}/>
                   <Route path={"/orders"} element={<OrdersPage snackBarIsOpen={snackBarIsOpen}
                                                                setSnackBarIsOpen={setSnackBarIsOpen}
                                                                setIsLoggedIn={setIsLoggedIn}
