@@ -6,17 +6,24 @@ import {auth, db} from '../firebase';
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
 import { validateNameField, validatePassword, validateEmail } from "../helpers/fieldValidator";
+import {MainPage} from "./MainPage";
 
 
 interface SignUpPageProps {
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
     setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    snackBarIsOpen: boolean,
+    currentUser: any,
+    setCurrentUser: any,
+    snackBarInfo: string,
 }
 
 
 const SignUpPage:FC<SignUpPageProps> = (props) => {
-    const {setSnackBarIsOpen, setSnackBarMessage, setSnackBarInfo} = props;
+    const {setSnackBarIsOpen, setSnackBarMessage,
+           setSnackBarInfo, currentUser, setCurrentUser,
+           snackBarIsOpen, snackBarInfo} = props;
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -59,21 +66,26 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
 
     return (
         <div>
-            <Navbar isOnMainPage={false} isOnLogin={true}/>
-            <SignUpCard setFirstName={setFirstName} setLastName={setLastName}
-                        signUpUser={signUpUser} email={email}
-                        password={password} setEmail={setEmail}
-                        setPassword={setPassword}
-                        validatePassword={()=> validatePassword(password, setPasswordError)}
-                        validateEmail={()=> validateEmail(email, setEmailError)}
-                        emailError={emailError}
-                        passwordError={passwordError}
-                        firstNameError={firstNameError}
-                        lastNameError={lastNameError}
-                        validateFirstName={()=> validateNameField(firstName, setFirstNameError)}
-                        validateLastName={()=> validateNameField(lastName, setLastNameError)}
-            />
-            <Footer/>
+            {!currentUser ? ( <>
+                    <Navbar isOnMainPage={false} currentUser={currentUser}/>
+                <SignUpCard setFirstName={setFirstName} setLastName={setLastName}
+                            signUpUser={signUpUser} email={email}
+                            password={password} setEmail={setEmail}
+                            setPassword={setPassword}
+                            validatePassword={()=> validatePassword(password, setPasswordError)}
+                            validateEmail={()=> validateEmail(email, setEmailError)}
+                            emailError={emailError}
+                            passwordError={passwordError}
+                            firstNameError={firstNameError}
+                            lastNameError={lastNameError}
+                            validateFirstName={()=> validateNameField(firstName, setFirstNameError)}
+                            validateLastName={()=> validateNameField(lastName, setLastNameError)}
+                />
+                <Footer/>
+            </> ) : ( <MainPage currentUser={currentUser} setCurrentUser={setCurrentUser}
+                              snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
+                              snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo} setSnackBarMessage={setSnackBarMessage} />
+            ) }
         </div>
     );
 };

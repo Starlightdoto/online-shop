@@ -4,6 +4,8 @@ import {Button} from "./ui-components/Button";
 import StyledText from "./ui-components/StyledText";
 import AvatarImage from "./ui-components/AvatarImage";
 import {useTranslation} from 'react-i18next';
+import { signOutUser } from "../api/authController";
+
 
 interface ProfileCardProps {
     data: {
@@ -14,12 +16,12 @@ interface ProfileCardProps {
     },
     //@ts-ignore
     changeProfileData,
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+    userSignOut: any,
 }
 
 const ProfileCard:FC<ProfileCardProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {data, changeProfileData, setIsLoggedIn} = props;
+    const {data, changeProfileData, userSignOut } = props;
     const [file, setFile] = useState();
     const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -52,7 +54,7 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
                     <StyledText>{data.email}</StyledText>
                     <StyledText>{data.address}</StyledText>
                     <Button onClick={toggleEditMode} className={"default"} buttonText={t("Edit")}/>
-                    <Button onClick={()=> setIsLoggedIn(false)} className={"default"} buttonText={t("Logout")}/>
+                    <Button onClick={userSignOut} className={"default"} buttonText={t("Logout")}/>
                 </div> )
             }
         </div>

@@ -11,13 +11,12 @@ import ProfileCard from "./ProfileCard";
 
 
 interface NavbarProps {
-    //@ts-ignore
-    onClick?,
+    onClick? : any,
     isOnMainPage: boolean,
-    isOnLogin?: boolean,
+    currentUser: any,
 }
 
-export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
+export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,currentUser}) => {
     const [searchValue, setSearchValue] = useState<string>('');
     const {t, i18n} = useTranslation();
 
@@ -43,7 +42,7 @@ export const Navbar:FC<NavbarProps> = ({onClick, isOnMainPage,isOnLogin}) => {
                 ) : null
             }
 
-            {!isOnLogin ? (
+            {currentUser ? (
                 <div className={"rightBox"}>
                     <LocaleSwitcher />
                     <NavLink to={"/cart"}> <Button className={"default"}> <ShoppingCartIcon/> </Button> </NavLink>

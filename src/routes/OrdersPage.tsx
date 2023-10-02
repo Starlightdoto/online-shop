@@ -10,8 +10,8 @@ interface OrdersPageProps {
     cartItems: any[],
     //@ts-ignore
     setCartItems,
-    isLoggedIn: boolean,
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+    currentUser: any,
+    setCurrentUser: any,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarInfo: string,
@@ -20,19 +20,19 @@ interface OrdersPageProps {
 }
 
 const OrdersPage:FC<OrdersPageProps> = (props) => {
-    const { setIsLoggedIn, isLoggedIn,
+    const { currentUser, setCurrentUser ,
             snackBarInfo, setSnackBarInfo,
             snackBarIsOpen, setSnackBarIsOpen, setSnackBarMessage} = props;
     return (
         <div>
-            {isLoggedIn ? ( <>
-                    <Navbar isOnMainPage={false} />
-                    <OrderCard setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
+            {currentUser ? ( <>
+                    <Navbar currentUser={currentUser} isOnMainPage={false} />
+                    <OrderCard />
                     <Footer />
                     <Sidebar />
                 </>)
                 : ( <LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
-                               setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo} isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} /> )
+                               setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo} currentUser={currentUser} setCurrentUser={setCurrentUser} /> )
             }
 
         </div>
