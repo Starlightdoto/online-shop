@@ -10,16 +10,12 @@ interface SimpleSnackBarProps {
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarInfoType: any,
+    message: string,
 }
 
 const SimpleSnackBar:FC<SimpleSnackBarProps> = (props) => {
-    const {snackBarIsOpen, setSnackBarIsOpen, snackBarInfoType} = props;
+    const {snackBarIsOpen, setSnackBarIsOpen, snackBarInfoType, message} = props;
     const {t, i18n} = useTranslation();
-    const enum snackBarMessages {
-        "success" = "Item has been added to cart",
-        "error" = "Something went wrong",
-        "info" = "Info message",
-    }
 
 
     const handleClick = () => {
@@ -60,7 +56,7 @@ const SimpleSnackBar:FC<SimpleSnackBarProps> = (props) => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
                 {/* @ts-ignore */ }
-                <Alert severity={snackBarInfoType}> {t(snackBarMessages[snackBarInfoType])} </Alert>
+                <Alert severity={snackBarInfoType}> {message} </Alert>
             </Snackbar>
         </div>
     );

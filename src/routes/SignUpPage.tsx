@@ -5,15 +5,18 @@ import SignUpCard from "../components/SignUpCard";
 import {auth, db} from '../firebase';
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
+import { validateNameField, validatePassword, validateEmail } from "../helpers/fieldValidator";
 
 
 interface SignUpPageProps {
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
 }
 
 
 const SignUpPage:FC<SignUpPageProps> = (props) => {
-    const {setSnackBarIsOpen} = props;
+    const {setSnackBarIsOpen, setSnackBarMessage, setSnackBarInfo} = props;
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -25,47 +28,10 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
     const [firstNameError, setFirstNameError] = useState<string | null>(null);
     const [lastNameError, setLastNameError] = useState<string | null>(null);
 
-    const validateEmail = () => {
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if(!emailRegex.test(email)) {
-            setEmailError('Invalid email format');
-            return false;
-        }
-        setEmailError(null);
-        return true;
-    }
-
-    const validatePassword = () => {
-        if(password.length < 8) {
-            setPasswordError('Password must be 8 or more characters');
-            return false;
-        }
-        setPasswordError(null);
-        return true;
-    }
-
-    const validateFirstName = () => {
-        if(firstName.length < 1) {
-            setFirstNameError('Cannot be blank');
-            return false;
-        }
-        setFirstNameError(null);
-        return true;
-    }
-
-    const validateLastName = () => {
-        if(lastName.length < 1) {
-            setLastNameError('Cannot be blank');
-            return false;
-        }
-        setLastNameError(null);
-        return true;
-    }
-
 
     const signUpUser = async () => {
-        const isEmailValid = validateEmail();
-        const isPassWordValid = validatePassword();
+        const isEmailValid = validateEmail(email, setEmailError);
+        const isPassWordValid = validatePassword(password, setPasswordError);
         if(isEmailValid && isPassWordValid) {
             try {
                 const response = await createUserWithEmailAndPassword(auth, email, password);
@@ -79,13 +45,14 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
                         lastName: lastName,
                         email: user.email,
                     });
-
-                    console.log("User has been created!")
+                    setSnackBarInfo('success');
+                    setSnackBarMessage('You have successfully signed up!')
                     setSnackBarIsOpen(true);
                 }
             } catch (err : any) {
-                console.error("Something went wrong:", err.message);
-                setError(err.message);
+                setSnackBarInfo('error');
+                setSnackBarMessage(err.message);
+                setSnackBarIsOpen(true);
             }
         }
     }
@@ -97,14 +64,14 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
                         signUpUser={signUpUser} email={email}
                         password={password} setEmail={setEmail}
                         setPassword={setPassword}
-                        validatePassword={validatePassword}
-                        validateEmail={validateEmail}
+                        validatePassword={()=> validatePassword(password, setPasswordError)}
+                        validateEmail={()=> validateEmail(email, setEmailError)}
                         emailError={emailError}
                         passwordError={passwordError}
                         firstNameError={firstNameError}
                         lastNameError={lastNameError}
-                        validateFirstName={validateFirstName}
-                        validateLastName={validateLastName}
+                        validateFirstName={()=> validateNameField(firstName, setFirstNameError)}
+                        validateLastName={()=> validateNameField(lastName, setLastNameError)}
             />
             <Footer/>
         </div>

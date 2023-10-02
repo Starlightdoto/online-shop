@@ -9,10 +9,17 @@ import LoginPage from '../routes/LoginPage';
 interface ProfilePageProps {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
     isLoggedIn: boolean,
+    snackBarIsOpen: boolean,
+    setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarInfo: string,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
 }
 
 const ProfilePage:FC<ProfilePageProps> = (props) => {
-    const {setIsLoggedIn, isLoggedIn} = props;
+    const { setIsLoggedIn, isLoggedIn,
+            snackBarIsOpen, setSnackBarIsOpen,
+            snackBarInfo, setSnackBarInfo, setSnackBarMessage } = props;
 
     const [profileData, setProfileData] = useState({
         firstName: "John",
@@ -44,7 +51,10 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
                 <ProfileCard setIsLoggedIn={setIsLoggedIn} changeProfileData={changeProfileData} data={profileData} />
                 <Footer />
                 </>)
-                : ( <LoginPage isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} /> )
+                : ( <LoginPage setSnackBarMessage={setSnackBarMessage} snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
+                               isLoggedIn={false} setIsLoggedIn={setIsLoggedIn}
+                                setSnackBarIsOpen={setSnackBarIsOpen}  snackBarIsOpen={snackBarIsOpen}
+                /> )
             }
 
         </div>

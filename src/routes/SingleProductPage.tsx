@@ -11,11 +11,16 @@ interface SingleProductPageProps {
     setCartItems?,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarInfo: string,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const { setCartItems, snackBarIsOpen, setSnackBarIsOpen} = props;
+    const { setCartItems, snackBarIsOpen,
+            setSnackBarIsOpen, setSnackBarInfo, snackBarInfo,
+            setSnackBarMessage } = props;
     const [actualProduct, setActualProduct] = useState(
         {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}
     );

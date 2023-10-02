@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {MainPage} from "./routes/MainPage";
 import CartPage from './routes/CartPage';
@@ -16,31 +16,43 @@ function App() {
     const [cartItems, setCartItems] = useState<{}[]>([]);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [isSignedUp, setIsSignedUp] = useState<boolean>(true);
-    const [snackBarIsOpen, setSnackBarIsOpen] = useState(false);
+    const [snackBarIsOpen, setSnackBarIsOpen] = useState<boolean>(false);
+    const [snackBarInfo, setSnackBarInfo] = useState<string>('success');
+    const [snackBarMessage, setSnackBarMessage] = useState<string>('Snackbar message');
 
     return (
       <I18nextProvider i18n={i18n}>
           <div className="App">
-              <SimpleSnackBar snackBarInfoType={"success"} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} />
+              <SimpleSnackBar message={snackBarMessage} snackBarInfoType={snackBarInfo} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen} />
               <Routes>
                   <Route path={"/"} element={
-                      <MainPage snackBarIsOpen={snackBarIsOpen}
+                      <MainPage setSnackBarMessage={setSnackBarMessage} setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo} snackBarIsOpen={snackBarIsOpen}
                                 setSnackBarIsOpen={setSnackBarIsOpen}
                                 cartItems={cartItems} setCartItems={setCartItems}
                                 isSignedUp={isSignedUp} setIsSignedUp={setIsSignedUp}
                                 setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  />}/>
-                  <Route path={"/cart"} element={<CartPage snackBarIsOpen={snackBarIsOpen}
+                  <Route path={"/cart"} element={<CartPage setSnackBarMessage={setSnackBarMessage} snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
+                                                            snackBarIsOpen={snackBarIsOpen}
                                                            setSnackBarIsOpen={setSnackBarIsOpen}
                                                            setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}
                                                            setCartItems={setCartItems} cartItems={cartItems} />}/>
-                  <Route path={"/my-profile"} element={<ProfilePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-                  <Route path={"/product/:id"} element={<SingleProductPage snackBarIsOpen={snackBarIsOpen}
+                  <Route path={"/my-profile"} element={<ProfilePage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
+                                                                    isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+                                                                    snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
+                  />} />
+                  <Route path={"/product/:id"} element={<SingleProductPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen}
+                                                                           snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
                                                                            setSnackBarIsOpen={setSnackBarIsOpen}
                                                                            setCartItems={setCartItems} />} />
-                  <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn}
-                                                             setIsLoggedIn={setIsLoggedIn} /> } />
-                  <Route path={"/sign-up"} element={<SignUpPage setSnackBarIsOpen={setSnackBarIsOpen}/>}/>
-                  <Route path={"/orders"} element={<OrdersPage snackBarIsOpen={snackBarIsOpen}
+                  <Route path={"/login"} element={<LoginPage setSnackBarMessage={setSnackBarMessage}
+                                                             snackBarInfo={snackBarInfo}
+                                                             isLoggedIn={isLoggedIn}
+                                                             setIsLoggedIn={setIsLoggedIn} setSnackBarInfo={setSnackBarInfo}
+                                                             snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}/> } />
+                  <Route path={"/sign-up"} element={<SignUpPage setSnackBarInfo={setSnackBarInfo} setSnackBarMessage={setSnackBarMessage} setSnackBarIsOpen={setSnackBarIsOpen}/>}/>
+                  <Route path={"/orders"} element={<OrdersPage setSnackBarMessage={setSnackBarMessage}
+                                                               snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
+                                                               snackBarIsOpen={snackBarIsOpen}
                                                                setSnackBarIsOpen={setSnackBarIsOpen}
                                                                setIsLoggedIn={setIsLoggedIn}
                                                                isLoggedIn={isLoggedIn}
