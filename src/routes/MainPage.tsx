@@ -10,26 +10,23 @@ import LoginPage from "./LoginPage";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 interface MainPageProps {
-    isLoggedIn: boolean,
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
-    isSignedUp: boolean,
-    setIsSignedUp: React.Dispatch<React.SetStateAction<boolean>>,
+    currentUser: any,
+    setCurrentUser: any,
     cartItems?: any[],
-    //@ts-ignore
-    setCartItems?,
+    setCartItems? :any,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarInfo: string,
     setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
+
 }
 
 
 export const MainPage:FC<MainPageProps> = (props) => {
     const { snackBarIsOpen, setSnackBarIsOpen,
             cartItems, setCartItems,
-            isLoggedIn, setIsLoggedIn,
-            isSignedUp, setIsSignedUp,
+            currentUser, setCurrentUser,
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
@@ -72,16 +69,16 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     return (
         <div>
-            { isLoggedIn ?   (<>
-                    <Navbar isOnMainPage={true} onClick={searchProduct} />
+            { currentUser ?   (<>
+                    <Navbar currentUser={currentUser} isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
                     <ProductList showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />
                 </>
                 ) : ( <LoginPage setSnackBarMessage={setSnackBarMessage} setSnackBarIsOpen={setSnackBarIsOpen}
-                                 isLoggedIn={isLoggedIn}
-                                 setIsLoggedIn={setIsLoggedIn}
+                                 currentUser={currentUser}
+                                 setCurrentUser={setCurrentUser}
                                  snackBarIsOpen={snackBarIsOpen}
                                  setSnackBarInfo={setSnackBarInfo}
                                  snackBarInfo={snackBarInfo}

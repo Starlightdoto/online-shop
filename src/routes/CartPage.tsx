@@ -9,10 +9,9 @@ import LoginPage from "./LoginPage";
 
 interface CartPageProps {
     cartItems: any[],
-    //@ts-ignore
-    setCartItems,
-    isLoggedIn: boolean,
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+    setCartItems: any,
+    currentUser: any,
+    setCurrentUser: any,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarInfo: string,
@@ -22,7 +21,7 @@ interface CartPageProps {
 
 const CartPage:FC<CartPageProps> = (props) => {
     const { cartItems, setCartItems,
-            isLoggedIn, setIsLoggedIn,
+            currentUser, setCurrentUser,
             snackBarIsOpen, setSnackBarIsOpen,
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
@@ -38,8 +37,8 @@ const CartPage:FC<CartPageProps> = (props) => {
 
     return (
         <div>
-            {isLoggedIn ? (<>
-                <Navbar isOnMainPage={false} />
+            {currentUser ? (<>
+                <Navbar currentUser={currentUser} isOnMainPage={false} />
                 {cartItems.length !== 0 ?
                     <ProductList removeItem={removeItem} className={"cart"} products={cartItems} />
                     : <h1 style={{margin:"30px"}}>{t('Your cart is empty')}</h1>
@@ -47,7 +46,7 @@ const CartPage:FC<CartPageProps> = (props) => {
                 <BillingDetails />
                 <Footer />
               </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
-                                   isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+                                   currentUser={currentUser} setCurrentUser={setCurrentUser}
                                     setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo}
             />)
             }

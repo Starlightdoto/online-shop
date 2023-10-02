@@ -7,20 +7,21 @@ import {fetchOneProduct} from "../api/fetchProducts";
 import {useTranslation} from 'react-i18next';
 
 interface SingleProductPageProps {
-    //@ts-ignore
-    setCartItems?,
+    setCartItems?: any,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarInfo: string,
     setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
+    currentUser: any,
+    setCurrentUser: any,
 }
 
 const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const {t, i18n} = useTranslation();
     const { setCartItems, snackBarIsOpen,
             setSnackBarIsOpen, setSnackBarInfo, snackBarInfo,
-            setSnackBarMessage } = props;
+            setSnackBarMessage, currentUser, setCurrentUser } = props;
     const [actualProduct, setActualProduct] = useState(
         {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}
     );
@@ -70,7 +71,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
 
     return (
         <div>
-            <Navbar isOnMainPage={false}  />
+            <Navbar currentUser={currentUser} isOnMainPage={false}  />
             {actualProduct && actualProduct.id ?
                 <ProductItem onSinglePage={true}
                              rating={actualProduct.rating}

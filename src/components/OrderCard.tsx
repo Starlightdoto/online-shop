@@ -4,8 +4,7 @@ import {useTranslation} from 'react-i18next';
 import GenericDetailsInput from "./ui-components/GenericDetailsInput";
 
 interface OrdersPageProps {
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
-    isLoggedIn: boolean,
+
 
 }
 

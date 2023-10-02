@@ -4,25 +4,25 @@ import {useTranslation} from 'react-i18next';
 import GenericDetailsInput from "./ui-components/GenericDetailsInput";
 
 interface LoginCardProps {
-    isLoggedIn: boolean,
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
     signInUser: any,
     email: string,
     password: string,
     setEmail: React.Dispatch<React.SetStateAction<string>>,
     setPassword: React.Dispatch<React.SetStateAction<string>>,
+    error: string | null,
 }
 
 const LoginCard:FC<LoginCardProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {isLoggedIn, setIsLoggedIn,
-           email, signInUser,
-           password, setPassword, setEmail} = props;
+    const { email, signInUser,
+           password, setPassword, setEmail, error} = props;
 
     return (
         <div className={"profileCardEdit"}>
             <GenericDetailsInput signUpData={email} setSignUpData={setEmail} placeholder={"example@email.com"} labelName={t("Email")} type={"email"} />
+            {error && <span style={{color:'red', display:"block", marginBottom:"3px"}}>{error}</span>}
             <GenericDetailsInput signUpData={password} setSignUpData={setPassword} labelName={t("Password")} type={"password"} />
+            {error && <span style={{color:'red', display:"block", marginBottom:"3px"}}>{error}</span>}
             <Button onClick={signInUser} className={"default"} buttonText={t('Login')} />
             <Button className={"default"} buttonText={t('Sign Up')}/>
         </div>
