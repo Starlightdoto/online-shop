@@ -15,15 +15,23 @@ interface CartPageProps {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarInfo: string,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
 }
 
 const CartPage:FC<CartPageProps> = (props) => {
-    const {cartItems, setCartItems, isLoggedIn, setIsLoggedIn, snackBarIsOpen, setSnackBarIsOpen} = props;
+    const { cartItems, setCartItems,
+            isLoggedIn, setIsLoggedIn,
+            snackBarIsOpen, setSnackBarIsOpen,
+            snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
 
     const removeItem = (id:string) => {
         //@ts-ignore
         setCartItems(cartItems.filter((item) => item.id !== id));
+        setSnackBarInfo('success');
+        setSnackBarMessage('Item has been removed from cart')
         setSnackBarIsOpen(true);
     }
 
@@ -38,7 +46,10 @@ const CartPage:FC<CartPageProps> = (props) => {
                 }
                 <BillingDetails />
                 <Footer />
-              </>  ) : (<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />)
+              </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
+                                   isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+                                    setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo}
+            />)
             }
         </div>
     );

@@ -19,17 +19,26 @@ interface MainPageProps {
     setCartItems?,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarInfo: string,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
 }
 
 
 export const MainPage:FC<MainPageProps> = (props) => {
-    const {snackBarIsOpen, setSnackBarIsOpen, cartItems, setCartItems, isLoggedIn, setIsLoggedIn, isSignedUp, setIsSignedUp} = props;
+    const { snackBarIsOpen, setSnackBarIsOpen,
+            cartItems, setCartItems,
+            isLoggedIn, setIsLoggedIn,
+            isSignedUp, setIsSignedUp,
+            snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
 
 
     const handleClick = () => {
+        setSnackBarInfo('success');
+        setSnackBarMessage('Item has been added to cart')
         setSnackBarIsOpen(true);
     };
 
@@ -70,7 +79,13 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <ProductList showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />
                 </>
-                ) : ( <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> )
+                ) : ( <LoginPage setSnackBarMessage={setSnackBarMessage} setSnackBarIsOpen={setSnackBarIsOpen}
+                                 isLoggedIn={isLoggedIn}
+                                 setIsLoggedIn={setIsLoggedIn}
+                                 snackBarIsOpen={snackBarIsOpen}
+                                 setSnackBarInfo={setSnackBarInfo}
+                                 snackBarInfo={snackBarInfo}
+            /> )
             }
         </div>
 

@@ -14,10 +14,15 @@ interface OrdersPageProps {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
     snackBarIsOpen: boolean,
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    snackBarInfo: string,
+    setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
+    setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
 }
 
 const OrdersPage:FC<OrdersPageProps> = (props) => {
-    const {setIsLoggedIn, isLoggedIn} = props;
+    const { setIsLoggedIn, isLoggedIn,
+            snackBarInfo, setSnackBarInfo,
+            snackBarIsOpen, setSnackBarIsOpen, setSnackBarMessage} = props;
     return (
         <div>
             {isLoggedIn ? ( <>
@@ -26,7 +31,8 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
                     <Footer />
                     <Sidebar />
                 </>)
-                : ( <LoginPage isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} /> )
+                : ( <LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
+                               setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo} isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} /> )
             }
 
         </div>
