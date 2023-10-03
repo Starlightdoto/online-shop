@@ -34,6 +34,7 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [firstNameError, setFirstNameError] = useState<string | null>(null);
     const [lastNameError, setLastNameError] = useState<string | null>(null);
+    const [role, setRole] = useState<string>('user');
 
 
     const signUpUser = async () => {
@@ -48,9 +49,10 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
                     const userRef = doc(db, "users", user.uid);
                     await setDoc(userRef, {
                         uid: user.uid,
+                        email: user.email,
                         firstName: firstName,
                         lastName: lastName,
-                        email: user.email,
+                        role: role,
                     });
                     setSnackBarInfo('success');
                     setSnackBarMessage('You have successfully signed up!')

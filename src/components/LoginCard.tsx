@@ -19,9 +19,16 @@ const LoginCard:FC<LoginCardProps> = (props) => {
 
     return (
         <div className={"profileCardEdit"}>
-            <GenericDetailsInput signUpData={email} setSignUpData={setEmail} placeholder={"example@email.com"} labelName={t("Email")} type={"email"} />
+            <GenericDetailsInput signUpData={email}
+                                 setSignUpData={setEmail}
+                                 placeholder={"example@email.com"}
+                                 labelName={t("Email")}
+                                 type={"email"} />
             {error && <span style={{color:'red', display:"block", marginBottom:"3px"}}>{error}</span>}
-            <GenericDetailsInput signUpData={password} setSignUpData={setPassword} labelName={t("Password")} type={"password"} />
+            <GenericDetailsInput signUpData={password}
+                                 setSignUpData={setPassword}
+                                 labelName={t("Password")}
+                                 type={"password"} />
             {error && <span style={{color:'red', display:"block", marginBottom:"3px"}}>{error}</span>}
             <Button onClick={signInUser} className={"default"} buttonText={t('Login')} />
             <Button className={"default"} buttonText={t('Sign Up')}/>

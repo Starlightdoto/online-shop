@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import LoginCard from "../components/LoginCard";
 import  { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../firebase';
-import SimpleSnackBar from "../components/ui-components/SimpleSnackbar";
 import {signInUser} from "../api/authController";
 
 interface LoginPageProps {

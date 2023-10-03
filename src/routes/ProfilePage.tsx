@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import ProfileCard from "../components/ProfileCard";
 import LoginPage from '../routes/LoginPage';
 import { signOutUser } from "../api/authController";
-import {fetchCurrentUserData} from "../api/userData";
+import { fetchCurrentUserData, updateUserData } from "../api/userData";
 
 
 interface ProfilePageProps {
@@ -21,8 +21,13 @@ interface ProfilePageProps {
 const ProfilePage:FC<ProfilePageProps> = (props) => {
     const { currentUser, setCurrentUser,
             snackBarIsOpen, setSnackBarIsOpen,
-            snackBarInfo, setSnackBarInfo, setSnackBarMessage } = props;
+            snackBarInfo, setSnackBarInfo,
+            setSnackBarMessage } = props;
 
+    const [firstName, setFirstName] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [address, setAddress] = useState<string>('');
     const [profileData, setProfileData] = useState({
         firstName: "",
         lastName: "",
@@ -48,11 +53,11 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
             try {
                 const userData = await fetchCurrentUserData();
                 if(userData) {
-
                     setProfileData({ firstName: userData.firstName,
                                            lastName: userData.lastName,
                                            email: userData.email,
                                            address: userData.address || " " });
+
                 } else {
                     console.log('No user data')
                 }
@@ -61,34 +66,60 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
             }
         }
         getData();
-    }, []);
+    }, [profileData]);
 
-    const changeProfileData = (field: string, value: string) => {
-        setProfileData((prevState:any) => {
-            switch(field) {
-                case "firstName":
-                    return {...prevState, "firstName" : value};
-                case "lastName":
-                    return {...prevState, "lastName" : value};
-                case "email":
-                    return {...prevState, "email" : value};
-                case "address":
-                    return {...prevState, "address" : value};
-            }
-        });
+    const changeProfileData = async () => {
+        const newData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            address: address || null,
+        }
+        try {
+           const result = await updateUserData(currentUser.uid, newData);
+           if(result) {
+               setSnackBarInfo('success');
+               setSnackBarMessage('Changes saved');
+               setSnackBarIsOpen(true);
+           } else {
+               setSnackBarInfo('error');
+               setSnackBarMessage('Something went wrong');
+               setSnackBarIsOpen(true);
+           }
+        } catch (err: any) {
+            console.log(err.message);
+            setSnackBarInfo('error');
+            setSnackBarMessage(err.message);
+            setSnackBarIsOpen(true);
+        }
     }
 
 
     return (
         <div>
             {currentUser ? ( <>
-                <Navbar currentUser={currentUser}  isOnMainPage={false} />
-                <ProfileCard userSignOut={userSignOut} changeProfileData={changeProfileData} data={profileData} />
+                <Navbar currentUser={currentUser}
+                        isOnMainPage={false} />
+                <ProfileCard firstName={firstName}
+                             setFirstName={setFirstName}
+                             lastName={lastName}
+                             setLastName={setLastName}
+                             email={email}
+                             setEmail={setEmail}
+                             address={address}
+                             setAddress={setAddress}
+                             userSignOut={userSignOut}
+                             changeProfileData={changeProfileData}
+                             data={profileData} />
                 <Footer />
                 </>)
-                : ( <LoginPage setSnackBarMessage={setSnackBarMessage} snackBarInfo={snackBarInfo} setSnackBarInfo={setSnackBarInfo}
-                               currentUser={currentUser} setCurrentUser={setCurrentUser}
-                                setSnackBarIsOpen={setSnackBarIsOpen}  snackBarIsOpen={snackBarIsOpen}
+                : ( <LoginPage setSnackBarMessage={setSnackBarMessage}
+                               snackBarInfo={snackBarInfo}
+                               setSnackBarInfo={setSnackBarInfo}
+                               currentUser={currentUser}
+                               setCurrentUser={setCurrentUser}
+                                setSnackBarIsOpen={setSnackBarIsOpen}
+                               snackBarIsOpen={snackBarIsOpen}
                 /> )
             }
 
