@@ -45,9 +45,13 @@ const CartPage:FC<CartPageProps> = (props) => {
                 }
                 <BillingDetails />
                 <Footer />
-              </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
-                                   currentUser={currentUser} setCurrentUser={setCurrentUser}
-                                    setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo}
+              </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage}
+                                   snackBarIsOpen={snackBarIsOpen}
+                                   setSnackBarIsOpen={setSnackBarIsOpen}
+                                   currentUser={currentUser}
+                                   setCurrentUser={setCurrentUser}
+                                   setSnackBarInfo={setSnackBarInfo}
+                                   snackBarInfo={snackBarInfo}
             />)
             }
         </div>
