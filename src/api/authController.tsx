@@ -15,7 +15,6 @@ export const signInUser = async (setCurrentUser: any, email:string, password: st
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         setCurrentUser(user);
-
     } catch (err:any) {
         setError(err.message);
     }

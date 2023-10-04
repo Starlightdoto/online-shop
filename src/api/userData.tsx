@@ -1,5 +1,5 @@
 import { db, auth } from '../firebase';
-import {doc,getDoc} from 'firebase/firestore';
+import {doc, getDoc, updateDoc } from 'firebase/firestore';
 
 export const fetchCurrentUserData = async () => {
     const user = auth.currentUser;
@@ -17,5 +17,17 @@ export const fetchCurrentUserData = async () => {
     } else {
         console.log('You are not signed in');
         return null;
+    }
+};
+
+export const updateUserData = async (uid: any,updatedData: any) => {
+    const userRef = doc(db, 'users', uid);
+
+    try {
+        await updateDoc(userRef, updatedData);
+        return true;
+    } catch(err: any) {
+        console.log(err.message);
+        return false;
     }
 }

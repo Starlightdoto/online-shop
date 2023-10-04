@@ -31,8 +31,13 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
                     <Footer />
                     <Sidebar />
                 </>)
-                : ( <LoginPage setSnackBarMessage={setSnackBarMessage} snackBarIsOpen={snackBarIsOpen} setSnackBarIsOpen={setSnackBarIsOpen}
-                               setSnackBarInfo={setSnackBarInfo} snackBarInfo={snackBarInfo} currentUser={currentUser} setCurrentUser={setCurrentUser} /> )
+                : ( <LoginPage setSnackBarMessage={setSnackBarMessage}
+                               snackBarIsOpen={snackBarIsOpen}
+                               setSnackBarIsOpen={setSnackBarIsOpen}
+                               setSnackBarInfo={setSnackBarInfo}
+                               snackBarInfo={snackBarInfo}
+                               currentUser={currentUser}
+                               setCurrentUser={setCurrentUser} /> )
             }
 
         </div>
