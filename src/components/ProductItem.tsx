@@ -17,22 +17,14 @@ interface ProductItemProps {
     category:string,
     className: string,
     classNameAdditional?: string,
-    //@ts-ignore
-    removeItem?,
-    cartItems?: any[],
-    //@ts-ignore
-    setCartItems?,
-    //@ts-ignore
-    showSnackbar?,
+    removeItem?: any,
     onSinglePage?:boolean,
+    addItemToCart?: any,
 }
 
 const ProductItem:FC<ProductItemProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {cartItems,
-            showSnackbar,
-            setCartItems,
-            name,
+    const { name,
             className,
             removeItem,
             classNameAdditional,
@@ -40,24 +32,7 @@ const ProductItem:FC<ProductItemProps> = (props) => {
             quantity = 0,
             price,
             description,
-            category, id, rating, onSinglePage} = props;
-
-    const addToCart = () => {
-        if(setCartItems) {
-            setCartItems((prevState:any) => {
-                return [...prevState, {
-                    id: id,
-                    price: price,
-                    description: description,
-                    name: name,
-                    category: category,
-                    imgSrc: imgSrc,
-                    rating: rating,
-                }]
-            });
-        }
-        showSnackbar();
-    }
+            category, id, rating, onSinglePage, addItemToCart} = props;
 
 
     return (
@@ -74,7 +49,9 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                 </div>
             : <div className={`productItem-${className}`}>
                     <img className={`productImage-${className}`} src={imgSrc} alt=""/>
-                    {!onSinglePage ? <Button  onClick={addToCart} className={"default"} ><AddShoppingCartIcon /></Button> : null }
+                    {!onSinglePage ? <Button  onClick={() => {
+                        addItemToCart(id, price, description, name, category, imgSrc, rating);
+                    }} className={"default"} ><AddShoppingCartIcon /></Button> : null }
                     <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
                     <h4>{t('Quantity')}: {quantity}</h4>
                     <h4>{t('Price')}: ${price}</h4>

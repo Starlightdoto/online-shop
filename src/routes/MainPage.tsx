@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 import LoginPage from "./LoginPage";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { addItemToCart } from "../api/userData";
 
 interface MainPageProps {
     currentUser: any,
@@ -59,6 +60,36 @@ export const MainPage:FC<MainPageProps> = (props) => {
         });
     }
 
+    const addToCart = async (id:string, price: number, description: number, name: string, category: string, imgSrc: string, rating: number) => {
+        const newItem = {
+            id: id,
+            price: price,
+            description: description,
+            name: name,
+            category: category,
+            imgSrc: imgSrc,
+            rating: rating,
+        }
+        try {
+            const result = await addItemToCart(currentUser.uid, newItem);
+            if(result) {
+                setSnackBarInfo('success');
+                setSnackBarMessage('Item has been added to cart');
+                setSnackBarIsOpen(true);
+            } else {
+                setSnackBarInfo('error');
+                setSnackBarMessage('Something went wrong');
+                setSnackBarIsOpen(true);
+            }
+        } catch (err: any) {
+            console.log(err.message);
+            setSnackBarInfo('error');
+            setSnackBarMessage('Something went wrong');
+            setSnackBarIsOpen(true);
+        }
+    }
+
+
     useEffect(() => {
         getAllProducts();
     }, []);
@@ -73,7 +104,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <Navbar currentUser={currentUser} isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
                     <ResultHeader searchResultsCount={results}  />
-                    <ProductList showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
+                    <ProductList addItemToCart={addToCart} showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />
                 </>
                 ) : ( <LoginPage setSnackBarMessage={setSnackBarMessage} setSnackBarIsOpen={setSnackBarIsOpen}

@@ -6,6 +6,7 @@ import ProductList from "../components/ProductList";
 import BillingDetails from "../components/BillingDetails";
 import {useTranslation} from 'react-i18next';
 import LoginPage from "./LoginPage";
+import {fetchUserCartItems} from "../api/userData";
 
 interface CartPageProps {
     cartItems: any[],
@@ -33,6 +34,21 @@ const CartPage:FC<CartPageProps> = (props) => {
         setSnackBarMessage('Item has been removed from cart')
         setSnackBarIsOpen(true);
     }
+
+    const fetchCartItems = async () => {
+        try {
+            const items = await fetchUserCartItems(currentUser.uid);
+            if(items) {
+                setCartItems(items);
+            }
+        } catch (err: any) {
+            console.log(err.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchCartItems();
+    }, [])
 
 
     return (
