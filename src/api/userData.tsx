@@ -1,5 +1,5 @@
 import { db, auth } from '../firebase';
-import {collection, doc, getDoc, updateDoc, addDoc, getDocs} from 'firebase/firestore';
+import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc} from 'firebase/firestore';
 
 export const fetchCurrentUserData = async () => {
     const user = auth.currentUser;
@@ -11,7 +11,7 @@ export const fetchCurrentUserData = async () => {
         if(userSnapshot.exists()) {
             return userSnapshot.data();
         } else {
-            console.log('No use data found');
+            console.log('No user data found');
             return null;
         }
     } else {
@@ -71,3 +71,23 @@ export const fetchUserCartItems = async (uid: string) => {
         console.log(err.message);
     }
 };
+
+export const removeItemFromCart = async (uid: string, itemId: string) => {
+    const userCartItemsCollection = collection(db, 'carts', uid, 'items');
+    const q = query(userCartItemsCollection, where('id', '==', itemId));
+
+    const querySnapshot = await getDocs(q);
+
+    if(!querySnapshot.empty) {
+        const itemRef = querySnapshot.docs[0].ref;
+        try {
+            const result = await deleteDoc(itemRef);
+            return  true;
+        } catch (err: any) {
+            console.log(err.message);
+        }
+    } else {
+        console.log("No matching document!");
+        return false;
+    }
+}
