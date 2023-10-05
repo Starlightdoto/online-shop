@@ -6,7 +6,7 @@ import ProductList from "../components/ProductList";
 import BillingDetails from "../components/BillingDetails";
 import {useTranslation} from 'react-i18next';
 import LoginPage from "./LoginPage";
-import {fetchUserCartItems} from "../api/userData";
+import {fetchUserCartItems, removeItemFromCart} from "../api/userData";
 
 interface CartPageProps {
     cartItems: any[],
@@ -27,12 +27,24 @@ const CartPage:FC<CartPageProps> = (props) => {
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
 
-    const removeItem = (id:string) => {
-        //@ts-ignore
-        setCartItems(cartItems.filter((item) => item.id !== id));
-        setSnackBarInfo('success');
-        setSnackBarMessage('Item has been removed from cart')
-        setSnackBarIsOpen(true);
+    const removeItem = async (id:string) => {
+        try {
+            const result = await removeItemFromCart(currentUser.uid, id);
+            if(result) {
+                setSnackBarInfo('success');
+                setSnackBarMessage('Item has been removed from cart')
+                setSnackBarIsOpen(true);
+            } else {
+                setSnackBarInfo('error');
+                setSnackBarMessage('Something went wrong')
+                setSnackBarIsOpen(true);
+            }
+
+        } catch (err: any) {
+            setSnackBarInfo('error');
+            setSnackBarMessage('Something went wrong')
+            setSnackBarIsOpen(true);
+        }
     }
 
     const fetchCartItems = async () => {
@@ -48,7 +60,7 @@ const CartPage:FC<CartPageProps> = (props) => {
 
     useEffect(() => {
         fetchCartItems();
-    }, [])
+    }, [cartItems])
 
 
     return (
