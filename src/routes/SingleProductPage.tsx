@@ -62,6 +62,8 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
         setCartItems((prevState:any) => {
             return [...prevState, actualProduct]
         });
+        setSnackBarInfo('success');
+        setSnackBarMessage('Item has been added to cart');
         setSnackBarIsOpen(true);
     }
 
