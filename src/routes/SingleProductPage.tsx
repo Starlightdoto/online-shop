@@ -5,6 +5,7 @@ import ProductItem from "../components/ProductItem";
 import {Button} from "../components/ui-components/Button";
 import {fetchOneProduct} from "../api/fetchProducts";
 import {useTranslation} from 'react-i18next';
+import {addItemToCart} from "../api/userData";
 
 interface SingleProductPageProps {
     setCartItems?: any,
@@ -58,13 +59,24 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     }
 
 
-    const addToCart = () => {
-        setCartItems((prevState:any) => {
-            return [...prevState, actualProduct]
-        });
-        setSnackBarInfo('success');
-        setSnackBarMessage('Item has been added to cart');
-        setSnackBarIsOpen(true);
+    const addToCart = async () => {
+        try {
+            const result = await addItemToCart(currentUser.uid, actualProduct);
+            if(result) {
+                setSnackBarInfo('success');
+                setSnackBarMessage('Item has been added to cart');
+                setSnackBarIsOpen(true);
+            } else {
+                setSnackBarInfo('error');
+                setSnackBarMessage('Something went wrong');
+                setSnackBarIsOpen(true);
+            }
+        } catch (err: any) {
+            setSnackBarInfo('error');
+            setSnackBarMessage(err.message);
+            setSnackBarIsOpen(true);
+        }
+
     }
 
     useEffect(() => {
