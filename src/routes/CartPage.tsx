@@ -6,7 +6,8 @@ import ProductList from "../components/ProductList";
 import BillingDetails from "../components/BillingDetails";
 import {useTranslation} from 'react-i18next';
 import LoginPage from "./LoginPage";
-import {fetchUserCartItems, removeItemFromCart} from "../api/userData";
+import {fetchUserCartItems, removeItemFromCart, createOrderFromCart, clearUserCart } from "../api/userData";
+import { useNavigate } from "react-router-dom";
 
 interface CartPageProps {
     cartItems: any[],
@@ -26,6 +27,7 @@ const CartPage:FC<CartPageProps> = (props) => {
             snackBarIsOpen, setSnackBarIsOpen,
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
+    const navigate = useNavigate();
 
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -59,16 +61,40 @@ const CartPage:FC<CartPageProps> = (props) => {
         }
     }
 
+    const createOrder = async () => {
+        if(cartItems.length > 0) {
+            try {
+                const result = await createOrderFromCart(currentUser.uid, cartItems, totalPrice);
+                if(result) {
+                    setSnackBarInfo('success');
+                    setSnackBarMessage(t('Order has been created'));
+                    setSnackBarIsOpen(true);
+                } else {
+                    setSnackBarInfo('error');
+                    setSnackBarMessage(t('Something went wrong'));
+                    setSnackBarIsOpen(true);
+                }
+                await clearUserCart(currentUser.uid);
+                navigate("/orders");
+
+            } catch (err: any) {
+                setSnackBarInfo('error');
+                setSnackBarMessage(t('Something went wrong'));
+                setSnackBarIsOpen(true);
+            }
+        }
+    };
+
     const getTotalPrice = () => {
         let total = 0;
         cartItems.forEach(item => total += item.price);
         setTotalPrice(Number(total.toFixed(2)));
-    }
+    };
 
     useEffect(() => {
         fetchCartItems();
         getTotalPrice();
-    }, [cartItems])
+    }, [cartItems]);
 
 
     return (
@@ -79,7 +105,7 @@ const CartPage:FC<CartPageProps> = (props) => {
                     <ProductList removeItem={removeItem} className={"cart"} products={cartItems} />
                     : <h1 style={{margin:"30px"}}>{t('Your cart is empty')}</h1>
                 }
-                <BillingDetails totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
+                <BillingDetails createOrder={createOrder} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
                 <Footer />
               </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage}
                                    snackBarIsOpen={snackBarIsOpen}

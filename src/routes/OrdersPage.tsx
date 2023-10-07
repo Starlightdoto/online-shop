@@ -6,10 +6,10 @@ import React, {useState} from 'react';
 import OrderCard from "../components/OrderCard";
 import {Sidebar} from "../components/Sidebar";
 
+
 interface OrdersPageProps {
     cartItems: any[],
-    //@ts-ignore
-    setCartItems,
+    setCartItems: any,
     currentUser: any,
     setCurrentUser: any,
     snackBarIsOpen: boolean,
@@ -23,6 +23,9 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
     const { currentUser, setCurrentUser ,
             snackBarInfo, setSnackBarInfo,
             snackBarIsOpen, setSnackBarIsOpen, setSnackBarMessage} = props;
+
+
+
     return (
         <div>
             {currentUser ? ( <>
