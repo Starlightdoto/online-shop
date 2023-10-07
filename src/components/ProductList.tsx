@@ -7,24 +7,23 @@ import MyImage from '../assets/shop-logo.jpg';
 interface ProductListProps {
     products: any[],
     className: string,
-    //@ts-ignore
-    removeItem?,
+    removeItem?: any,
     cartItems?: any[],
-    //@ts-ignore
-    setCartItems?,
-    //@ts-ignore
-    showSnackbar?,
+    setCartItems?: any,
+    showSnackbar?: any,
     addItemToCart?: any,
 }
 
 const ProductList:FC<ProductListProps> = (props) => {
     const {products, className, removeItem, cartItems, setCartItems, showSnackbar, addItemToCart} = props;
 
+
+
     return (
         <div>
             {className === 'product' ?
                 <div className={`${className}List`}>
-                    {products.map((product) => {
+                    {products.map((product: any) => {
                         return <ProductItem id={product.id}
                                             key={product.id}
                                             rating={product.rating}
