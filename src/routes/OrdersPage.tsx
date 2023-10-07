@@ -1,15 +1,15 @@
 import {Navbar} from "../components/Navbar";
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import Footer from "../components/Footer";
 import LoginPage from "./LoginPage";
 import React, {useState} from 'react';
 import OrderCard from "../components/OrderCard";
 import {Sidebar} from "../components/Sidebar";
+import {fetchAllUserOrders} from "../api/userData";
 
 interface OrdersPageProps {
     cartItems: any[],
-    //@ts-ignore
-    setCartItems,
+    setCartItems: any,
     currentUser: any,
     setCurrentUser: any,
     snackBarIsOpen: boolean,
@@ -23,6 +23,18 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
     const { currentUser, setCurrentUser ,
             snackBarInfo, setSnackBarInfo,
             snackBarIsOpen, setSnackBarIsOpen, setSnackBarMessage} = props;
+
+    const [orders, setOrders] = useState<any[] | null>([]);
+
+    const getAllOrders = async () => {
+        const userOrders = await fetchAllUserOrders(currentUser.uid);
+        setOrders(userOrders);
+    }
+
+    useEffect(()=> {
+        getAllOrders();
+    }, []);
+
     return (
         <div>
             {currentUser ? ( <>

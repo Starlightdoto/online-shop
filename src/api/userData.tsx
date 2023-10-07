@@ -1,5 +1,5 @@
 import { db, auth } from '../firebase';
-import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc} from 'firebase/firestore';
+import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc, writeBatch} from 'firebase/firestore';
 
 export const fetchCurrentUserData = async () => {
     const user = auth.currentUser;
@@ -90,4 +90,60 @@ export const removeItemFromCart = async (uid: string, itemId: string) => {
         console.log("No matching document!");
         return false;
     }
+};
+
+export const clearUserCart = async (uid: string) => {
+    const userCartItemsCollection = collection(db, 'carts', uid, 'items');
+    const itemsSnapshot = await getDocs(userCartItemsCollection);
+
+    const batch = writeBatch(db);
+
+    itemsSnapshot.docs.forEach((docSnapshot) => {
+        batch.delete(docSnapshot.ref);
+    });
+
+    try {
+        const result = await batch.commit();
+        return true;
+    } catch (err: any) {
+        console.log(err.message);
+        return false;
+    }
+};
+
+export const createOrderFromCart = async (uid: string, items: any[], totalPrice: number) => {
+    const ordersCollection = collection(db, 'orders');
+
+    try {
+        const newOrderRef = await addDoc(ordersCollection, {
+            uid: uid,
+            owner: uid,
+            date: new Date(),
+            status: 'new',
+            items: items,
+            price: totalPrice,
+        });
+        if(newOrderRef) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err: any) {
+        console.log(err.message);
+    }
+};
+
+export const fetchAllUserOrders = async (uid: string) => {
+    const ordersCollection = collection(db, 'orders');
+    const q = query(ordersCollection, where('owner', '==', uid));
+
+    try {
+        const ordersSnapshot = await getDocs(q);
+        const orders = ordersSnapshot.docs.map(doc => doc.data());
+        return orders;
+    } catch (err: any) {
+        console.log(err.message);
+        return null;
+    }
+
 }
