@@ -7,6 +7,7 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
 import { validateNameField, validatePassword, validateEmail } from "../helpers/fieldValidator";
 import {MainPage} from "./MainPage";
+import { createNewCart } from "../api/userData";
 
 
 interface SignUpPageProps {
@@ -63,6 +64,16 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
                 setSnackBarMessage(err.message);
                 setSnackBarIsOpen(true);
             }
+            await createCartForUser();
+        }
+    }
+
+    const createCartForUser = async () => {
+        try {
+            await createNewCart();
+            console.log('Cart created!');
+        } catch (err: any) {
+            console.log(err.message);
         }
     }
 
