@@ -11,7 +11,7 @@ const fetchAllProducts = async(limit?:string) => {
     } catch (e) {
         console.log(e);
     }
-}
+};
 
 export const fetchOneProduct = async(id:string) => {
     const productsCollection = collection(db, 'products');
@@ -26,7 +26,7 @@ export const fetchOneProduct = async(id:string) => {
         console.log("No matching document!");
         return null;
     }
-}
+};
 
 export const fetchOneCategory = async (category: string) => {
     const productsCollection = collection(db, 'products');
@@ -37,6 +37,6 @@ export const fetchOneCategory = async (category: string) => {
     } catch(e) {
         console.log(e);
     }
-}
+};
 
 export default fetchAllProducts;

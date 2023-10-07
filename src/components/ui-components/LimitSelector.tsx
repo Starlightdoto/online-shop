@@ -2,8 +2,7 @@ import React, {FC, useState} from "react";
 import {useTranslation} from 'react-i18next';
 
 interface LimitSelectorProps {
-    //@ts-ignore
-    performAction?,
+    performAction?: any,
 }
 
 export const LimitSelector:FC<LimitSelectorProps> = ({performAction}) => {

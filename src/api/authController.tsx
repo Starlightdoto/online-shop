@@ -18,4 +18,4 @@ export const signInUser = async (setCurrentUser: any, email:string, password: st
     } catch (err:any) {
         setError(err.message);
     }
-}
+};

@@ -6,6 +6,7 @@ import ProfileCard from "../components/ProfileCard";
 import LoginPage from '../routes/LoginPage';
 import { signOutUser } from "../api/authController";
 import { fetchCurrentUserData, updateUserData } from "../api/userData";
+import {useTranslation} from 'react-i18next';
 
 
 interface ProfilePageProps {
@@ -24,6 +25,7 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
             snackBarInfo, setSnackBarInfo,
             setSnackBarMessage } = props;
 
+    const {t, i18n} = useTranslation();
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -39,14 +41,14 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
         try {
             await signOutUser(setCurrentUser);
             setSnackBarInfo('success');
-            setSnackBarMessage('Signed out');
+            setSnackBarMessage(t('Signed out'));
             setSnackBarIsOpen(true);
         } catch (err: any) {
             setSnackBarInfo('error');
             setSnackBarMessage(err.message);
             setSnackBarIsOpen(true);
         }
-    }
+    };
 
     useEffect(()=> {
         const getData = async () => {
@@ -57,9 +59,8 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
                                            lastName: userData.lastName,
                                            email: userData.email,
                                            address: userData.address || " " });
-
                 } else {
-                    console.log('No user data')
+                    console.log(t('No user data'));
                 }
             } catch (err: any) {
                 console.log(err.message);
@@ -79,11 +80,11 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
            const result = await updateUserData(currentUser.uid, newData);
            if(result) {
                setSnackBarInfo('success');
-               setSnackBarMessage('Changes saved');
+               setSnackBarMessage(t('Changes saved'));
                setSnackBarIsOpen(true);
            } else {
                setSnackBarInfo('error');
-               setSnackBarMessage('Something went wrong');
+               setSnackBarMessage(t('Something went wrong'));
                setSnackBarIsOpen(true);
            }
         } catch (err: any) {

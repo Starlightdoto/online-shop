@@ -43,6 +43,10 @@ i18n
                     'Sign Up' : 'Sign Up',
                     'Item has been added to cart' : 'Item has been added to cart',
                     'Something went wrong' : 'Something went wrong',
+                    'Signed out' : 'Signed out',
+                    'No user data' : 'No user data',
+                    'Changes saved': 'Changes saved',
+                    'Total': 'Total',
                 }
             },
             ru: {
@@ -83,6 +87,10 @@ i18n
                     'Sign Up' : 'Регистрация',
                     'Item has been added to cart' : 'Товар добавлен в корзину',
                     'Something went wrong' : 'Возникла ошибка',
+                    'Signed out' : 'Signed out',
+                    'No user data' : 'Нет данных пользователя',
+                    'Changes saved' : 'Изменения сохранены',
+                    'Total' : 'Всего',
                 }
             }
         },
