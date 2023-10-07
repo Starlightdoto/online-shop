@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Navbar} from "../components/Navbar";
 import {FC} from 'react';
 import Footer from "../components/Footer";
@@ -27,6 +27,8 @@ const CartPage:FC<CartPageProps> = (props) => {
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
     const removeItem = async (id:string) => {
         try {
             const result = await removeItemFromCart(currentUser.uid, id);
@@ -39,7 +41,6 @@ const CartPage:FC<CartPageProps> = (props) => {
                 setSnackBarMessage('Something went wrong')
                 setSnackBarIsOpen(true);
             }
-
         } catch (err: any) {
             setSnackBarInfo('error');
             setSnackBarMessage('Something went wrong')
@@ -58,8 +59,15 @@ const CartPage:FC<CartPageProps> = (props) => {
         }
     }
 
+    const getTotalPrice = () => {
+        let total = 0;
+        cartItems.forEach(item => total += item.price);
+        setTotalPrice(Number(total.toFixed(2)));
+    }
+
     useEffect(() => {
         fetchCartItems();
+        getTotalPrice();
     }, [cartItems])
 
 
@@ -71,7 +79,7 @@ const CartPage:FC<CartPageProps> = (props) => {
                     <ProductList removeItem={removeItem} className={"cart"} products={cartItems} />
                     : <h1 style={{margin:"30px"}}>{t('Your cart is empty')}</h1>
                 }
-                <BillingDetails />
+                <BillingDetails totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
                 <Footer />
               </>  ) : (<LoginPage setSnackBarMessage={setSnackBarMessage}
                                    snackBarIsOpen={snackBarIsOpen}

@@ -39,7 +39,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
             currentId += tempId[j];
         }
         return currentId;
-    }
+    };
 
     const fetchProduct = async () => {
         const product = await fetchOneProduct(getCurrentId());
@@ -56,7 +56,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                 }
             });
         }
-    }
+    };
 
 
     const addToCart = async () => {
@@ -64,11 +64,11 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
             const result = await addItemToCart(currentUser.uid, actualProduct);
             if(result) {
                 setSnackBarInfo('success');
-                setSnackBarMessage('Item has been added to cart');
+                setSnackBarMessage(t('Item has been added to cart'));
                 setSnackBarIsOpen(true);
             } else {
                 setSnackBarInfo('error');
-                setSnackBarMessage('Something went wrong');
+                setSnackBarMessage(t('Something went wrong'));
                 setSnackBarIsOpen(true);
             }
         } catch (err: any) {
@@ -76,8 +76,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
             setSnackBarMessage(err.message);
             setSnackBarIsOpen(true);
         }
-
-    }
+    };
 
     useEffect(() => {
         fetchProduct();

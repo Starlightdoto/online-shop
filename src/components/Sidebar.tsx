@@ -4,10 +4,8 @@ import {SortSelector} from './ui-components/SortSelector';
 import {LimitSelector} from './ui-components/LimitSelector';
 
 interface SidebarProps {
-    //@ts-ignore
-    performAction?,
-    //@ts-ignore
-    getAll?,
+    performAction?: any,
+    getAll?: any,
 }
 
 export const Sidebar:FC<SidebarProps> = (props) => {

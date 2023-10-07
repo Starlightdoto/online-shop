@@ -7,7 +7,7 @@ import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 import {fetchOneCategory} from "../api/fetchProducts";
 import LoginPage from "./LoginPage";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {useTranslation} from 'react-i18next';
 import { addItemToCart } from "../api/userData";
 
 interface MainPageProps {
@@ -29,6 +29,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
             cartItems, setCartItems,
             currentUser, setCurrentUser,
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
+    const {t, i18n} = useTranslation();
     const [results, setResults] = useState<number>(0)
     //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
@@ -36,19 +37,29 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     const handleClick = () => {
         setSnackBarInfo('success');
-        setSnackBarMessage('Item has been added to cart')
+        setSnackBarMessage(t('Item has been added to cart'))
         setSnackBarIsOpen(true);
     };
 
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
-        setProducts(data ?? []);
-    }
+        let resultingArray = [];
+        if(limit) {
+            for(let i = 0; i < Number(limit); i++) {
+                if(data) {
+                    resultingArray[i] = data[i];
+                }
+            }
+            setProducts(resultingArray ?? []);
+        } else {
+            setProducts(data ?? []);
+        }
+    };
 
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
         setProducts(data?.filter(item => item.category === category) ?? []);
-    }
+    };
 
     const searchProduct = async (input:string) => {
         await getAllProducts();
@@ -58,7 +69,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
                 return product.title.toLowerCase().includes(searchedItem);
             })
         });
-    }
+    };
 
     const addToCart = async (id:string, price: number, description: number, name: string, category: string, imgSrc: string, rating: number) => {
         const newItem = {
@@ -74,17 +85,17 @@ export const MainPage:FC<MainPageProps> = (props) => {
             const result = await addItemToCart(currentUser.uid, newItem);
             if(result) {
                 setSnackBarInfo('success');
-                setSnackBarMessage('Item has been added to cart');
+                setSnackBarMessage(t('Item has been added to cart'));
                 setSnackBarIsOpen(true);
             } else {
                 setSnackBarInfo('error');
-                setSnackBarMessage('Something went wrong');
+                setSnackBarMessage(t('Something went wrong'));
                 setSnackBarIsOpen(true);
             }
         } catch (err: any) {
             console.log(err.message);
             setSnackBarInfo('error');
-            setSnackBarMessage('Something went wrong');
+            setSnackBarMessage(t('Something went wrong'));
             setSnackBarIsOpen(true);
         }
     }
