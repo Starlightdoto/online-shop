@@ -109,7 +109,7 @@ export const clearUserCart = async (uid: string) => {
         console.log(err.message);
         return false;
     }
-}
+};
 
 export const createOrderFromCart = async (uid: string, items: any[], totalPrice: number) => {
     const ordersCollection = collection(db, 'orders');
@@ -132,3 +132,18 @@ export const createOrderFromCart = async (uid: string, items: any[], totalPrice:
         console.log(err.message);
     }
 };
+
+export const fetchAllUserOrders = async (uid: string) => {
+    const ordersCollection = collection(db, 'orders');
+    const q = query(ordersCollection, where('owner', '==', uid));
+
+    try {
+        const ordersSnapshot = await getDocs(q);
+        const orders = ordersSnapshot.docs.map(doc => doc.data());
+        return orders;
+    } catch (err: any) {
+        console.log(err.message);
+        return null;
+    }
+
+}
