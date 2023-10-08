@@ -6,6 +6,7 @@ import React, {useState} from 'react';
 import OrderCard from "../components/OrderCard";
 import {Sidebar} from "../components/Sidebar";
 import {fetchAllUserOrders} from "../api/userData";
+import OrdersList from "../components/OrdersList";
 
 interface OrdersPageProps {
     cartItems: any[],
@@ -35,13 +36,14 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
         getAllOrders();
     }, []);
 
+
     return (
         <div>
             {currentUser ? ( <>
                     <Navbar currentUser={currentUser} isOnMainPage={false} />
-                    <OrderCard />
+                    {orders ? <OrdersList orders={orders} /> : <h1>Loading...</h1>}
                     <Footer />
-                    <Sidebar />
+
                 </>)
                 : ( <LoginPage setSnackBarMessage={setSnackBarMessage}
                                snackBarIsOpen={snackBarIsOpen}

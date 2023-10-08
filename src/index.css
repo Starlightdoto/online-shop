@@ -94,7 +94,7 @@ body {
     width: 40px;
     height: 40px;
     margin-top: 10px;
-    margin-right: 4px;
+    margin-right: 1px;
 }
 
 .logo {
@@ -483,6 +483,37 @@ body {
     border: none;
     cursor: pointer;
 }
+
+.order-id-card{
+    display: block;
+    width: 40%;
+    min-height: 150px;
+    height: 20vh;
+    background: #2e2e2e;
+    color: #ffffff;
+    margin: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow-y: scroll;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 350px;
+
+
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc #f8f8f8;
+
+}
+.popup-button{
+    color: #F8DE22;
+    cursor: pointer;
+    margin-bottom: 40px;
+    position: relative;
+    left: -2px;
+    max-width: 350px;
+}
+
 
 
 
