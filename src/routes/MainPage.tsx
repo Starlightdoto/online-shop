@@ -31,7 +31,6 @@ export const MainPage:FC<MainPageProps> = (props) => {
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
     const [results, setResults] = useState<number>(0)
-    //@ts-ignore
     const [products, setProducts] = useState<any[]>([]);
 
 
@@ -59,6 +58,16 @@ export const MainPage:FC<MainPageProps> = (props) => {
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
         setProducts(data?.filter(item => item.category === category) ?? []);
+    };
+
+    const sortProducts = (sortType: string) => {
+        if(sortType === 'price' || sortType === 'rating') {
+            const sortedArray = [...products].sort((a,b) => a[sortType] - b[sortType]);
+            setProducts(sortedArray);
+        } else if (sortType === 'title') {
+            const sortedArray = [...products].sort((a,b) => a[sortType].localeCompare(b[sortType]));
+            setProducts(sortedArray);
+        }
     };
 
     const searchProduct = async (input:string) => {
@@ -113,7 +122,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
         <div>
             { currentUser ?   (<>
                     <Navbar currentUser={currentUser} isOnMainPage={true} onClick={searchProduct} />
-                    <Sidebar getAll={getAllProducts} performAction={getOneCategory} />
+                    <Sidebar getAll={getAllProducts} filterCategoriesFunction={getOneCategory} sortFunction={sortProducts} />
                     <ResultHeader searchResultsCount={results}  />
                     <ProductList addItemToCart={addToCart} showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />

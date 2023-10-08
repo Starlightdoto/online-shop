@@ -18,7 +18,6 @@ const ProductList:FC<ProductListProps> = (props) => {
     const {products, className, removeItem, cartItems, setCartItems, showSnackbar, addItemToCart} = props;
 
 
-
     return (
         <div>
             {className === 'product' ?
