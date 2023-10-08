@@ -116,7 +116,6 @@ export const createOrderFromCart = async (uid: string, items: any[], totalPrice:
 
     try {
         const newOrderRef = await addDoc(ordersCollection, {
-            uid: uid,
             owner: uid,
             date: new Date(),
             status: 'new',
@@ -124,6 +123,9 @@ export const createOrderFromCart = async (uid: string, items: any[], totalPrice:
             price: totalPrice,
         });
         if(newOrderRef) {
+            await updateDoc(doc(db, 'orders', newOrderRef.id), {
+                uid: newOrderRef.id,
+            });
             return true;
         } else {
             return false;

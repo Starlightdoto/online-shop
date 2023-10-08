@@ -28,13 +28,22 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
     const [orders, setOrders] = useState<any[] | null>([]);
 
     const getAllOrders = async () => {
-        const userOrders = await fetchAllUserOrders(currentUser.uid);
-        setOrders(userOrders);
+        try {
+            const userOrders = await fetchAllUserOrders(currentUser.uid);
+            setOrders(userOrders);
+        } catch (err: any) {
+            console.log(err.message);
+        }
+
     };
 
     useEffect(()=> {
-        getAllOrders();
-    }, []);
+        if( currentUser && currentUser.uid) {
+            getAllOrders();
+        } else {
+            console.log(`No current user data: ${currentUser}`);
+        }
+    }, [currentUser]);
 
 
     return (

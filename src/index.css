@@ -484,7 +484,7 @@ body {
     cursor: pointer;
 }
 
-.order-id-card{
+.orderCard{
     display: block;
     width: 40%;
     min-height: 150px;
@@ -499,20 +499,10 @@ body {
     padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-left: 350px;
-
-
     scrollbar-width: thin;
     scrollbar-color: #cccccc #f8f8f8;
+}
 
-}
-.popup-button{
-    color: #F8DE22;
-    cursor: pointer;
-    margin-bottom: 40px;
-    position: relative;
-    left: -2px;
-    max-width: 350px;
-}
 
 
 
