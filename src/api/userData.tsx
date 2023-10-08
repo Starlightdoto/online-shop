@@ -145,5 +145,4 @@ export const fetchAllUserOrders = async (uid: string) => {
         console.log(err.message);
         return null;
     }
-
-}
+};
