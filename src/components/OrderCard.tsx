@@ -1,19 +1,33 @@
-import React, {FC} from 'react';
-import {Button} from './ui-components/Button';
-import {useTranslation} from 'react-i18next';
-import GenericDetailsInput from "./ui-components/GenericDetailsInput";
+import React, {FC, useState} from 'react';
+import {NavLink} from "react-router-dom";
+import StyledText from "./ui-components/StyledText";
 
-interface OrdersPageProps {
 
+interface OrderCardProps {
+    id?:string,
+    date: any,
+    status: string,
+    price: number,
 
 }
 
-const OrdersPage:FC<OrdersPageProps> = (props) => {
+const OrderPage:FC<OrderCardProps> = (props) => {
+    const {id, date, status, price} = props;
+    const newDate = new Date(date.seconds * 1000).toDateString();
+
     return (
-        <div className={"cartList"}>
-        <h3>soon...</h3>
+        <div className={"order-id-card"}>
+            {id ? ( <div>
+                <h3>Order# {id}</h3>
+                <h3>Date: {newDate}</h3>
+                <h3>Status: {status}</h3>
+                <h3>Price: ${price}</h3>
+            </div>) : <h1>Loading...</h1>
+            }
         </div>
+
     );
 };
 
-export default OrdersPage;
+export default OrderPage;
+
