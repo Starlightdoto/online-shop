@@ -29,7 +29,7 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
     const getAllOrders = async () => {
         const userOrders = await fetchAllUserOrders(currentUser.uid);
         setOrders(userOrders);
-    }
+    };
 
     useEffect(()=> {
         getAllOrders();

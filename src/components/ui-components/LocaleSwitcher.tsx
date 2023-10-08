@@ -6,12 +6,12 @@ import LanguageIcon from '@mui/icons-material/Language';
 const LocaleSwitcher = () => {
     const {t, i18n} = useTranslation();
 
-    const toggleLanguage = () => {
-        i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en');
+    const toggleLanguage = async () => {
+        await i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en');
     }
 
     return (
-        <Button onClick={toggleLanguage}  className={"default"}  ><LanguageIcon /></Button>
+        <Button onClick={toggleLanguage} className={"default"}><LanguageIcon /></Button>
     );
 };
 

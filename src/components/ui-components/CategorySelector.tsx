@@ -3,17 +3,14 @@ import {useTranslation} from 'react-i18next';
 
 interface CategorySelectorProps {
     chosenCategory?:string,
-    //@ts-ignore
-    setChosenCategory?,
-    //@ts-ignore
-    performAction?,
-    //@ts-ignore
-    getAll?,
+    setChosenCategory?: any,
+    filterCategoriesFunction?: any,
+    getAll?: any,
 }
 
 export const CategorySelector:FC<CategorySelectorProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const {getAll, performAction, chosenCategory, setChosenCategory} = props;
+    const {getAll, filterCategoriesFunction, chosenCategory, setChosenCategory} = props;
 
     return (
     <div className={"selector"}>
@@ -24,7 +21,7 @@ export const CategorySelector:FC<CategorySelectorProps> = (props) => {
                     if(event.target.value === "all") {
                         getAll();
                  } else {
-                        performAction(event.target.value);
+                        filterCategoriesFunction(event.target.value);
                     }
                  }}>
             <option value="all">{t('All')}</option>
