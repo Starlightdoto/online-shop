@@ -16,7 +16,7 @@ const OrderPage:FC<OrderCardProps> = (props) => {
     const newDate = new Date(date.seconds * 1000).toDateString();
 
     return (
-        <div className={"order-id-card"}>
+        <div className={"orderCard"}>
             {id ? ( <div>
                 <h3>Order# {id}</h3>
                 <h3>Date: {newDate}</h3>
