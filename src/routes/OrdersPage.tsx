@@ -3,8 +3,6 @@ import {FC, useEffect} from 'react';
 import Footer from "../components/Footer";
 import LoginPage from "./LoginPage";
 import React, {useState} from 'react';
-import OrderCard from "../components/OrderCard";
-import {Sidebar} from "../components/Sidebar";
 import {fetchAllUserOrders} from "../api/userData";
 import OrdersList from "../components/OrdersList";
 

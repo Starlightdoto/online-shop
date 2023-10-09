@@ -28,8 +28,8 @@ const CartPage:FC<CartPageProps> = (props) => {
             snackBarInfo, setSnackBarInfo, setSnackBarMessage} = props;
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
+    const [totalPrice, setTotalPrice] = useState<number>(0);
 
-    const [totalPrice, setTotalPrice] = useState(0);
 
     const removeItem = async (id:string) => {
         try {
