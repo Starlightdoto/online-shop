@@ -17,7 +17,7 @@ const GenericDetailsInput:FC<GenericDetailsInputProps> = (props) => {
     return (
         <div>
             <label className={"detailsInputLabel"} htmlFor={"detailsInput"}>{labelName}: </label>
-            <input onBlur={onBlurFunction} onChange={(e) => {
+            <input  onBlur={onBlurFunction} onChange={(e) => {
                 setFieldValue(e.target.value);
                 if(setSignUpData) {
                     setSignUpData(e.target.value);

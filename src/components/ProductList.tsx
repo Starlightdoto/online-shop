@@ -12,10 +12,15 @@ interface ProductListProps {
     setCartItems?: any,
     showSnackbar?: any,
     addItemToCart?: any,
+    itemCount?: number,
+    setItemCount?: React.Dispatch<React.SetStateAction<number>>,
 }
 
 const ProductList:FC<ProductListProps> = (props) => {
-    const {products, className, removeItem, cartItems, setCartItems, showSnackbar, addItemToCart} = props;
+    const { products, className,
+            removeItem, cartItems,
+            setCartItems, showSnackbar,
+            addItemToCart } = props;
 
 
     return (

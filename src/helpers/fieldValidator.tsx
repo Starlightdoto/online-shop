@@ -7,7 +7,7 @@ export const validateNameField = (field: string, setErrorName: React.Dispatch<Re
     }
     setErrorName(null);
     return true;
-}
+};
 
 export const validateEmail = (email: string, setEmailError: React.Dispatch<React.SetStateAction<string | null>>):boolean => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -17,7 +17,7 @@ export const validateEmail = (email: string, setEmailError: React.Dispatch<React
     }
     setEmailError(null);
     return true;
-}
+};
 
 export const validatePassword = (password: string, setPasswordError: React.Dispatch<React.SetStateAction<string | null>>):boolean => {
     if(password.length < 8) {
@@ -26,4 +26,4 @@ export const validatePassword = (password: string, setPasswordError: React.Dispa
     }
     setPasswordError(null);
     return true;
-}
+};

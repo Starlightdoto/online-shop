@@ -1,10 +1,11 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {NavLink} from "react-router-dom";
 //@ts-ignore
 import {Button} from "./ui-components/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useTranslation} from 'react-i18next';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ItemCounter from "./ui-components/ItemCounter";
 
 interface ProductItemProps {
     id:string,
@@ -20,6 +21,8 @@ interface ProductItemProps {
     removeItem?: any,
     onSinglePage?:boolean,
     addItemToCart?: any,
+    itemCount?: number,
+    setItemCount?: React.Dispatch<React.SetStateAction<number>>,
 }
 
 const ProductItem:FC<ProductItemProps> = (props) => {
@@ -32,7 +35,11 @@ const ProductItem:FC<ProductItemProps> = (props) => {
             quantity = 0,
             price,
             description,
-            category, id, rating, onSinglePage, addItemToCart} = props;
+            category, id,
+            rating, onSinglePage,
+            addItemToCart} = props;
+
+    const [itemCount, setItemCount] = useState<number>(0);
 
 
     return (
@@ -45,7 +52,10 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                     <h4>{t('Category')}: {category}</h4>
                     <h4>{t('Rating')}: {rating}</h4>
                     <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
-                    <Button onClick={() => removeItem(id)}  className={"remove"}><DeleteIcon /></Button>
+                    <div className={'cartItemButtonsContainer'}>
+                        <ItemCounter itemCount={itemCount} setItemCount={setItemCount} />
+                        <Button onClick={() => removeItem(id)}  className={"remove"}><DeleteIcon /></Button>
+                    </div>
                 </div>
             : <div className={`productItem-${className}`}>
                     <img className={`productImage-${className}`} src={imgSrc} alt=""/>
