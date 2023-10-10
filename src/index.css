@@ -540,6 +540,19 @@ body {
     justify-content: space-between;
 }
 
+.singleOrderList {
+    width: 40%;
+    min-width: 800px;
+    height: 100%;
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    padding: 70px;
+    overflow-y: auto;
+    left: 2%;
+    top: 8%;
+}
+
 
 
 

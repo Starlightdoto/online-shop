@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
-import {NavLink} from "react-router-dom";
-import StyledText from "./ui-components/StyledText";
+import {Link, NavLink} from "react-router-dom";
+
 
 
 interface OrderCardProps {
@@ -18,7 +18,9 @@ const OrderPage:FC<OrderCardProps> = (props) => {
     return (
         <div className={"orderCard"}>
             {id ? ( <div>
-                <h3>Order# {id}</h3>
+                <NavLink to={'/orders/:id'}>
+                <h3> Order # {id}</h3>
+                </NavLink>
                 <h3>Date: {newDate}</h3>
                 <h3>Status: {status}</h3>
                 <h3>Price: ${price}</h3>

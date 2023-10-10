@@ -12,6 +12,9 @@ import SimpleSnackBar from "./components/ui-components/SimpleSnackbar";
 import OrdersPage from "./routes/OrdersPage";
 import {onAuthStateChanged} from 'firebase/auth';
 import {auth} from "./firebase";
+import OrdersIdPage from "./routes/OrdersIDPage";
+import ordersList from "./components/OrdersList";
+
 
 
 function App() {
@@ -98,6 +101,14 @@ function App() {
                                                                currentUser={currentUser}
                                                                setCartItems={setCartItems}
                                                                cartItems={cartItems} />}/>
+                  <Route path={"/orders/:id"}  element={<OrdersIdPage setSnackBarInfo={setSnackBarInfo}
+                                                                      currentUser={currentUser}
+                                                                      setCurrentUser={setCurrentUser}
+                                                                      setSnackBarIsOpen={setSnackBarIsOpen}
+                                                                      setSnackBarMessage={setSnackBarMessage}
+                                                                      snackBarInfo={snackBarInfo}
+                                                                      snackBarIsOpen
+                                                                      products={cartItems} />} />
               </Routes>
           </div>
       </I18nextProvider>

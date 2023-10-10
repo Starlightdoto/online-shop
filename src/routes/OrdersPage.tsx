@@ -5,6 +5,7 @@ import LoginPage from "./LoginPage";
 import React, {useState} from 'react';
 import {fetchAllUserOrders} from "../api/userData";
 import OrdersList from "../components/OrdersList";
+import OrdersIdPage from "./OrdersIDPage";
 
 interface OrdersPageProps {
     cartItems: any[],
@@ -48,7 +49,8 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
         <div>
             {currentUser ? ( <>
                     <Navbar currentUser={currentUser} isOnMainPage={false} />
-                    {orders ? <OrdersList orders={orders} /> : <h1>Loading...</h1>}
+                    {orders ? <OrdersList orders={orders}   /> : <h1>Loading...</h1>}
+
                     <Footer />
 
                 </>)

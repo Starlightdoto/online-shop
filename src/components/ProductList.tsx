@@ -24,29 +24,27 @@ const ProductList:FC<ProductListProps> = (props) => {
 
 
     return (
-        <div>
-            {className === 'product' ?
-                <div className={`${className}List`}>
-                    {products.map((product: any) => {
+
+        <div className={`${className}List`}>
+            {products.map((product: any) => {
+                switch(className) {
+                    case 'product':
                         return <ProductItem id={product.id}
-                                            key={product.id}
-                                            rating={product.rating}
-                                            imgSrc={product.image}
-                                            className={"grid"}
-                                            name={product.title}
-                                            category={product.category}
-                                            description={product.description}
-                                            price={product.price}
-                                            quantity={product.quantity}
-                                            addItemToCart={addItemToCart}
-                        />
-                    })}
-                </div>
-                : <div className={`${className}List`}>
-                    {products.map((product) => {
+                                         key={product.id}
+                                         rating={product.rating}
+                                         imgSrc={product.image}
+                                         className={"grid"}
+                                         name={product.title}
+                                         category={product.category}
+                                         description={product.description}
+                                         price={product.price}
+                                         quantity={product.quantity}
+                                         addItemToCart={addItemToCart}
+                            />
+                    case 'cart':
                         if(product.name === undefined){
                             return <h1>Loading...</h1>
-                        } else return <ProductItem
+                        } else return      <ProductItem
                                              key={product.id}
                                              id={product.id}
                                              rating={product.rating}
@@ -58,10 +56,25 @@ const ProductList:FC<ProductListProps> = (props) => {
                                              description={product.description}
                                              price={product.price}
                                              removeItem={removeItem}
-                        />
-                    })}
-                    </div>
-            }
+                            />
+                    case 'singleOrder':
+                        if(product.name === undefined){
+                            return <h1>Loading...</h1>
+                        } else return <ProductItem
+                                key={product.id}
+                                id={product.id}
+                                rating={product.rating}
+                                imgSrc={product.imgSrc ?? "no logo"}
+                                className={"grid"}
+                                classNameAdditional={"cart"}
+                                name={product.name ?? "null"}
+                                category={product.category}
+                                description={product.description}
+                                price={product.price}
+                                removeItem={removeItem}
+                            />
+                }
+            })}
         </div>
     );
 };
