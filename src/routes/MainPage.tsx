@@ -34,12 +34,6 @@ export const MainPage:FC<MainPageProps> = (props) => {
     const [products, setProducts] = useState<any[]>([]);
 
 
-    const handleClick = () => {
-        setSnackBarInfo('success');
-        setSnackBarMessage(t('Item has been added to cart'))
-        setSnackBarIsOpen(true);
-    };
-
     const getAllProducts = async (limit?:string) => {
         const data = await fetchAllProducts(limit);
         let resultingArray = [];
@@ -83,12 +77,16 @@ export const MainPage:FC<MainPageProps> = (props) => {
     const addToCart = async (id:string, price: number, description: number, name: string, category: string, imgSrc: string, rating: number) => {
         const newItem = {
             id: id,
-            price: price,
-            description: description,
-            name: name,
-            category: category,
-            imgSrc: imgSrc,
-            rating: rating,
+            item: {
+                id: id,
+                price: price,
+                description: description,
+                name: name,
+                category: category,
+                imgSrc: imgSrc,
+                rating: rating,
+            },
+            count: 1,
         }
         try {
             const result = await addItemToCart(currentUser.uid, newItem);
@@ -124,7 +122,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
                     <Navbar currentUser={currentUser} isOnMainPage={true} onClick={searchProduct} />
                     <Sidebar getAll={getAllProducts} filterCategoriesFunction={getOneCategory} sortFunction={sortProducts} />
                     <ResultHeader searchResultsCount={results}  />
-                    <ProductList addItemToCart={addToCart} showSnackbar={handleClick} cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
+                    <ProductList addItemToCart={addToCart}  cartItems={cartItems} setCartItems={setCartItems} className={"product"} products={products}/>
                     <Footer />
                 </>
                 ) : ( <LoginPage setSnackBarMessage={setSnackBarMessage} setSnackBarIsOpen={setSnackBarIsOpen}

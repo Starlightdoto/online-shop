@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import OrderCard from "./OrderCard";
-import OrdersIdPage from "../routes/OrdersIDPage";
+import OrdersIdPage from "../routes/SingleOrderPage";
 
 interface OrdersListProps {
     orders: any[] | null,

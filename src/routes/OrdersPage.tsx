@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 import React, {useState} from 'react';
 import {fetchAllUserOrders} from "../api/userData";
 import OrdersList from "../components/OrdersList";
-import OrdersIdPage from "./OrdersIDPage";
+import OrdersIdPage from "./SingleOrderPage";
 
 interface OrdersPageProps {
     cartItems: any[],
