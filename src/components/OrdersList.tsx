@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import OrderCard from "./OrderCard";
+import OrdersIdPage from "../routes/OrdersIDPage";
 
 interface OrdersListProps {
     orders: any[] | null,
@@ -14,9 +15,12 @@ const OrdersList:FC<OrdersListProps> = (props) => {
                                   price={order.price}
                                   date={order.date}
                                   status={order.status} />
+
             })
             }
+
         </div>
+
     );
 };
 
