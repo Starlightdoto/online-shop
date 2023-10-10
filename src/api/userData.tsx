@@ -1,5 +1,7 @@
 import { db, auth } from '../firebase';
-import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc, writeBatch} from 'firebase/firestore';
+import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc, writeBatch, increment} from 'firebase/firestore';
+
+
 
 export const fetchCurrentUserData = async () => {
     const user = auth.currentUser;
@@ -61,7 +63,7 @@ export const createNewCart = async (initialItems = [] ) => {
 };
 
 export const fetchUserCartItems = async (uid: string) => {
-    const userCartItemsCollection = collection(db, 'carts', uid, 'items');
+    const userCartItemsCollection = collection(db, 'carts', uid, 'items',);
 
     try {
         const userCartItemsSnapshot = await getDocs(userCartItemsCollection);
@@ -74,7 +76,7 @@ export const fetchUserCartItems = async (uid: string) => {
 
 export const removeItemFromCart = async (uid: string, itemId: string) => {
     const userCartItemsCollection = collection(db, 'carts', uid, 'items');
-    const q = query(userCartItemsCollection, where('id', '==', itemId));
+    const q = query(userCartItemsCollection, where('item.id', '==', itemId));
 
     const querySnapshot = await getDocs(q);
 
@@ -146,5 +148,30 @@ export const fetchAllUserOrders = async (uid: string) => {
     } catch (err: any) {
         console.log(err.message);
         return null;
+    }
+};
+
+export const changeCartItemsCount = async (uid: string, itemId: string, operation: string) => {
+    const userCartItemsCollection = collection(db, 'carts', uid, 'items');
+    const q = query(userCartItemsCollection, where('id', '==', itemId));
+
+    try {
+        const itemSnapshot = await getDocs(q);
+        if(!itemSnapshot.empty) {
+            const itemRef = itemSnapshot.docs[0].ref;
+            const changeAmount = operation === 'increase' ? 1 : operation === 'decrease' ? -1 : 0;
+            if(changeAmount !== 0) {
+                await updateDoc(itemRef, {
+                    count: increment(changeAmount)
+                });
+            }
+            return true;
+        } else {
+            console.log('Item not found!');
+            return false;
+        }
+    } catch(err: any) {
+        console.log(err);
+        return false;
     }
 };

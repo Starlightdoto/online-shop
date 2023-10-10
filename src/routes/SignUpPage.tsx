@@ -10,6 +10,7 @@ import {MainPage} from "./MainPage";
 import { createNewCart } from "../api/userData";
 
 
+
 interface SignUpPageProps {
     setSnackBarIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,

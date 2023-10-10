@@ -12,7 +12,7 @@ import SimpleSnackBar from "./components/ui-components/SimpleSnackbar";
 import OrdersPage from "./routes/OrdersPage";
 import {onAuthStateChanged} from 'firebase/auth';
 import {auth} from "./firebase";
-import OrdersIdPage from "./routes/OrdersIDPage";
+import OrdersIdPage from "./routes/SingleOrderPage";
 import ordersList from "./components/OrdersList";
 
 

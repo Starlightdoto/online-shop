@@ -5,6 +5,7 @@ import LoginCard from "../components/LoginCard";
 import  { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../firebase';
 import {signInUser} from "../api/authController";
+import { useNavigate } from "react-router-dom";
 
 interface LoginPageProps {
     currentUser: any,

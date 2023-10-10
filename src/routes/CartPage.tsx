@@ -6,11 +6,17 @@ import ProductList from "../components/ProductList";
 import BillingDetails from "../components/BillingDetails";
 import {useTranslation} from 'react-i18next';
 import LoginPage from "./LoginPage";
-import {fetchUserCartItems, removeItemFromCart, createOrderFromCart, clearUserCart } from "../api/userData";
+import {
+    fetchUserCartItems,
+    removeItemFromCart,
+    createOrderFromCart,
+    clearUserCart,
+    changeCartItemsCount,
+} from "../api/userData";
 import { useNavigate } from "react-router-dom";
 
 interface CartPageProps {
-    cartItems: any[],
+    cartItems: any,
     setCartItems: any,
     currentUser: any,
     setCurrentUser: any,
@@ -48,6 +54,23 @@ const CartPage:FC<CartPageProps> = (props) => {
             setSnackBarMessage('Something went wrong')
             setSnackBarIsOpen(true);
         }
+    };
+
+    const changeItemCount = async (operation: string, setLocalCount: any, itemId:string) => {
+        try {
+            const result = await changeCartItemsCount(currentUser.uid, itemId, operation );
+            if(result) {
+                if(operation === 'increase') {
+                    setLocalCount((prevState: any) => prevState += 1);
+                } else if (operation === 'decrease') {
+                    setLocalCount((prevState: any) => prevState -= 1);
+                }
+            }
+        } catch (err: any) {
+            setSnackBarInfo('error');
+            setSnackBarMessage('Something went wrong')
+            setSnackBarIsOpen(true);
+        }
     }
 
     const fetchCartItems = async () => {
@@ -55,6 +78,7 @@ const CartPage:FC<CartPageProps> = (props) => {
             const items = await fetchUserCartItems(currentUser.uid);
             if(items) {
                 setCartItems(items);
+
             }
         } catch (err: any) {
             console.log(err.message);
@@ -87,14 +111,14 @@ const CartPage:FC<CartPageProps> = (props) => {
 
     const getTotalPrice = () => {
         let total = 0;
-        cartItems.forEach(item => total += item.price);
+        cartItems.forEach((cartItemObject: any) => total += cartItemObject.item.price);
         setTotalPrice(Number(total.toFixed(2)));
     };
 
     useEffect(() => {
         fetchCartItems();
         getTotalPrice();
-    }, [cartItems]);
+    }, [cartItems, currentUser]);
 
 
     return (
@@ -102,7 +126,7 @@ const CartPage:FC<CartPageProps> = (props) => {
             {currentUser ? (<>
                 <Navbar currentUser={currentUser} isOnMainPage={false} />
                 {cartItems.length !== 0 ?
-                    <ProductList removeItem={removeItem} className={"cart"} products={cartItems} />
+                    <ProductList changeCartItems={changeItemCount} removeItem={removeItem} className={"cart"} products={cartItems} />
                     : <h1 style={{margin:"30px"}}>{t('Your cart is empty')}</h1>
                 }
                 <BillingDetails createOrder={createOrder} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
