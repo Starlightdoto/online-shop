@@ -24,7 +24,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
             setSnackBarIsOpen, setSnackBarInfo, snackBarInfo,
             setSnackBarMessage, currentUser, setCurrentUser } = props;
     const [actualProduct, setActualProduct] = useState(
-        {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}
+        {id: "", count: 0, item: {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}}
     );
 
     //getting ID of current product
@@ -43,21 +43,26 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
 
     const fetchProduct = async () => {
         const product = await fetchOneProduct(getCurrentId());
+        console.log(product);
         if(product) {
-            setActualProduct((prevState) => {
-                return {id: product.id,
-                    quantity: product.quantity,
-                    price: product.price,
-                    description: product.description,
-                    name: product.title,
-                    category: product.category,
-                    imgSrc:product.image,
-                    rating:product.rating,
+            setActualProduct((prevState: any) => {
+                return {
+                    id: product.id,
+                    item: {
+                        id: product.id,
+                        quantity: product.quantity,
+                        price: product.price,
+                        description: product.description,
+                        name: product.title,
+                        category: product.category,
+                        imgSrc:product.image,
+                        rating:product.rating,
+                    },
+                    count: 1
                 }
             });
         }
     };
-
 
     const addToCart = async () => {
         try {
@@ -87,15 +92,15 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
             <Navbar currentUser={currentUser} isOnMainPage={false}  />
             {actualProduct && actualProduct.id ?
                 <ProductItem onSinglePage={true}
-                             rating={actualProduct.rating}
-                             id={actualProduct.id }
-                             imgSrc={actualProduct.imgSrc}
-                             quantity={actualProduct.quantity}
+                             rating={actualProduct.item.rating}
+                             id={actualProduct.item.id }
+                             imgSrc={actualProduct.item.imgSrc}
+                             quantity={actualProduct.item.quantity}
                              className={"single"}
-                             price={actualProduct.price}
-                             description={actualProduct.description}
-                             name={actualProduct.name}
-                             category={actualProduct.category} />
+                             price={actualProduct.item.price}
+                             description={actualProduct.item.description}
+                             name={actualProduct.item.name}
+                             category={actualProduct.item.category} />
                 : <h1>Loading...</h1>
             }
             <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>

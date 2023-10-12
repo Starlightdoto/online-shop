@@ -84,7 +84,7 @@ const CartPage:FC<CartPageProps> = (props) => {
             console.log(err.message);
         }
     }
-
+    console.log(cartItems);
     const createOrder = async () => {
         if(cartItems.length > 0) {
             try {
