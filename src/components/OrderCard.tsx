@@ -16,7 +16,7 @@ const OrderCard:FC<OrderCardProps> = (props) => {
     return (
         <div className={"orderCard"}>
             {id ? ( <div>
-                <NavLink to={'/orders/:id'}>
+                <NavLink to={`/orders/${id}`}>
                 <h3> Order # {id}</h3>
                 </NavLink>
                 <h3>Date: {newDate}</h3>

@@ -214,6 +214,9 @@ body {
     padding: 70px;
     left: 28%;
     overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .cartList {
@@ -227,7 +230,8 @@ body {
 
 .productItem-grid {
     display: block;
-    width: 95%;
+    width: 50%;
+    min-width: 400px;
     min-height: 320px;
     height: 20vh;
     background: #2e2e2e;
@@ -239,11 +243,8 @@ body {
     overflow-y: scroll;
     padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-
     scrollbar-width: thin;
     scrollbar-color: #cccccc #f8f8f8;
-
 }
 
 

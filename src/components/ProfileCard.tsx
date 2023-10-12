@@ -38,10 +38,10 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
 
 
     const uploadAvatar = (event:any) => {
-        console.log(event.target.files);
         //@ts-ignore
         setFile(URL.createObjectURL(event.target.files[0]));
     }
+
 
     const saveChanges = () => {
         changeProfileData();
