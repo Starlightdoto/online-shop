@@ -6,6 +6,7 @@ import {Button} from "../components/ui-components/Button";
 import {fetchOneProduct} from "../api/fetchProducts";
 import {useTranslation} from 'react-i18next';
 import {addItemToCart} from "../api/userData";
+import {getCurrentId} from "../helpers/getIdForSingleEntityPage";
 
 interface SingleProductPageProps {
     setCartItems?: any,
@@ -26,20 +27,6 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
     const [actualProduct, setActualProduct] = useState(
         {id: "", count: 0, item: {id: "", price: 0, description: 'null', quantity: 0, name:'null', category:'null', imgSrc:'null', rating:0}}
     );
-
-    //getting ID of current product
-    const getCurrentId = () => {
-        const url = window.location.href;
-        let tempId = "" ;
-        let currentId = "";
-        for(let i = url.length-1; url[i] !== "/"; i--) {
-            tempId += url[i];
-        }
-        for(let j = tempId.length-1; j >= 0; j--) {
-            currentId += tempId[j];
-        }
-        return currentId;
-    };
 
     const fetchProduct = async () => {
         const product = await fetchOneProduct(getCurrentId());

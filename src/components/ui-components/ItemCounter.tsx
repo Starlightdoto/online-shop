@@ -4,10 +4,10 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import {Button} from "./Button";
 
 interface ItemCounterProps {
-    itemCount: number | undefined,
-    changeItemCount: any,
-    setItemCountLocal: any,
-    itemId: string,
+    itemCount?: number | undefined,
+    changeItemCount?: any,
+    setItemCountLocal?: any,
+    itemId?: string,
 }
 
 const ItemCounter:FC<ItemCounterProps> = (props) => {

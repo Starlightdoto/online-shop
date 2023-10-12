@@ -194,3 +194,25 @@ export const changeCartItemsCount = async (uid: string, itemId: string, operatio
         return false;
     }
 };
+
+export const fetchUserSingleOrderItems = async (uid: string, orderId: string) => {
+    const userOrdersCollection = collection(db, 'orders');
+    const q = query(userOrdersCollection, where('uid', '==', orderId));
+
+    try {
+        const itemsSnapshot = await getDocs(q);
+
+        if(!itemsSnapshot.empty) {
+            const orderDocument = itemsSnapshot.docs[0];
+            const orderData = orderDocument.data();
+            const orderItems = orderData.items;
+            return orderItems;
+        } else {
+            console.log('No items in this order');
+            return null;
+        }
+    } catch (err: any) {
+        console.log(err.message);
+        return false;
+    }
+}

@@ -1,10 +1,13 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import ordersList from "../components/OrdersList";
 import OrderPage from "../components/OrderCard";
 import {Navbar} from "../components/Navbar";
 import LoginPage from "./LoginPage";
 import Footer from "../components/Footer";
 import ProductList from "../components/ProductList";
+import {getCurrentId} from "../helpers/getIdForSingleEntityPage";
+import {fetchUserSingleOrderItems} from "../api/userData";
+import {useTranslation} from 'react-i18next';
 
 interface SingleOrderPageProps {
     currentUser: any,
@@ -14,7 +17,6 @@ interface SingleOrderPageProps {
     snackBarInfo: string,
     setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
-    orderItems: any[],
 }
 
 
@@ -22,8 +24,30 @@ const SingleOrderPage:FC<SingleOrderPageProps> = (props) => {
     const { currentUser, setCurrentUser,
             setSnackBarMessage, snackBarInfo,
             snackBarIsOpen, setSnackBarIsOpen,
-            setSnackBarInfo, orderItems } = props;
+            setSnackBarInfo } = props;
+    const {t, i18n} = useTranslation();
 
+    const [orderItems, setOrderItems] = useState<any[]>([]);
+
+    const getAllOrderItems = async () => {
+        try {
+            const items = await fetchUserSingleOrderItems(currentUser.uid, getCurrentId());
+            if(items) {
+                setOrderItems(items);
+            }
+        } catch (err: any) {
+            setSnackBarInfo('error');
+            setSnackBarMessage(t('Something went wrong'));
+            setSnackBarIsOpen(true);
+            console.log(err.message);
+        }
+    }
+    console.log(orderItems);
+
+
+    useEffect(() => {
+        getAllOrderItems();
+    }, [currentUser]);
 
     return (
         <div>

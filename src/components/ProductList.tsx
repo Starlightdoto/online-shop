@@ -65,12 +65,12 @@ const ProductList:FC<ProductListProps> = (props) => {
                                         rating={product.item.rating}
                                         imgSrc={product.item.imgSrc ?? "no logo"}
                                         className={"grid"}
-                                        classNameAdditional={"cart"}
+                                        classNameAdditional={"singleOrder"}
                                         name={product.item.name ?? "null"}
                                         category={product.item.category}
                                         description={product.item.description}
                                         price={product.item.price}
-                                        removeItem={removeItem}
+                                        quantity={product.count}
                                     />
                 }
             })}
