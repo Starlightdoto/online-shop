@@ -108,7 +108,7 @@ function App() {
                                                                       setSnackBarMessage={setSnackBarMessage}
                                                                       snackBarInfo={snackBarInfo}
                                                                       snackBarIsOpen
-                                                                      products={cartItems} />} />
+                                                                      orderItems={cartItems} />} />
               </Routes>
           </div>
       </I18nextProvider>

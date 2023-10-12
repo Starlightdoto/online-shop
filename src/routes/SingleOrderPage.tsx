@@ -14,7 +14,7 @@ interface SingleOrderPageProps {
     snackBarInfo: string,
     setSnackBarInfo: React.Dispatch<React.SetStateAction<string>>,
     setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
-    products: any[],
+    orderItems: any[],
 }
 
 
@@ -22,13 +22,14 @@ const SingleOrderPage:FC<SingleOrderPageProps> = (props) => {
     const { currentUser, setCurrentUser,
             setSnackBarMessage, snackBarInfo,
             snackBarIsOpen, setSnackBarIsOpen,
-            setSnackBarInfo, products } = props;
-    console.log(products);
+            setSnackBarInfo, orderItems } = props;
+
+
     return (
         <div>
             {currentUser ? (<>
                     <Navbar currentUser={currentUser} isOnMainPage={false} />
-                    <ProductList  className={'singleOrder'} products={products}/>
+                    <ProductList  className={'singleOrder'} products={orderItems}/>
                     <Footer />
                 </>
                 ) : ( <LoginPage setSnackBarMessage={setSnackBarMessage}

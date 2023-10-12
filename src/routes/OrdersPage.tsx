@@ -50,7 +50,6 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
             {currentUser ? ( <>
                     <Navbar currentUser={currentUser} isOnMainPage={false} />
                     {orders ? <OrdersList orders={orders}   /> : <h1>Loading...</h1>}
-
                     <Footer />
 
                 </>)

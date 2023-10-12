@@ -111,7 +111,7 @@ const CartPage:FC<CartPageProps> = (props) => {
 
     const getTotalPrice = () => {
         let total = 0;
-        cartItems.forEach((cartItemObject: any) => total += cartItemObject.item.price);
+        cartItems.forEach((cartItemObject: any) => total += cartItemObject.item.price * cartItemObject.count);
         setTotalPrice(Number(total.toFixed(2)));
     };
 
