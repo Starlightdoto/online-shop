@@ -1,8 +1,6 @@
 import React, {FC, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
-
-
 interface OrderCardProps {
     id?:string,
     date: any,
@@ -11,7 +9,7 @@ interface OrderCardProps {
 
 }
 
-const OrderPage:FC<OrderCardProps> = (props) => {
+const OrderCard:FC<OrderCardProps> = (props) => {
     const {id, date, status, price} = props;
     const newDate = new Date(date.seconds * 1000).toDateString();
 
@@ -31,5 +29,5 @@ const OrderPage:FC<OrderCardProps> = (props) => {
     );
 };
 
-export default OrderPage;
+export default OrderCard;
 

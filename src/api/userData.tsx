@@ -36,13 +36,32 @@ export const updateUserData = async (uid: any,updatedData: any) => {
 
 export const addItemToCart = async (uid: string, item: any) => {
     const userCartItemsCollection = collection(db, 'carts', uid, 'items');
-    try {
-        const newCartItemRef = await addDoc(userCartItemsCollection, item);
-        return true;
-    } catch(err: any) {
-        return false;
-    }
+    const q = query(userCartItemsCollection, where('id', '==', item.id));
 
+    const itemSnapshot = await getDocs(q);
+
+
+    if(itemSnapshot.empty) {
+        try {
+            const newCartItemRef = await addDoc(userCartItemsCollection, item);
+            return true;
+        } catch(err: any) {
+            console.log(err.message);
+            return false;
+        }
+    } else {
+        const itemRef = itemSnapshot.docs[0].ref;
+        try {
+            await updateDoc(itemRef, {
+                count: increment(1),
+            });
+            return true;
+        } catch( err: any) {
+            console.log(err.message);
+            return false;
+        }
+
+    }
 }
 
 export const createNewCart = async (initialItems = [] ) => {
