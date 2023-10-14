@@ -33,8 +33,8 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
         } catch (err: any) {
             console.log(err.message);
         }
-
     };
+
 
     useEffect(()=> {
         if( currentUser && currentUser.uid) {

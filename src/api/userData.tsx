@@ -147,6 +147,9 @@ export const createOrderFromCart = async (uid: string, items: any[], totalPrice:
             await updateDoc(doc(db, 'orders', newOrderRef.id), {
                 uid: newOrderRef.id,
             });
+            items.forEach((item) => {
+                decreaseQuantityOfItemAfterOrder(uid, item);
+            });
             return true;
         } else {
             return false;
@@ -155,6 +158,24 @@ export const createOrderFromCart = async (uid: string, items: any[], totalPrice:
         console.log(err.message);
     }
 };
+
+export const decreaseQuantityOfItemAfterOrder = async (uid: string, item: any) => {
+    const productsCollection = collection(db, 'products');
+    const q = query(productsCollection, where('id', '==', item.id));
+
+    try {
+        const querySnapshot = await getDocs(q);
+        if(!querySnapshot.empty) {
+            const productRef = querySnapshot.docs[0].ref;
+            await updateDoc(productRef, {
+                quantity: increment(-item.count),
+            })
+        }
+        console.log(querySnapshot);
+    } catch (err: any) {
+        console.log(err.message);
+    }
+}
 
 export const fetchAllUserOrders = async (uid: string) => {
     const ordersCollection = collection(db, 'orders');

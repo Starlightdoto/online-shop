@@ -52,13 +52,13 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
             {editMode ? ( <div className={"profileCardEdit"}>
                     <input className={"avatarLoader"} type="file" onChange={uploadAvatar}/>
                     <AvatarImage image={file} />
-                    <ProfileDetailsInput changeFieldValue={setFirstName}
+                    <ProfileDetailsInput initialFieldValue={data.firstName} changeFieldValue={setFirstName}
                                          type={"firstName"} labelName={t("First Name")} placeholder={"John"} />
-                    <ProfileDetailsInput changeFieldValue={setLastName}
+                    <ProfileDetailsInput initialFieldValue={data.lastName} changeFieldValue={setLastName}
                                          type={"lastName"} labelName={t("Last Name")} placeholder={"Doe"} />
-                    <ProfileDetailsInput changeFieldValue={setEmail}
+                    <ProfileDetailsInput initialFieldValue={data.email} changeFieldValue={setEmail}
                                          type={"email"} labelName={t("Email")} placeholder={"example@email.com"} />
-                    <ProfileDetailsInput changeFieldValue={setAddress}
+                    <ProfileDetailsInput initialFieldValue={data.address} changeFieldValue={setAddress}
                                          type={"address"} labelName={t("Address 1")} placeholder={"Ada-Lovelace, 21"} />
                     <Button onClick={()=> {
                         changeProfileData();

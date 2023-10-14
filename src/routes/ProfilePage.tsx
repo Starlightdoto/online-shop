@@ -50,24 +50,21 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
         }
     };
 
-    useEffect(()=> {
-        const getData = async () => {
-            try {
-                const userData = await fetchCurrentUserData();
-                if(userData) {
-                    setProfileData({ firstName: userData.firstName,
-                                           lastName: userData.lastName,
-                                           email: userData.email,
-                                           address: userData.address || " " });
-                } else {
-                    console.log(t('No user data'));
-                }
-            } catch (err: any) {
-                console.log(err.message);
+    const getCurrentUserData = async () => {
+        try {
+            const userData = await fetchCurrentUserData();
+            if(userData) {
+                setProfileData({ firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email,
+                    address: userData.address || " " });
+            } else {
+                console.log(t('No user data'));
             }
+        } catch (err: any) {
+            console.log(err.message);
         }
-        getData();
-    }, [profileData]);
+    };
 
     const changeProfileData = async () => {
         const newData = {
@@ -93,7 +90,11 @@ const ProfilePage:FC<ProfilePageProps> = (props) => {
             setSnackBarMessage(err.message);
             setSnackBarIsOpen(true);
         }
-    }
+    };
+
+    useEffect(()=> {
+        getCurrentUserData();
+    }, [profileData, currentUser]);
 
 
     return (

@@ -7,6 +7,7 @@ import {fetchOneProduct} from "../api/fetchProducts";
 import {useTranslation} from 'react-i18next';
 import {addItemToCart} from "../api/userData";
 import {getCurrentId} from "../helpers/getIdForSingleEntityPage";
+import Loader from "../components/ui-components/Loader";
 
 interface SingleProductPageProps {
     setCartItems?: any,
@@ -88,7 +89,7 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
                              description={actualProduct.item.description}
                              name={actualProduct.item.name}
                              category={actualProduct.item.category} />
-                : <h1>Loading...</h1>
+                : <Loader />
             }
             <Button onClick={addToCart}  className={"default"} buttonText={t("Add to cart")}/>
             <Footer />
