@@ -1,8 +1,6 @@
 import React, {FC} from 'react';
 import ProductItem from "./ProductItem";
 
-
-
 interface ProductListProps {
     products: any,
     className: string,

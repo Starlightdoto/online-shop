@@ -1,5 +1,6 @@
 import React, {FC, useState} from "react";
 import {useTranslation} from 'react-i18next';
+import Loader from "./Loader";
 
 interface ResultHeaderProps {
     searchResultsCount: number,
@@ -17,7 +18,7 @@ export const ResultHeader:FC<ResultHeaderProps> = ({searchResultsCount}) => {
                     <h1>{t(headerState)}</h1>
                     <h2 style={{marginTop: 20}}>{searchResultsCount} items</h2>
                 </>
-            ) : (<h1>{t('Unfortunately, no  products found')}</h1>)
+            ) : (<Loader />)
 
             }
         </div>
