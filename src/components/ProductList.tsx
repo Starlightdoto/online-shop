@@ -22,19 +22,22 @@ const ProductList:FC<ProductListProps> = (props) => {
     return (
         <div className={`${className}List`}>
             {products.map((product: any) => {
+                let unavailable = false;
+                if(product.quantity < 1) unavailable = true;
                 switch(className) {
                     case 'product':
                         return <ProductItem id={product.id}
-                                         key={product.id}
-                                         rating={product.rating}
-                                         imgSrc={product.image}
-                                         className={"grid"}
-                                         name={product.title}
-                                         category={product.category}
-                                         description={product.description}
-                                         price={product.price}
-                                         quantity={product.quantity}
-                                         addItemToCart={addItemToCart}
+                                            key={product.id}
+                                            rating={product.rating}
+                                            imgSrc={product.image}
+                                            className={"grid"}
+                                            name={product.title}
+                                            category={product.category}
+                                            description={product.description}
+                                            price={product.price}
+                                            quantity={product.quantity}
+                                            addItemToCart={addItemToCart}
+                                            classNameAdditional={unavailable ? 'unavailable' : ''}
                             />
                     case 'cart':
                         if(product.item.name === undefined){

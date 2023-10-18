@@ -1,8 +1,6 @@
 import { db, auth } from '../firebase';
 import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc, writeBatch, increment} from 'firebase/firestore';
 
-
-
 export const fetchCurrentUserData = async () => {
     const user = auth.currentUser;
 
@@ -35,32 +33,47 @@ export const updateUserData = async (uid: any,updatedData: any) => {
 };
 
 export const addItemToCart = async (uid: string, item: any) => {
+    let isItemAvailable = true;
     const userCartItemsCollection = collection(db, 'carts', uid, 'items');
+    const allProductsCollection = collection(db, 'products');
     const q = query(userCartItemsCollection, where('id', '==', item.id));
+    const qTwo = query(allProductsCollection, where('id', '==', item.id));
 
     const itemSnapshot = await getDocs(q);
+    const productsSnapshot = await getDocs(qTwo);
 
+    try {
+        const itemRef = productsSnapshot.docs[0];
+        const itemData = itemRef.data();
+        const itemQuantity = itemData.quantity;
+        itemQuantity > 0 ? isItemAvailable = true : isItemAvailable = false;
+    } catch (err: any) {
+        console.log(err.message);
+    }
 
-    if(itemSnapshot.empty) {
-        try {
-            const newCartItemRef = await addDoc(userCartItemsCollection, item);
-            return true;
-        } catch(err: any) {
-            console.log(err.message);
-            return false;
+    if(isItemAvailable) {
+        if(itemSnapshot.empty) {
+            try {
+                const newCartItemRef = await addDoc(userCartItemsCollection, item);
+                return true;
+            } catch(err: any) {
+                console.log(err.message);
+                return false;
+            }
+        } else {
+            const itemRef = itemSnapshot.docs[0].ref;
+            try {
+                await updateDoc(itemRef, {
+                    count: increment(1),
+                });
+                return true;
+            } catch( err: any) {
+                console.log(err.message);
+                return false;
+            }
         }
     } else {
-        const itemRef = itemSnapshot.docs[0].ref;
-        try {
-            await updateDoc(itemRef, {
-                count: increment(1),
-            });
-            return true;
-        } catch( err: any) {
-            console.log(err.message);
-            return false;
-        }
-
+        console.log('Item is currently not available');
     }
 }
 

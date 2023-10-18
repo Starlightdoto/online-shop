@@ -16,7 +16,7 @@ export const ResultHeader:FC<ResultHeaderProps> = ({searchResultsCount}) => {
             {searchResultsCount > 0 ? (
                 <>
                     <h1>{t(headerState)}</h1>
-                    <h2 style={{marginTop: 20}}>{searchResultsCount} items</h2>
+                    <h2 style={{marginTop: 20}}>{searchResultsCount} {t('items')}</h2>
                 </>
             ) : (<Loader />)
 

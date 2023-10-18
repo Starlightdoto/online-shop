@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {useTranslation} from 'react-i18next';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ItemCounter from "./ui-components/ItemCounter";
-import {changeCartItemsCount} from "../api/userData";
+import { changeCartItemsCount } from "../api/userData";
 
 interface ProductItemProps {
     id?:string,
@@ -27,14 +27,10 @@ interface ProductItemProps {
 
 const ProductItem:FC<ProductItemProps> = (props) => {
     const {t, i18n} = useTranslation();
-    const { name,
-            className,
-            removeItem,
-            classNameAdditional,
-            imgSrc,
-            quantity = 0,
-            price,
-            description,
+    const { name, className,
+            removeItem, classNameAdditional,
+            imgSrc, quantity = 0,
+            price, description,
             category, id,
             rating, onSinglePage,
             addItemToCart, itemCount, changeCartItems } = props;
@@ -58,18 +54,32 @@ const ProductItem:FC<ProductItemProps> = (props) => {
                          <Button onClick={() => removeItem(id)}  className={"remove"}><DeleteIcon /></Button>
                         </div> : null }
                 </div> )
-            :  ( <div className={`productItem-${className}`}>
-                    <img className={`productImage-${className}`} src={imgSrc} alt=""/>
-                    {!onSinglePage ? <Button  onClick={() => {
-                        addItemToCart(id, price, description, name, category, imgSrc, rating);
-                    }} className={"default"} ><AddShoppingCartIcon /></Button> : null }
-                    <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
-                    <h4>{t('Quantity')}: {quantity}</h4>
-                    <h4>{t('Price')}: ${price}</h4>
-                    <h4>{t('Category')}: {category}</h4>
-                    <h4>{t('Rating')}: {rating}</h4>
-                    <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
-                </div> )
+
+                    : classNameAdditional === "unavailable" ? ( <div className={`productItemDisabled-${className}`}>
+                        <img className={`productImage-${className}`} src={imgSrc} alt=""/>
+                        {!onSinglePage ? <Button disabled={true} onClick={() => {
+                            addItemToCart(id, price, description, name, category, imgSrc, rating);
+                        }} className={'defaultDisabled'} ><AddShoppingCartIcon /></Button> : null }
+                        <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
+                        <h4>{t('Quantity')}: <h4 style={{color: 'red', display: 'inline'}}>{quantity}</h4></h4>
+                        <h4>{t('Price')}: ${price}</h4>
+                        <h4>{t('Category')}: {category}</h4>
+                        <h4>{t('Rating')}: {rating}</h4>
+                        <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
+                    </div> )
+
+                    : ( <div className={`productItem-${className}`}>
+                        <img className={`productImage-${className}`} src={imgSrc} alt=""/>
+                        {!onSinglePage ? <Button  onClick={() => {
+                            addItemToCart(id, price, description, name, category, imgSrc, rating);
+                        }} className={"default"} ><AddShoppingCartIcon /></Button> : null }
+                        <NavLink style={{textDecoration:"none", color:"white"}} to={`/product/${id}`}><h3 className={"productName-grid"}>{name}</h3></NavLink>
+                        <h4>{t('Quantity')}: {quantity}</h4>
+                        <h4>{t('Price')}: ${price}</h4>
+                        <h4>{t('Category')}: {category}</h4>
+                        <h4>{t('Rating')}: {rating}</h4>
+                        <h4 className={`productItemDescription-${className}`}>{t('Description')}: {description}</h4>
+                    </div> )
             }
         </div>
     );
