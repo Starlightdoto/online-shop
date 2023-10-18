@@ -105,7 +105,7 @@ body {
     margin-right: 15px;
 }
 
-.default-button {
+.default-button, .defaultDisabled-button {
     margin: 10px;
     min-width: 80px;
     height: 40px;
@@ -116,6 +116,14 @@ body {
     cursor: pointer;
     overflow-x: auto;
     padding: 2px;
+}
+
+.defaultDisabled-button {
+    background-color: #9e9e9e;
+}
+
+.defaultDisabled-button:hover {
+    cursor: default;
 }
 
 .remove-button {
@@ -228,7 +236,7 @@ body {
 
 
 
-.productItem-grid {
+.productItem-grid, .productItemDisabled-grid {
     display: block;
     width: 50%;
     min-width: 400px;
@@ -245,6 +253,10 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     scrollbar-width: thin;
     scrollbar-color: #cccccc #f8f8f8;
+}
+
+.productItemDisabled-grid {
+    opacity: 0.7;
 }
 
 
@@ -553,6 +565,8 @@ body {
     left: 2%;
     top: 8%;
 }
+
+
 
 
 

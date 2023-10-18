@@ -47,6 +47,7 @@ i18n
                     'No user data' : 'No user data',
                     'Changes saved': 'Changes saved',
                     'Total': 'Total',
+                    'items' : 'items',
                 }
             },
             ru: {
@@ -91,6 +92,7 @@ i18n
                     'No user data' : 'Нет данных пользователя',
                     'Changes saved' : 'Изменения сохранены',
                     'Total' : 'Всего',
+                    'items' : 'товаров',
                 }
             }
         },

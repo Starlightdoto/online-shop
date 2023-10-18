@@ -43,10 +43,6 @@ const ProfileCard:FC<ProfileCardProps> = (props) => {
     }
 
 
-    const saveChanges = () => {
-        changeProfileData();
-    }
-
     return (
         <div>
             {editMode ? ( <div className={"profileCardEdit"}>
