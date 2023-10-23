@@ -31,13 +31,12 @@ const SingleProductPage:FC<SingleProductPageProps> = (props) => {
 
     const fetchProduct = async () => {
         const product = await fetchOneProduct(getCurrentId());
-        console.log(product);
         if(product) {
             setActualProduct((prevState: any) => {
                 return {
-                    id: product.id,
+                    id: product._id,
                     item: {
-                        id: product.id,
+                        id: product._id,
                         quantity: product.quantity,
                         price: product.price,
                         description: product.description,

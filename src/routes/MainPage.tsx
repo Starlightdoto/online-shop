@@ -35,8 +35,8 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
 
     const getAllProducts = async (limit?:string) => {
-        const data = await fetchAllProducts(limit);
-        let resultingArray = [];
+        const data: any = await fetchAllProducts(limit);
+        let resultingArray: any[] = [];
         if(limit) {
             for(let i = 0; i < Number(limit); i++) {
                 if(data) {
@@ -51,7 +51,7 @@ export const MainPage:FC<MainPageProps> = (props) => {
 
     const getOneCategory = async (category: string) => {
         const data = await fetchOneCategory(category);
-        setProducts(data?.filter(item => item.category === category) ?? []);
+        setProducts(data?.filter((item: any) => item.category === category) ?? []);
     };
 
     const sortProducts = (sortType: string) => {
