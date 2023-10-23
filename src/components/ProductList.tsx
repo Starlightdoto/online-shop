@@ -26,8 +26,8 @@ const ProductList:FC<ProductListProps> = (props) => {
                 if(product.quantity < 1) unavailable = true;
                 switch(className) {
                     case 'product':
-                        return <ProductItem id={product.id}
-                                            key={product.id}
+                        return <ProductItem id={product._id}
+                                            key={product._id}
                                             rating={product.rating}
                                             imgSrc={product.image}
                                             className={"grid"}
@@ -43,8 +43,8 @@ const ProductList:FC<ProductListProps> = (props) => {
                         if(product.item.name === undefined){
                             return <h1>Loading...</h1>
                         } else return      <ProductItem
-                                             key={product.item.id}
-                                             id={product.item.id}
+                                             key={product.item._id}
+                                             id={product.item._id}
                                              rating={product.item.rating}
                                              imgSrc={product.item.imgSrc ?? "no logo"}
                                              className={"grid"}
@@ -61,8 +61,8 @@ const ProductList:FC<ProductListProps> = (props) => {
                                 if(product.item.name === undefined){
                                     return <h1>Loading...</h1>
                                 } else return <ProductItem
-                                        key={product.item.id}
-                                        id={product.item.id}
+                                        key={product.item._id}
+                                        id={product.item._id}
                                         rating={product.item.rating}
                                         imgSrc={product.item.imgSrc ?? "no logo"}
                                         className={"grid"}
