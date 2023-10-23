@@ -1,4 +1,5 @@
 import {db} from '../firebase';
+import axios from 'axios';
 import { collection, getDocs, query, where, getDoc, addDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 
@@ -7,10 +8,15 @@ const fetchAllProducts = async(limit?:string) => {
     try {
         const productSnapshot = await getDocs(productsCollection);
         const productList = productSnapshot.docs.map(doc => doc.data());
+
+        const response = await axios.get('http://localhost:3001/api/products/all');
+        console.log(response.data);
+
         return productList;
     } catch (e) {
         console.log(e);
     }
+
 };
 
 export const fetchOneProduct = async(id:string) => {

@@ -11,7 +11,8 @@ const OrdersList:FC<OrdersListProps> = (props) => {
     return (
         <div>
             {orders?.map((order) => {
-                return <OrderCard id={order.uid}
+                return <OrderCard key={order.uid}
+                                  id={order.uid}
                                   price={order.price}
                                   date={order.date}
                                   status={order.status} />

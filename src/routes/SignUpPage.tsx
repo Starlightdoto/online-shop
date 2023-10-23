@@ -8,7 +8,8 @@ import {doc, setDoc} from "firebase/firestore";
 import { validateNameField, validatePassword, validateEmail } from "../helpers/fieldValidator";
 import {MainPage} from "./MainPage";
 import { createNewCart } from "../api/userData";
-
+import {signUpNewUser} from "../api/authController";
+import {sendSignUpEmail} from "../api/emailService";
 
 
 interface SignUpPageProps {
@@ -38,43 +39,30 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
     const [lastNameError, setLastNameError] = useState<string | null>(null);
     const [role, setRole] = useState<string>('user');
 
-
-    const signUpUser = async () => {
-        const isEmailValid = validateEmail(email, setEmailError);
-        const isPassWordValid = validatePassword(password, setPasswordError);
-        if(isEmailValid && isPassWordValid) {
-            try {
-                const response = await createUserWithEmailAndPassword(auth, email, password);
-                const user = response.user;
-
-                if(user) {
-                    const userRef = doc(db, "users", user.uid);
-                    await setDoc(userRef, {
-                        uid: user.uid,
-                        email: user.email,
-                        firstName: firstName,
-                        lastName: lastName,
-                        role: role,
-                    });
-                    setSnackBarInfo('success');
-                    setSnackBarMessage('You have successfully signed up!')
-                    setSnackBarIsOpen(true);
-                }
-            } catch (err : any) {
-                setSnackBarInfo('error');
-                setSnackBarMessage(err.message);
-                setSnackBarIsOpen(true);
-            }
-            await createCartForUser();
-        }
-    }
-
     const createCartForUser = async () => {
         try {
             await createNewCart();
             console.log('Cart created!');
         } catch (err: any) {
             console.log(err.message);
+        }
+    }
+
+    const signUpUser = async () => {
+        const isEmailValid = validateEmail(email, setEmailError);
+        const isPassWordValid = validatePassword(password, setPasswordError);
+        if (isEmailValid && isPassWordValid) {
+            try {
+                await signUpNewUser(email, password, firstName, lastName, role);
+                await createCartForUser();
+                setSnackBarInfo('success');
+                setSnackBarMessage('You have successfully signed up!')
+                setSnackBarIsOpen(true);
+            } catch (err: any) {
+                setSnackBarInfo('error');
+                setSnackBarMessage(err.message);
+                setSnackBarIsOpen(true);
+            }
         }
     }
 

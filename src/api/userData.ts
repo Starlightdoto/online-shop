@@ -1,4 +1,5 @@
 import { db, auth } from '../firebase';
+import axios from 'axios';
 import {collection, doc, getDoc, updateDoc, addDoc, getDocs, query, where, deleteDoc, writeBatch, increment} from 'firebase/firestore';
 
 export const fetchCurrentUserData = async () => {
@@ -100,6 +101,8 @@ export const fetchUserCartItems = async (uid: string) => {
     try {
         const userCartItemsSnapshot = await getDocs(userCartItemsCollection);
         const itemsList = userCartItemsSnapshot.docs.map(doc => doc.data());
+        const response = await axios.get('http://localhost:3001/api/cart/items');
+        console.log(response.data);
         return itemsList;
     } catch(err: any) {
         console.log(err.message);
@@ -197,6 +200,8 @@ export const fetchAllUserOrders = async (uid: string) => {
     try {
         const ordersSnapshot = await getDocs(q);
         const orders = ordersSnapshot.docs.map(doc => doc.data());
+        const response = await axios.get('http://localhost:3001/api/orders/all');
+        console.log(response.data);
         return orders;
     } catch (err: any) {
         console.log(err.message);
