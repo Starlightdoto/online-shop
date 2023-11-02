@@ -1,7 +1,4 @@
-import {db} from '../firebase';
 import axios from 'axios';
-import { collection, getDocs, query, where, getDoc, addDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
-
 
 const fetchAllProducts = async(limit?:string) => {
     try {

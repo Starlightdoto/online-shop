@@ -53,7 +53,8 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
         const isPassWordValid = validatePassword(password, setPasswordError);
         if (isEmailValid && isPassWordValid) {
             try {
-                await signUpNewUser(email, password, firstName, lastName, role);
+                const newUser = await signUpNewUser(email, password, firstName, lastName, role);
+                setCurrentUser(newUser);
                 await createCartForUser();
                 setSnackBarInfo('success');
                 setSnackBarMessage('You have successfully signed up!')

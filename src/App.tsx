@@ -24,18 +24,6 @@ function App() {
     const [snackBarMessage, setSnackBarMessage] = useState<string>('Snackbar message');
     const [currentUser, setCurrentUser] = useState<any | null>(null);
 
-    useEffect(()=> {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(user) {
-                setCurrentUser(user);
-            } else {
-                setCurrentUser(null);
-            }
-        });
-
-        return () => unsubscribe();
-    }, [auth]);
-
 
     return (
       <I18nextProvider i18n={i18n}>

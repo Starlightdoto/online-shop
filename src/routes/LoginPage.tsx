@@ -27,7 +27,10 @@ const LoginPage:FC<LoginPageProps> = (props) => {
 
     const userSignIn = async () => {
         try {
-            await signInUser(setCurrentUser, email, password, setError)
+            const user = await signInUser(setCurrentUser, email, password, setError);
+            if(user) {
+                setCurrentUser(user);
+            }
             if(setSnackBarInfo && setSnackBarIsOpen) {
                 setSnackBarInfo('success');
                 setSnackBarMessage('You have successfully signed in!')
