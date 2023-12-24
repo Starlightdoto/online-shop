@@ -26,7 +26,7 @@ const ProductList:FC<ProductListProps> = (props) => {
                 if(product.quantity < 1) unavailable = true;
                 switch(className) {
                     case 'product':
-                        return <ProductItem id={product._id}
+                        return <ProductItem id={product._id.$oid}
                                             key={product._id}
                                             rating={product.rating}
                                             imgSrc={product.image}

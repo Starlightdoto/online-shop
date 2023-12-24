@@ -27,11 +27,13 @@ const OrdersPage:FC<OrdersPageProps> = (props) => {
     const [orders, setOrders] = useState<any[] | null>([]);
 
     const getAllOrders = async () => {
-        try {
-            const userOrders = await fetchAllUserOrders(currentUser.uid);
-            setOrders(userOrders);
-        } catch (err: any) {
-            console.log(err.message);
+        if(currentUser) {
+            try {
+                const userOrders = await fetchAllUserOrders(currentUser.uid);
+                setOrders(userOrders);
+            } catch (err: any) {
+                console.log(err.message);
+            }
         }
     };
 

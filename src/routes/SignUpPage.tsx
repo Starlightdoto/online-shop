@@ -41,8 +41,9 @@ const SignUpPage:FC<SignUpPageProps> = (props) => {
 
     const createCartForUser = async () => {
         try {
-            await createNewCart();
+            await createNewCart(currentUser.uid);
             console.log('Cart created!');
+
         } catch (err: any) {
             console.log(err.message);
         }

@@ -78,18 +78,14 @@ export const addItemToCart = async (uid: string, item: any) => {
     }
 }
 
-export const createNewCart = async (initialItems = [] ) => {
-    const user = auth.currentUser;
-    const cartsCollection = collection(db, 'carts');
-
+export const createNewCart = async ( uid: string, initialItems = [] ) => {
     try {
-        const newCartRef = await addDoc(cartsCollection, {
-            uid: user?.uid,
-            owner: user?.uid,
+        const newCart = {
+            uid: uid || 'qweqweqwe123',
+            owner: uid || 'qweqweqwe123',
             items: initialItems,
-
-        });
-        return newCartRef;
+        };
+        await axios.post('http://127.0.0.1:5000/api/carts', newCart)
     } catch (err: any) {
         console.log(err.message);
     }
@@ -194,13 +190,9 @@ export const decreaseQuantityOfItemAfterOrder = async (uid: string, item: any) =
 }
 
 export const fetchAllUserOrders = async (uid: string) => {
-    const ordersCollection = collection(db, 'orders');
-    const q = query(ordersCollection, where('owner', '==', uid));
-
     try {
-        const ordersSnapshot = await getDocs(q);
-        const orders = ordersSnapshot.docs.map(doc => doc.data());
-        const response = await axios.get('http://localhost:3001/api/orders/all');
+        const response = await axios.get('http://127.0.0.1/api/orders/all');
+        const orders = response.data;
         console.log(response.data);
         return orders;
     } catch (err: any) {

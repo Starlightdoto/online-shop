@@ -5,7 +5,7 @@ import { collection, getDocs, query, where, getDoc, addDoc, doc, setDoc, deleteD
 
 const fetchAllProducts = async(limit?:string) => {
     try {
-        const response = await axios.get('http://localhost:3001/api/products/all');
+        const response = await axios.get('http://127.0.0.1:5000/api/products/all');
         const productList = response.data;
         return productList;
     } catch (err: any) {
@@ -16,7 +16,7 @@ const fetchAllProducts = async(limit?:string) => {
 
 export const fetchOneProduct = async(id:string) => {
     try {
-        const response = await axios.get(`http://localhost:3001/api/products/${id}`);
+        const response = await axios.get(`http://127.0.0.1:5000/api/products/${id}`);
         const product = response.data;
         return product;
     } catch (err: any) {
@@ -27,7 +27,7 @@ export const fetchOneProduct = async(id:string) => {
 
 export const fetchOneCategory = async (category: string) => {
     try {
-        const response = await axios.get(`http://localhost:3001/api/products/all/categories/${category}`);
+        const response = await axios.get(`http://127.0.0.1:5000/api/products/all/categories/${category}`);
         const products = response.data;
         return products;
     } catch (err: any) {
